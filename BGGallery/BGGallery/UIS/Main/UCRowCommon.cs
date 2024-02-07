@@ -34,10 +34,6 @@ namespace BGGallery
         {
             InitializeComponent();
 
-            MouseClick += UCRowCommon_MouseClick;
-            MouseDown += UCRowCommon_MouseDown;
-            MouseUp += UCRowCommon_MouseUp;
-
             menuRegion = new Rectangle(Width - 40, Height / 2 - Resources.menu.Height / 2, 34, 31);
         }
 

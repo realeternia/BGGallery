@@ -329,8 +329,8 @@ namespace BGGallery
             // 
             // pictureBoxPaperIcon
             // 
-            this.pictureBoxPaperIcon.Location = new System.Drawing.Point(20, 45);
-            this.pictureBoxPaperIcon.Margin = new System.Windows.Forms.Padding(20, 45, 3, 20);
+            this.pictureBoxPaperIcon.Location = new System.Drawing.Point(20, 35);
+            this.pictureBoxPaperIcon.Margin = new System.Windows.Forms.Padding(20, 35, 3, 20);
             this.pictureBoxPaperIcon.Name = "pictureBoxPaperIcon";
             this.pictureBoxPaperIcon.Size = new System.Drawing.Size(32, 32);
             this.pictureBoxPaperIcon.TabIndex = 3;
@@ -347,8 +347,8 @@ namespace BGGallery
             this.textBoxRowItemTitle.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxRowItemTitle.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBoxRowItemTitle.ForeColorDE = System.Drawing.Color.White;
-            this.textBoxRowItemTitle.Location = new System.Drawing.Point(65, 40);
-            this.textBoxRowItemTitle.Margin = new System.Windows.Forms.Padding(10, 40, 10, 20);
+            this.textBoxRowItemTitle.Location = new System.Drawing.Point(65, 30);
+            this.textBoxRowItemTitle.Margin = new System.Windows.Forms.Padding(10, 30, 10, 10);
             this.textBoxRowItemTitle.Name = "textBoxRowItemTitle";
             this.textBoxRowItemTitle.Size = new System.Drawing.Size(387, 32);
             this.textBoxRowItemTitle.TabIndex = 2;
@@ -361,15 +361,15 @@ namespace BGGallery
             this.uckvList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.uckvList1.BackColor = System.Drawing.Color.DarkBlue;
             this.uckvList1.BgColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.uckvList1.Location = new System.Drawing.Point(3, 100);
+            this.uckvList1.Location = new System.Drawing.Point(3, 90);
             this.uckvList1.Name = "uckvList1";
-            this.uckvList1.Size = new System.Drawing.Size(491, 165);
+            this.uckvList1.Size = new System.Drawing.Size(491, 139);
             this.uckvList1.TabIndex = 5;
             // 
             // dasayEditor1
             // 
             this.dasayEditor1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.dasayEditor1.Location = new System.Drawing.Point(4, 270);
+            this.dasayEditor1.Location = new System.Drawing.Point(4, 234);
             this.dasayEditor1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dasayEditor1.Name = "dasayEditor1";
             this.dasayEditor1.Size = new System.Drawing.Size(491, 803);

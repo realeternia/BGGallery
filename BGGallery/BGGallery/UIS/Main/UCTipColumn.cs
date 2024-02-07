@@ -361,6 +361,31 @@ namespace BGGallery
         //新增加一个页面
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            //var db = CsvDb.Create("bglist");
+            //var allIds = db.GetValuesByHeader("Game ID");
+            //foreach(var id in allIds)
+            //{
+            //    var gameTitle = db.GetValueByKey(id, "Game Title");
+            //    var detail = db.GetValueByKey(id, "Game Details");
+            //    var pinfo = db.GetValueByKey(id, "Player Info");
+            //    var date = db.GetValueByKey(id, "date");
+            //    var price = db.GetValueByKey(id, "price");
+            //    var recv = db.GetValueByKey(id, "recv");
+
+            //    var itmInfo = new BGItemInfo();
+            //    itmInfo.Id = int.Parse(id);
+            //    itmInfo.Title = gameTitle;
+            //    itmInfo.Tag = detail.Replace("/", ",") + "," + pinfo.Replace("人", "人,");
+            //    itmInfo.BuyInfo = date + "," + price;
+            //    if (recv != "0")
+            //        itmInfo.Tag += "," + "未到货";
+            //    //itmInfo.CatalogId = catalog;
+            //    //itmInfo.ColumnId = column;
+            //    BGBook.Instance.Items.Add(itmInfo);
+            //}
+
+            //return;
+
             var newItem = BGBook.Instance.AddItem("", catalogId, ColumnInfo.Id);
 
             RefreshLabels();

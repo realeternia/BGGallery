@@ -30,10 +30,10 @@ namespace BGGallery.UIS
             // 需要逆序
                 CheckCtrs(oldCtrList, "multisel", "标签", itemInfo.Tag, (s) => itemInfo.Tag = s);
             CheckCtrs(oldCtrList, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => itemInfo.NickName = s);
-            CheckCtrs(oldCtrList, "common", "创建时间", itemInfo.GetCreateTime().ToString(), null);
+            CheckCtrs(oldCtrList, "common", "购入信息", itemInfo.BuyInfo, (s) => itemInfo.BuyInfo = s);
 
             Width = 700 - 5;
-            Height = doubleBufferedPanel1.Controls.Count * 37 + 10;
+            Height = doubleBufferedPanel1.Controls.Count * 32 + 10;
         }
 
         private void CheckCtrs(List<Control> cc, string type, string k, string v, Action<string> onModify)
@@ -48,7 +48,7 @@ namespace BGGallery.UIS
 
                 var foundCtr = found as Control;
                 foundCtr.Name = k;
-                foundCtr.Height = 37;
+                foundCtr.Height = 32;
             }
             found.OnModify = onModify;
             found.SetData(k, v);
@@ -56,7 +56,7 @@ namespace BGGallery.UIS
 
             doubleBufferedPanel1.Controls.Add(found as Control);
             var foundCtr2 = found as Control;
-            foundCtr2.Location = new Point(0, doubleBufferedPanel1.Controls.Count * 37);
+            foundCtr2.Location = new Point(0, doubleBufferedPanel1.Controls.Count * 32);
             foundCtr2.Width = 700 - 5;
             foundCtr2.Dock = DockStyle.Top;
         }

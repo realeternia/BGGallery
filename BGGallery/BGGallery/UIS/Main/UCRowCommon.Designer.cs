@@ -33,7 +33,6 @@ namespace BGGallery
             // 
             // UCRowCommon
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.Black;
             this.DoubleBuffered = true;
@@ -42,8 +41,11 @@ namespace BGGallery
             this.Name = "UCRowCommon";
             this.Size = new System.Drawing.Size(260, 47);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCRowCommon_Paint);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UCRowCommon_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.UCRowCommon_MouseDown);
             this.MouseEnter += new System.EventHandler(this.UCRowCommon_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.UCRowCommon_MouseLeave);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.UCRowCommon_MouseUp);
             this.ResumeLayout(false);
 
         }

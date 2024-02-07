@@ -16,7 +16,7 @@ namespace BGGallery.Utils
         private static string name = "Log";
 
         private static string format = "[%d{yyyy-MM-dd HH:mm:ss,fff}][%-5level][%c]%message%newline";
-        public static bool DisableDebugLog = false;
+        public static bool DisableDebugLog = true;
 
         public static void Start(string name1, LogTargets target) //server remote mode will be set auto when use SetRemote
         {

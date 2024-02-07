@@ -7,14 +7,15 @@ namespace BGGallery.Model
     public class BGItemInfo
     {
         public int Id { get; set; } //同文件存储路径
-        public int Type { get; set; } //0 默认，1 背单词
+        public int Type { get; set; } //0 默认
         public string Title { get; set; }
         public string NickName { get; set; } //别名
         public string Tag { get; set; }
         public string Icon { get; set; }
         public string Parm { get; set; } //额外数据
         public int CatalogId { get; set; } 
-        public int ColumnId { get; set; } 
+        public int ColumnId { get; set; }
+        public string BuyInfo { get; set; } //别名
 
         public string GetCatalog() { return BGBook.Instance.CatalogInfos.Find(a => a.Id == CatalogId).Name; }
         public string GetColumn()

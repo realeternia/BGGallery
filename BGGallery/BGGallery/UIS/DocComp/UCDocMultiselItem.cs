@@ -40,7 +40,7 @@ namespace BGGallery.UIS
                 return;
 
             var startX = 210;
-            var startY = 5;
+            var startY = 0;
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 var dts = textBox1.Text.Split(',');
