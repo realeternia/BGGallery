@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DC2272A3-3148-4D36-A898-57B7CDA658FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PicResource</RootNamespace>
+    <AssemblyName>PicResource</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\atr0.PNG" />
+    <EmbeddedResource Include="Icon\atr1.PNG" />
+    <EmbeddedResource Include="Icon\atr2.PNG" />
+    <EmbeddedResource Include="Icon\atr3.PNG" />
+    <EmbeddedResource Include="Icon\atr4.PNG" />
+    <EmbeddedResource Include="Icon\atr5.PNG" />
+    <EmbeddedResource Include="Icon\atr6.PNG" />
+    <EmbeddedResource Include="Icon\atr7.PNG" />
+    <EmbeddedResource Include="Icon\atr8.PNG" />
+    <EmbeddedResource Include="Icon\cup1.PNG" />
+    <EmbeddedResource Include="Icon\cup2.PNG" />
+    <EmbeddedResource Include="Icon\cup3.PNG" />
+    <EmbeddedResource Include="Icon\res1.PNG" />
+    <EmbeddedResource Include="Icon\res2.PNG" />
+    <EmbeddedResource Include="Icon\res3.PNG" />
+    <EmbeddedResource Include="Icon\res4.PNG" />
+    <EmbeddedResource Include="Icon\res5.PNG" />
+    <EmbeddedResource Include="Icon\res6.PNG" />
+    <EmbeddedResource Include="Icon\res7.PNG" />
+    <EmbeddedResource Include="Icon\res8.PNG" />
+    <EmbeddedResource Include="Icon\spl1.PNG" />
+    <EmbeddedResource Include="Icon\spl2.PNG" />
+    <EmbeddedResource Include="Icon\spl3.PNG" />
+    <EmbeddedResource Include="Icon\spl4.PNG" />
+    <EmbeddedResource Include="Icon\tsk1.PNG" />
+    <EmbeddedResource Include="Icon\tsk2.PNG" />
+    <EmbeddedResource Include="Icon\tsk3.PNG" />
+    <EmbeddedResource Include="Icon\tsk4.PNG" />
+    <EmbeddedResource Include="Icon\tsk5.PNG" />
+    <EmbeddedResource Include="Icon\tsk6.PNG" />
+    <EmbeddedResource Include="Icon\tsk7.PNG" />
+    <EmbeddedResource Include="Icon\tsk8.PNG" />
+    <EmbeddedResource Include="Icon\wep1.PNG" />
+    <EmbeddedResource Include="Icon\wep2.PNG" />
+    <EmbeddedResource Include="Icon\wep3.PNG" />
+    <EmbeddedResource Include="Icon\wep4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\hatt1.PNG" />
+    <EmbeddedResource Include="Icon\hatt2.PNG" />
+    <EmbeddedResource Include="Icon\hatt3.PNG" />
+    <EmbeddedResource Include="Icon\hatt4.PNG" />
+    <EmbeddedResource Include="Icon\hatt5.PNG" />
+    <EmbeddedResource Include="Icon\hatt6.PNG" />
+    <EmbeddedResource Include="Icon\hatt7.PNG" />
+    <EmbeddedResource Include="Icon\hatt8.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\mix1.PNG" />
+    <EmbeddedResource Include="Icon\mix2.PNG" />
+    <EmbeddedResource Include="Icon\mix3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth1.PNG" />
+    <EmbeddedResource Include="Icon\oth2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\job1.PNG" />
+    <EmbeddedResource Include="Icon\job2.PNG" />
+    <EmbeddedResource Include="Icon\job3.PNG" />
+    <EmbeddedResource Include="Icon\job4.PNG" />
+    <EmbeddedResource Include="Icon\job5.PNG" />
+    <EmbeddedResource Include="Icon\job6.PNG" />
+    <EmbeddedResource Include="Icon\job7.PNG" />
+    <EmbeddedResource Include="Icon\job8.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth5.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\tsk9.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth6.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\oth7.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\con1.PNG" />
+    <EmbeddedResource Include="Icon\con10.PNG" />
+    <EmbeddedResource Include="Icon\con11.PNG" />
+    <EmbeddedResource Include="Icon\con12.PNG" />
+    <EmbeddedResource Include="Icon\con2.PNG" />
+    <EmbeddedResource Include="Icon\con3.PNG" />
+    <EmbeddedResource Include="Icon\con4.PNG" />
+    <EmbeddedResource Include="Icon\con5.PNG" />
+    <EmbeddedResource Include="Icon\con6.PNG" />
+    <EmbeddedResource Include="Icon\con7.PNG" />
+    <EmbeddedResource Include="Icon\con8.PNG" />
+    <EmbeddedResource Include="Icon\con9.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon\mdl1.PNG" />
+    <EmbeddedResource Include="Icon\mdl2.PNG" />
+    <EmbeddedResource Include="Icon\mdl3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="menu.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

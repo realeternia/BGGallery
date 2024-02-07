@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGGallery", "BGGallery\BGGallery.csproj", "{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicResource", "PicResource\PicResource.csproj", "{DC2272A3-3148-4D36-A898-57B7CDA658FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC2272A3-3148-4D36-A898-57B7CDA658FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC2272A3-3148-4D36-A898-57B7CDA658FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC2272A3-3148-4D36-A898-57B7CDA658FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC2272A3-3148-4D36-A898-57B7CDA658FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8E46050-F00D-416B-AA41-87149E155C9D}
+	EndGlobalSection
+EndGlobal

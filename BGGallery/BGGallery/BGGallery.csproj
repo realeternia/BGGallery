@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{11B0C3F6-C00C-47B3-9FE8-B9F1CC090251}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>BGGallery</RootNamespace>
+    <AssemblyName>BGGallery</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPinyin">
+      <HintPath>.\NPinyin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.13.7.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ENV.cs" />
+    <Compile Include="Model\BGColumnInfo.cs" />
+    <Compile Include="Model\BGItemInfo.cs" />
+    <Compile Include="Model\SetupItemDesAttribute.cs" />
+    <Compile Include="Model\IRowItem.cs" />
+    <Compile Include="Model\BGBookCfg.cs" />
+    <Compile Include="Model\Types\ColorCfg.cs" />
+    <Compile Include="PanelManager.cs" />
+    <Compile Include="UIS\DocComp\IDocComp.cs" />
+    <Compile Include="UIS\DoubleBufferedTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\InputNumberBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\InputNumberBox.Designer.cs">
+      <DependentUpon>InputNumberBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\InputArrayBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\InputArrayBox.Designer.cs">
+      <DependentUpon>InputArrayBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\InputColorBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\InputColorBox.Designer.cs">
+      <DependentUpon>InputColorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCListSelectBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCListSelectBar.Designer.cs">
+      <DependentUpon>UCListSelectBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCGmRunSvTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCGmRunSvTime.designer.cs">
+      <DependentUpon>UCGmRunSvTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCBigBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCBigBox.Designer.cs">
+      <DependentUpon>UCBigBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingItem.Designer.cs">
+      <DependentUpon>UCSettingItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCIconPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCIconPicker.Designer.cs">
+      <DependentUpon>UCIconPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCNInput.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCNInput.Designer.cs">
+      <DependentUpon>UCNInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingBar.Designer.cs">
+      <DependentUpon>UCSettingBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormButton.Designer.cs">
+      <DependentUpon>FormButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormComboBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormComboBox.Designer.cs">
+      <DependentUpon>FormComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormMiniatura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormMiniatura.Designer.cs">
+      <DependentUpon>FormMiniatura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormRadioButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormRadioButton.Designer.cs">
+      <DependentUpon>FormRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormTextBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormTextBox.Designer.cs">
+      <DependentUpon>FormTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormToggleButton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\Forms\FormToggleButton.Designer.cs">
+      <DependentUpon>FormToggleButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\MenuColorTable.cs" />
+    <Compile Include="UIS\RJControls\MenuRenderer.cs" />
+    <Compile Include="UIS\RJControls\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJCircularPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJDropdownMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJTextBox.Designer.cs">
+      <DependentUpon>RJTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\RJControls\RJToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupNumberItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupNumberItem.Designer.cs">
+      <DependentUpon>UCSetupNumberItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupStrArrayItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupStrArrayItem.Designer.cs">
+      <DependentUpon>UCSetupStrArrayItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupColorItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupColorItem.Designer.cs">
+      <DependentUpon>UCSetupColorItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupSwitch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupSwitch.Designer.cs">
+      <DependentUpon>UCSetupSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupStringItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCSetupStringItem.Designer.cs">
+      <DependentUpon>UCSetupStringItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\ViewStack.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\CsvDb.cs" />
+    <Compile Include="Utils\FileEncryption.cs" />
+    <Compile Include="Utils\ColorClassifier.cs" />
+    <Compile Include="Text Editor\DasayEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Text Editor\DasayEditor.designer.cs">
+      <DependentUpon>DasayEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Text Editor\RichTextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Text Editor\UCToolbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Text Editor\UCToolbar.Designer.cs">
+      <DependentUpon>UCToolbar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCRowCommon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCRowCommon.Designer.cs">
+      <DependentUpon>UCRowCommon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSearch.Designer.cs">
+      <DependentUpon>UCSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\DoubleBufferedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\HintTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\InputTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\InputTextBox.Designer.cs">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\TransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\DoubleBufferedFlowLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BGBook.cs" />
+    <Compile Include="Model\BGCatalogInfo.cs" />
+    <Compile Include="Utils\DrawTool.cs" />
+    <Compile Include="Utils\FontMgr.cs" />
+    <Compile Include="Utils\MathTool.cs" />
+    <Compile Include="Utils\ResLoader.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIS\Main\UCCatalogFix.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCCatalogFix.Designer.cs">
+      <DependentUpon>UCCatalogFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCCatalogItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCCatalogItem.Designer.cs">
+      <DependentUpon>UCCatalogItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCColumnAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCColumnAdd.Designer.cs">
+      <DependentUpon>UCColumnAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCTipColumn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCTipColumn.Designer.cs">
+      <DependentUpon>UCTipColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCRowAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCRowAdd.Designer.cs">
+      <DependentUpon>UCRowAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocPropertyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocPropertyList.Designer.cs">
+      <DependentUpon>UCDocPropertyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocMultiselItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocMultiselItem.Designer.cs">
+      <DependentUpon>UCDocMultiselItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocStringItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocStringItem.Designer.cs">
+      <DependentUpon>UCDocStringItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ColorTool.cs" />
+    <Compile Include="Utils\DelayedExecutor.cs" />
+    <Compile Include="Utils\HLog.cs" />
+    <Compile Include="Utils\ImageTool.cs" />
+    <Compile Include="Utils\BGDB.cs" />
+    <Compile Include="Utils\RtfModifier.cs" />
+    <Compile Include="Utils\StringTool.cs" />
+    <Compile Include="Utils\TextBoxSelectRecover.cs" />
+    <Compile Include="Utils\TimeTool.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\InputNumberBox.resx">
+      <DependentUpon>InputNumberBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\InputArrayBox.resx">
+      <DependentUpon>InputArrayBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\InputColorBox.resx">
+      <DependentUpon>InputColorBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCListSelectBar.resx">
+      <DependentUpon>UCListSelectBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCGmRunSvTime.resx">
+      <DependentUpon>UCGmRunSvTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCBigBox.resx">
+      <DependentUpon>UCBigBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCSettingItem.resx">
+      <DependentUpon>UCSettingItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCIconPicker.resx">
+      <DependentUpon>UCIconPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Text Editor\DasayEditor.resx">
+      <DependentUpon>DasayEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Text Editor\UCToolbar.resx">
+      <DependentUpon>UCToolbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCCatalogFix.resx">
+      <DependentUpon>UCCatalogFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCCatalogItem.resx">
+      <DependentUpon>UCCatalogItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCColumnAdd.resx">
+      <DependentUpon>UCColumnAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCRowCommon.resx">
+      <DependentUpon>UCRowCommon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCNInput.resx">
+      <DependentUpon>UCNInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCSettingBar.resx">
+      <DependentUpon>UCSettingBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCSearch.resx">
+      <DependentUpon>UCSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCTipColumn.resx">
+      <DependentUpon>UCTipColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCRowAdd.resx">
+      <DependentUpon>UCRowAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\HintTextBox.resx">
+      <DependentUpon>HintTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\InputTextBox.resx">
+      <DependentUpon>InputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormButton.resx">
+      <DependentUpon>FormButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormComboBox.resx">
+      <DependentUpon>FormComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormMiniatura.resx">
+      <DependentUpon>FormMiniatura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormRadioButton.resx">
+      <DependentUpon>FormRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormTextBox.resx">
+      <DependentUpon>FormTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\Forms\FormToggleButton.resx">
+      <DependentUpon>FormToggleButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\RJControls\RJTextBox.resx">
+      <DependentUpon>RJTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCSetupNumberItem.resx">
+      <DependentUpon>UCSetupNumberItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCSetupStrArrayItem.resx">
+      <DependentUpon>UCSetupStrArrayItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCSetupColorItem.resx">
+      <DependentUpon>UCSetupColorItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCSetupSwitch.resx">
+      <DependentUpon>UCSetupSwitch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCSetupStringItem.resx">
+      <DependentUpon>UCSetupStringItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\TransparentPanel.resx">
+      <DependentUpon>TransparentPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocPropertyList.resx">
+      <DependentUpon>UCDocPropertyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocMultiselItem.resx">
+      <DependentUpon>UCDocMultiselItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocStringItem.resx">
+      <DependentUpon>UCDocStringItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\colorf.png" />
+    <None Include="Resources\done.jpg" />
+    <None Include="Resources\menu.jpg" />
+    <None Include="Resources\search.png" />
+    <None Include="方正兰亭特黑简体.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PicResource\PicResource.csproj">
+      <Project>{dc2272a3-3148-4d36-a898-57b7cda658fd}</Project>
+      <Name>PicResource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\null.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\store.png" />
+    <None Include="Resources\wheel.png" />
+    <None Include="Resources\trace.png" />
+    <None Include="Resources\switch.png" />
+    <None Include="Resources\uline.png" />
+    <None Include="Resources\share.png" />
+    <None Include="Resources\smile.png" />
+    <None Include="Resources\noteadd.png" />
+    <None Include="Resources\note.png" />
+    <Content Include="ico.ico" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\brush.png" />
+    <None Include="Resources\bold.png" />
+    <None Include="Resources\clearformat.png" />
+    <None Include="Resources\bubble.png" />
+    <Content Include="Resources\convert.jpg" />
+    <Content Include="Resources\copy.jpg" />
+    <Content Include="Resources\del.jpg" />
+    <Content Include="Resources\del2.jpg" />
+    <None Include="Resources\done.png" />
+    <None Include="Resources\follow.png" />
+    <None Include="Resources\del2.png" />
+    <None Include="Resources\iter.png" />
+    <None Include="Resources\main.png" />
+    <None Include="Resources\eye.png" />
+    <Content Include="Resources\pictureadd.png" />
+    <Content Include="Resources\picturepaste.png" />
+    <Content Include="Resources\selector.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
