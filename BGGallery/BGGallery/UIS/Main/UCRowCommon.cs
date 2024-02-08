@@ -1,5 +1,6 @@
 ﻿using BGGallery.Model;
 using BGGallery.Properties;
+using BGGallery.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -134,24 +135,33 @@ namespace BGGallery
         {
             if (ShowCover)
             {
-                var cover = Image.FromFile(ENV.CoverDir + ItemId + ".jpg");
-                if (cover != null)
+                try
                 {
-                    // 计算源矩形和目标矩形  
-                    int sourceWidth = cover.Width; // 源图像的宽度  
-                    int sourceHeight = cover.Height; // 源图像的高度  
+                    var cover = Image.FromFile(ENV.CoverDir + ItemId + ".jpg");
+                    if (cover != null)
+                    {
+                        // 计算源矩形和目标矩形  
+                        int sourceWidth = cover.Width; // 源图像的宽度  
+                        int sourceHeight = cover.Height; // 源图像的高度  
 
-                    // 定义源矩形，它表示图像中要绘制的部分  
-                    Rectangle sourceRect = new Rectangle(0, (sourceHeight - imageHeight) / 2, sourceWidth, imageHeight);
+                        // 定义源矩形，它表示图像中要绘制的部分  
+                        Rectangle sourceRect = new Rectangle(0, (sourceHeight - imageHeight) / 2, sourceWidth, imageHeight);
 
-                    // 定义目标矩形，它表示在绘图表面上绘制图像的位置和大小  
-                    Rectangle destRect = new Rectangle(0, Height - imageHeight, Width, imageHeight);
+                        // 定义目标矩形，它表示在绘图表面上绘制图像的位置和大小  
+                        Rectangle destRect = new Rectangle(0, Height - imageHeight, Width, imageHeight);
 
-                    // 使用 DrawImage 方法绘制图像的一部分  
-                    e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
+                        // 使用 DrawImage 方法绘制图像的一部分  
+                        e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
 
-                  //  e.Graphics.DrawImage(cover, 0, Height - Width * 2 / 3, Width, Width * 2 / 3);
+                        //  e.Graphics.DrawImage(cover, 0, Height - Width * 2 / 3, Width, Width * 2 / 3);
+                    }
+
                 }
+                catch(Exception ex)
+                {
+                    HLog.Error(ex);
+                }
+             
             }
             DrawBase(e);
         }

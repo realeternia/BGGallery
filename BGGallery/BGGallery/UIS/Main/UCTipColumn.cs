@@ -364,6 +364,32 @@ namespace BGGallery
         //新增加一个页面
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            PanelManager.Instance.ShowInputBox("", async (s) =>
+            {
+                var result = await BGInfoSyncer.ExtractGameInfoAsync(s);
+                if (result.Count != 1)
+                    return;
+
+                var checkIt = result[0];
+                var itmInfo = new BGItemInfo();
+                itmInfo.Id = int.Parse(checkIt.Id);
+                itmInfo.Title = checkIt.Title;
+                itmInfo.Tag = checkIt.Details.Replace("/", ",") + "," + checkIt.PlayerInfo.Replace("人", "人,");
+                itmInfo.CatalogId = catalogId;
+                itmInfo.ColumnId = columnId;
+                BGBook.Instance.Items.Add(itmInfo);
+
+                RefreshLabels();
+
+                if (OnClickItem != null)
+                {
+                    var ctrs = flowLayoutPanel1.Controls.Find("dragctr" + itmInfo.Id, false);
+                    if (ctrs.Length > 0)
+                        OnClickItem(ctrs[0], new EventItemClickArgs { ItemId = itmInfo.Id, ColumnId = columnId});
+                }
+            });
+            return;
+
             //var db = CsvDb.Create("bglist");
             //var allIds = db.GetValuesByHeader("Game ID");
             //foreach(var id in allIds)
