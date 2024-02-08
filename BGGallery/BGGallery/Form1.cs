@@ -197,15 +197,19 @@ namespace BGGallery
             {
                 catalogId = cid;
                 nowCatalog = BGBook.Instance.GetCatalog(cid);
+                var maxHeight = 0;
                 foreach (var column in nowCatalog.Columns)
                 {
                     var newItem = AddUCColumn(column.Id, ucIndex, column.Title, Color.FromArgb(column.BgColor));
                     columnCtrs.Add(newItem);
                     ucIndex++;
+
+                    maxHeight = Math.Max(maxHeight, newItem.ItemHeight);
                 }
                 panel1.Controls.Add(ucTipAdd1);
                 ucTipAdd1.Location = new System.Drawing.Point((ucIndex - 1) * 270, 0);
                 panel1.Width = (ucIndex - 1) * 270 + ucTipAdd1.Width;
+                panel1.Height = maxHeight;
                 panel1.Visible = true;
                 textBoxCatalogTitle.Visible = true;
             }

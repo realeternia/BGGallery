@@ -63,6 +63,7 @@ namespace BGGallery
         private InputTextBox inputBox;
         private Rectangle menuRegion;
         private bool isMouseOn;
+        public int ItemHeight;
 
         public UCTipColumn()
         {
@@ -132,7 +133,9 @@ namespace BGGallery
 
                 rowItem.AfterInit();
             }
+            ItemHeight = flowLayoutPanel1.Location.Y + 20; //20是空间量
             AddControl(rowAdd);
+            ItemHeight += rowAdd.Location.Y + rowAdd.Height + 3;
             isDragging = false;
         }
 
