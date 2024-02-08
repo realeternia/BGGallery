@@ -13,7 +13,7 @@ namespace BGGallery
         static void Main()
         {
             HLog.Start("log", LogTargets.File);
-            HLog.DisableDebugLog = true;
+           // HLog.DisableDebugLog = true;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

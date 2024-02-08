@@ -52,7 +52,7 @@ namespace BGGallery.UIS
             this.textBox1.ForeColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(210, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(424, 18);
+            this.textBox1.Size = new System.Drawing.Size(471, 18);
             this.textBox1.TabIndex = 1;
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);

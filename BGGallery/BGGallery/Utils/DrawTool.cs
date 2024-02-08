@@ -70,14 +70,23 @@ namespace BGGallery.Utils
             return path;
         }
 
-        public static Brush GetTagBrush(string word)
+        public static Brush GetTagBrush(string word, Brush defaultB = null)
         {
             switch(word)
             {
                 case "存档": return Brushes.DarkRed;
+                case "未激活": return Brushes.DimGray;
+                case "未到货": return Brushes.Red;
                 case "汇总": return Brushes.MediumPurple;
                 case "加密": return Brushes.OrangeRed;
             }
+
+            if (word.Contains("￥"))
+                return Brushes.Green;
+
+            if (defaultB != null)
+                return defaultB;
+
             return Brushes.DeepSkyBlue;
         }
     }

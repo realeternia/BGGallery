@@ -28,9 +28,13 @@ namespace BGGallery.UIS
             doubleBufferedPanel1.Controls.Clear();
 
             // 需要逆序
-                CheckCtrs(oldCtrList, "multisel", "标签", itemInfo.Tag, (s) => itemInfo.Tag = s);
+            CheckCtrs(oldCtrList, "common", "CatalogId", itemInfo.CatalogId.ToString(), (s) => itemInfo.CatalogId = int.Parse(s));
+            CheckCtrs(oldCtrList, "common", "ColumnId", itemInfo.ColumnId.ToString(), (s) => itemInfo.ColumnId = int.Parse(s));
+            CheckCtrs(oldCtrList, "multisel", "购入信息", itemInfo.BuyInfo, (s) => itemInfo.BuyInfo = s);
+            CheckCtrs(oldCtrList, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => itemInfo.StarNewbie = int.Parse(s));
+            CheckCtrs(oldCtrList, "star", "评分", itemInfo.Star.ToString(), (s) => itemInfo.Star = int.Parse(s));
+            CheckCtrs(oldCtrList, "multisel", "标签", itemInfo.Tag, (s) => itemInfo.Tag = s);
             CheckCtrs(oldCtrList, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => itemInfo.NickName = s);
-            CheckCtrs(oldCtrList, "common", "购入信息", itemInfo.BuyInfo, (s) => itemInfo.BuyInfo = s);
 
             Width = 700 - 5;
             Height = doubleBufferedPanel1.Controls.Count * 32 + 10;
@@ -45,6 +49,8 @@ namespace BGGallery.UIS
                     found = new UCDocStringItem();
                 else if (type == "multisel")
                     found = new UCDocMultiselItem();
+                else if (type == "star")
+                    found = new UCDocStarItem();
 
                 var foundCtr = found as Control;
                 foundCtr.Name = k;

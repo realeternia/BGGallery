@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace BGGallery.UIS
 {
-    partial class UCDocMultiselItem
+    partial class UCDocStarItem
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -58,10 +58,11 @@ namespace BGGallery.UIS
             this.textBox1.Size = new System.Drawing.Size(477, 18);
             this.textBox1.TabIndex = 3;
             this.textBox1.Visible = false;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // UCDocMultiselItem
+            // UCDocStarItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
@@ -69,10 +70,10 @@ namespace BGGallery.UIS
             this.Controls.Add(this.textBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "UCDocMultiselItem";
+            this.Name = "UCDocStarItem";
             this.Size = new System.Drawing.Size(700, 32);
-            this.Click += new System.EventHandler(this.UCKVListMultisel_Click);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCKVListMultisel_Paint);
+            this.Click += new System.EventHandler(this.UCDocStarItem_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCDocStarItem_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 

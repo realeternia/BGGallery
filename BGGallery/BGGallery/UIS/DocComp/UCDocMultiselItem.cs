@@ -53,8 +53,8 @@ namespace BGGallery.UIS
                     // 获取文本框的大小
                     SizeF textSize = e.Graphics.MeasureString(word, Font);
 
-                    Rectangle borderRect = new Rectangle(startX, startY+3, (int)textSize.Width+6, (int)textSize.Height+2);
-                    var brush = DrawTool.GetTagBrush(word);
+                    Rectangle borderRect = new Rectangle(startX, startY + 3, (int)textSize.Width + 6, (int)textSize.Height + 2);
+                    var brush = DrawTool.GetTagBrush(word, label1.Text == "标签" ? null : Brushes.Orange);
                     e.Graphics.FillRectangle(brush, borderRect);
 
                     e.Graphics.DrawString(word, Font, Brushes.White, startX+3, startY+5);

@@ -3,6 +3,7 @@ using BGGallery.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using static BGGallery.UCTipColumn;
 
@@ -28,7 +29,8 @@ namespace BGGallery
         protected bool isMouseOver;
 
         public BGItemInfo itemInfo { get; set; }
-        private Dictionary<string, int> parmCount = new Dictionary<string, int>();
+        private bool ShowCover;
+        private int imageHeight = 100;
 
         public UCRowCommon()
         {
@@ -44,17 +46,13 @@ namespace BGGallery
 
         protected virtual void UpdateView()
         {
-            var parmList = itemInfo.GetParmList();
-            parmCount.Clear();
-            foreach (var parm in parmList)
+            Height = 47;
+
+            if (File.Exists(ENV.CoverDir + ItemId + ".jpg"))
             {
-                if (parm.Item2 != "0")
-                    parmCount[parm.Item1] = int.Parse(parm.Item2);
+                ShowCover = true;
+                Height += imageHeight;
             }
-            if (parmCount.Count > 0)
-                Height = 70;
-            else
-                Height = 47;
         }
 
         public virtual void OnRemove()
@@ -134,20 +132,28 @@ namespace BGGallery
 
         protected virtual void UCRowCommon_Paint(object sender, PaintEventArgs e)
         {
+            if (ShowCover)
+            {
+                var cover = Image.FromFile(ENV.CoverDir + ItemId + ".jpg");
+                if (cover != null)
+                {
+                    // 计算源矩形和目标矩形  
+                    int sourceWidth = cover.Width; // 源图像的宽度  
+                    int sourceHeight = cover.Height; // 源图像的高度  
+
+                    // 定义源矩形，它表示图像中要绘制的部分  
+                    Rectangle sourceRect = new Rectangle(0, (sourceHeight - imageHeight) / 2, sourceWidth, imageHeight);
+
+                    // 定义目标矩形，它表示在绘图表面上绘制图像的位置和大小  
+                    Rectangle destRect = new Rectangle(0, Height - imageHeight, Width, imageHeight);
+
+                    // 使用 DrawImage 方法绘制图像的一部分  
+                    e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
+
+                  //  e.Graphics.DrawImage(cover, 0, Height - Width * 2 / 3, Width, Width * 2 / 3);
+                }
+            }
             DrawBase(e);
-
-            int offset = 0;
-
-            if (parmCount.ContainsKey("main"))
-                offset += DrawItem(e.Graphics, Resources.main, parmCount["main"], 35 + 45 * offset);
-            if (parmCount.ContainsKey("todo"))
-                offset += DrawItem(e.Graphics, Resources.add, parmCount["todo"], 35 + 45 * offset);
-            if (parmCount.ContainsKey("done"))
-                offset += DrawItem(e.Graphics, Resources.done1, parmCount["done"], 35 + 45 * offset);
-            if (parmCount.ContainsKey("follow"))
-                offset += DrawItem(e.Graphics, Resources.follow, parmCount["follow"], 35 + 45 * offset);
-            if (parmCount.ContainsKey("share"))
-                offset += DrawItem(e.Graphics, Resources.share, parmCount["share"], 35 + 45 * offset);
         }
 
         private int DrawItem(Graphics g, Image img, int val, int posX)

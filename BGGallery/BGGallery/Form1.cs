@@ -554,23 +554,24 @@ namespace BGGallery
                 int startX = e.Bounds.X + 8 + 30 + (int)textSize1.Width;
                 int startY = e.Bounds.Y + 10;
 
-                if (!string.IsNullOrEmpty(itemInfo.Tag))
+                List<string> tags = new List<string>();
+                if (itemInfo.ColumnId == 0)
+                    tags.Add("未激活");
+                if (itemInfo.HasTag("未到货"))
+                    tags.Add("未到货");
+                foreach (string word in tags)
                 {
-                    var dts = itemInfo.Tag.Split(',');
-                    foreach (string word in dts)
-                    {
-                        // 获取文本框的大小
-                        SizeF textSize = e.Graphics.MeasureString(word, Font);
+                    // 获取文本框的大小
+                    SizeF textSize = e.Graphics.MeasureString(word, Font);
 
-                        Rectangle borderRect = new Rectangle(startX, startY, (int)textSize.Width + 6, (int)textSize.Height + 6);
-                        var brush = DrawTool.GetTagBrush(word);
-                        e.Graphics.FillRoundRectangle(brush, borderRect, 3);
+                    Rectangle borderRect = new Rectangle(startX, startY, (int)textSize.Width + 6, (int)textSize.Height + 6);
+                    var brush = DrawTool.GetTagBrush(word);
+                    e.Graphics.FillRoundRectangle(brush, borderRect, 3);
 
-                        e.Graphics.DrawString(word, Font, Brushes.White, startX + 3, startY + 5);
+                    e.Graphics.DrawString(word, Font, Brushes.White, startX + 3, startY + 5);
 
-                        // 调整下一个词的位置
-                        startX += (int)textSize.Width + 6 + 6;
-                    }
+                    // 调整下一个词的位置
+                    startX += (int)textSize.Width + 6 + 6;
                 }
 
                 using (var ft = new Font("Arial", 9))

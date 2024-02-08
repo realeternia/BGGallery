@@ -74,6 +74,12 @@
     <Compile Include="Model\Types\ColorCfg.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="UIS\DocComp\IDocComp.cs" />
+    <Compile Include="UIS\DocComp\UCDocStarItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocStarItem.Designer.cs">
+      <DependentUpon>UCDocStarItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\DoubleBufferedTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -365,6 +371,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocStarItem.resx">
+      <DependentUpon>UCDocStarItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputNumberBox.resx">
       <DependentUpon>InputNumberBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -513,6 +522,11 @@
     <None Include="Resources\null.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\starn.png" />
+    <None Include="Resources\starn1.png" />
+    <None Include="Resources\stary.png" />
+    <None Include="Resources\stary1.png" />
+    <None Include="Resources\starnull.png" />
     <None Include="Resources\store.png" />
     <None Include="Resources\wheel.png" />
     <None Include="Resources\trace.png" />

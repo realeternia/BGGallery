@@ -16,6 +16,8 @@ namespace BGGallery.Model
         public int CatalogId { get; set; } 
         public int ColumnId { get; set; }
         public string BuyInfo { get; set; } //别名
+        public int Star { get; set; }
+        public int StarNewbie { get; set; }
 
         public string GetCatalog() { return BGBook.Instance.CatalogInfos.Find(a => a.Id == CatalogId).Name; }
         public string GetColumn()
