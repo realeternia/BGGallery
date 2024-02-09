@@ -122,6 +122,12 @@
     <Compile Include="UIS\Panels\UCBigBox.Designer.cs">
       <DependentUpon>UCBigBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\UCAddBG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCAddBG.Designer.cs">
+      <DependentUpon>UCAddBG.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\Panels\UCSettingItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -395,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCBigBox.resx">
       <DependentUpon>UCBigBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCAddBG.resx">
+      <DependentUpon>UCAddBG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCSettingItem.resx">
       <DependentUpon>UCSettingItem.cs</DependentUpon>

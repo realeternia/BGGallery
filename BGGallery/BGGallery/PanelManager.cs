@@ -21,6 +21,7 @@ namespace BGGallery
         private InputArrayBox arrayBox;
         private InputColorBox colorBox;
         private UCGmRunSvTime timePicker;
+        private UCAddBG addBG;
 
         public void Init(Form1 form)
         {
@@ -175,6 +176,18 @@ namespace BGGallery
             ReLocate(ref x, ref y, timePicker.Size);
             ShowBlackPanel(timePicker, x, y, 1);
             timePicker.OnInit();
+        }
+        public void ShowAddBG(string str, Action<GameInfo> callback)
+        {
+            if (addBG == null)
+            {
+                addBG = new UCAddBG();
+            }
+
+            addBG.OnCustomTextChanged = (s1) => callback(s1);
+
+            ShowBlackPanel(addBG, 0, 0);
+            addBG.OnInit(str);
         }
 
         public void ShowBlackPanel(Control ctr, int x, int y, float bright = 0.5f)

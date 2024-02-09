@@ -46,9 +46,6 @@ namespace BGGallery.Utils
 
                     games.Add(game);
                 }
-
-                if(games.Count == 1) //不等于1都会报错
-                    await DownloadImageAsync(games[0].ImageUrl, string.Format("img/{0}.jpg", games[0].Id));
             }
 
             return games;
@@ -75,7 +72,7 @@ namespace BGGallery.Utils
 
             return "";
         }
-        static async Task DownloadImageAsync(string imageUrl, string savePath)
+        public static async Task DownloadImageAsync(string imageUrl, string savePath)
         {
             imageUrl = "http:" + imageUrl;
             using (HttpClient client = new HttpClient())
@@ -101,7 +98,7 @@ namespace BGGallery.Utils
     }
 }
 
-class GameInfo
+public class GameInfo
 {
     public string Title { get; set; }
     public string Details { get; set; }

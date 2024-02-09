@@ -113,6 +113,7 @@ namespace BGGallery
             ReleaseAllLabels();
             flowLayoutPanel1.Controls.Clear();
 
+            int yOff = 0;
             foreach (var memoItem in BGBook.Instance.GetItemsByColumn(columnId))
             {
                 if (memoItem.HasTag("存档"))
@@ -129,12 +130,13 @@ namespace BGGallery
                 rowItem.SetTitle(memoItem.Title);
                 rowItem.SetIcon(memoItem.Icon);
                 DecorateControl(labelCtr, memoItem.Id);
-                AddControl(labelCtr);
+                AddControl(labelCtr, yOff);
 
                 rowItem.AfterInit();
+                yOff += labelCtr.Height + 6;
             }
             ItemHeight = flowLayoutPanel1.Location.Y + 20; //20是空间量
-            AddControl(rowAdd);
+            AddControl(rowAdd, yOff);
             ItemHeight += rowAdd.Location.Y + rowAdd.Height + 3;
             isDragging = false;
         }
@@ -221,10 +223,13 @@ namespace BGGallery
             delayControl = null;
         }
 
-
-        private void AddControl(Control c)
+        private void AddControl(Control c, int yOff)
         {
+            c.Location = new Point(5, yOff+5);
+
             flowLayoutPanel1.Controls.Add(c);
+
+            
         }
 
         private void flowLayoutPanel1_DragEnter(object sender, DragEventArgs e)
@@ -253,7 +258,7 @@ namespace BGGallery
             {
                 HLog.Debug("UCTipColumn DragDrop data={0} mp={1}", e.Data.GetData(DataFormats.StringFormat), MousePosition);
 
-                if(Math.Abs(dragStartPos.X - MousePosition.X) + Math.Abs(dragStartPos.Y - MousePosition.Y) > 10)
+                if (Math.Abs(dragStartPos.X - MousePosition.X) + Math.Abs(dragStartPos.Y - MousePosition.Y) > 10)
                 {
                     string[] names = ((string)e.Data.GetData(DataFormats.StringFormat)).Split('.');
 
@@ -364,20 +369,24 @@ namespace BGGallery
         //新增加一个页面
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            PanelManager.Instance.ShowInputBox("", async (s) =>
+            PanelManager.Instance.ShowAddBG("", async (gameInfo) =>
             {
-                var result = await BGInfoSyncer.ExtractGameInfoAsync(s);
-                if (result.Count != 1)
-                    return;
-
-                var checkIt = result[0];
                 var itmInfo = new BGItemInfo();
-                itmInfo.Id = int.Parse(checkIt.Id);
-                itmInfo.Title = checkIt.Title;
-                itmInfo.Tag = checkIt.Details.Replace("/", ",") + "," + checkIt.PlayerInfo.Replace("人", "人,");
+                itmInfo.Id = int.Parse(gameInfo.Id);
+                itmInfo.Title = gameInfo.Title;
+                itmInfo.Tag = gameInfo.Details.Replace("/", ",") + "," + gameInfo.PlayerInfo.Replace("人", "人,");
                 itmInfo.CatalogId = catalogId;
                 itmInfo.ColumnId = columnId;
+
+                if(BGBook.Instance.GetItem(itmInfo.Id) != null)
+                {
+                    HLog.Warn("bg add failed repeat id={0}", itmInfo.Id);
+                    return;
+                }
+
                 BGBook.Instance.Items.Add(itmInfo);
+
+                await BGInfoSyncer.DownloadImageAsync(gameInfo.ImageUrl, string.Format("img/{0}.jpg", gameInfo.Id));
 
                 RefreshLabels();
 
@@ -385,35 +394,10 @@ namespace BGGallery
                 {
                     var ctrs = flowLayoutPanel1.Controls.Find("dragctr" + itmInfo.Id, false);
                     if (ctrs.Length > 0)
-                        OnClickItem(ctrs[0], new EventItemClickArgs { ItemId = itmInfo.Id, ColumnId = columnId});
+                        OnClickItem(ctrs[0], new EventItemClickArgs { ItemId = itmInfo.Id, ColumnId = columnId });
                 }
             });
             return;
-
-            //var db = CsvDb.Create("bglist");
-            //var allIds = db.GetValuesByHeader("Game ID");
-            //foreach(var id in allIds)
-            //{
-            //    var gameTitle = db.GetValueByKey(id, "Game Title");
-            //    var detail = db.GetValueByKey(id, "Game Details");
-            //    var pinfo = db.GetValueByKey(id, "Player Info");
-            //    var date = db.GetValueByKey(id, "date");
-            //    var price = db.GetValueByKey(id, "price");
-            //    var recv = db.GetValueByKey(id, "recv");
-
-            //    var itmInfo = new BGItemInfo();
-            //    itmInfo.Id = int.Parse(id);
-            //    itmInfo.Title = gameTitle;
-            //    itmInfo.Tag = detail.Replace("/", ",") + "," + pinfo.Replace("人", "人,");
-            //    itmInfo.BuyInfo = date + "," + price;
-            //    if (recv != "0")
-            //        itmInfo.Tag += "," + "未到货";
-            //    //itmInfo.CatalogId = catalog;
-            //    //itmInfo.ColumnId = column;
-            //    BGBook.Instance.Items.Add(itmInfo);
-            //}
-
-            //return;
 
             var newItem = BGBook.Instance.AddItem("", catalogId, ColumnInfo.Id);
 

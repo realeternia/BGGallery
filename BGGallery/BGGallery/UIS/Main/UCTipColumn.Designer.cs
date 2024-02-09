@@ -32,7 +32,7 @@ namespace BGGallery
         private void InitializeComponent()
         {
             this.labelTitle = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
+            this.flowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedPanel();
             this.SuspendLayout();
             // 
             // labelTitle
@@ -85,7 +85,7 @@ namespace BGGallery
         }
 
         #endregion
-        private DoubleBufferedFlowLayoutPanel flowLayoutPanel1;
+        private DoubleBufferedPanel flowLayoutPanel1;
         private System.Windows.Forms.Label labelTitle;
     }
 }
