@@ -58,34 +58,41 @@ namespace BGGallery.UIS
                     return;
                 }
 
-                foreach (var file in Directory.GetFiles(ENV.SaveDir))
+                foreach (var itemInfo in BGBook.Instance.Items)
                 {
-                    var fi = new FileInfo(file);
-                    if (fi.Extension != ".rtf")
-                        continue;
+                    var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, itemInfo.Id);
+                    if (itemInfo.IsEncrypt())
+                        fullPath = fullPath.Replace(".rtf", ".rz");
 
-                    if (fi.LastWriteTime < searchBegin)
-                        continue;
-
-                    var itemIdStr = fi.Name;
-                    int itemId = int.Parse(itemIdStr.Replace(".rtf", ""));
-                    var itemInfo = BGBook.Instance.GetItem(itemId);
-                    if (itemInfo == null)
-                        continue;
-
-                    if(itemInfo.Title.Contains(searchTxt))
-                        searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
-                    if (itemInfo.Tag.Contains(searchTxt))
-                        searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
-
-                    string plainText = RtfModifier.ReadRtfPlainText(itemId);
-
-                    int lineid = 0;
-                    foreach (var line in plainText.Split('\n'))
+                    if(File.Exists(fullPath))
                     {
-                        if (line.IndexOf(searchTxt) >= 0)
-                            searchResults.Add(new SearchData { Line = line, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = lineid + 1 });
-                        lineid++;
+                        var fi = new FileInfo(fullPath);
+                        if (fi.LastWriteTime < searchBegin)
+                            continue;
+
+                        var itemIdStr = fi.Name;
+
+                        if (itemInfo.Title.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+                        if (itemInfo.Tag.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+
+                        string plainText = RtfModifier.ReadRtfPlainText(itemInfo.Id);
+
+                        int lineid = 0;
+                        foreach (var line in plainText.Split('\n'))
+                        {
+                            if (line.IndexOf(searchTxt) >= 0)
+                                searchResults.Add(new SearchData { Line = line, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = lineid + 1 });
+                            lineid++;
+                        }
+                    }
+                    else
+                    {
+                        if (itemInfo.Title.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                        if (itemInfo.Tag != null && itemInfo.Tag.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                     }
                 }
 
@@ -214,9 +221,5 @@ namespace BGGallery.UIS
                 SearchAct();
         }
 
-        private void rjButton6_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = (sender as RJButton).Text;
-        }
     }
 }
