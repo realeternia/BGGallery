@@ -13,7 +13,7 @@ namespace BGGallery.UIS
             InitializeComponent();
         }
 
-        public void SetData(string k, string v)
+        public void SetData(Model.BGItemInfo i, string k, string v)
         {
             label1.Text = k;
             if (!string.IsNullOrEmpty(v))

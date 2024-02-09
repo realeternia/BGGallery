@@ -25,22 +25,25 @@ namespace BGGallery.UIS
             var oldCtrList = new List<Control>();
             foreach (Control c in doubleBufferedPanel1.Controls)
                 oldCtrList.Add(c);
+
+            SuspendLayout();
             doubleBufferedPanel1.Controls.Clear();
 
             // 需要逆序
-            CheckCtrs(oldCtrList, "common", "CatalogId", itemInfo.CatalogId.ToString(), (s) => itemInfo.CatalogId = int.Parse(s));
-            CheckCtrs(oldCtrList, "common", "ColumnId", itemInfo.ColumnId.ToString(), (s) => itemInfo.ColumnId = int.Parse(s));
-            CheckCtrs(oldCtrList, "multisel", "购入信息", itemInfo.BuyInfo, (s) => itemInfo.BuyInfo = s);
-            CheckCtrs(oldCtrList, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => itemInfo.StarNewbie = int.Parse(s));
-            CheckCtrs(oldCtrList, "star", "评分", itemInfo.Star.ToString(), (s) => itemInfo.Star = int.Parse(s));
-            CheckCtrs(oldCtrList, "multisel", "标签", itemInfo.Tag, (s) => itemInfo.Tag = s);
-            CheckCtrs(oldCtrList, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => itemInfo.NickName = s);
+            CheckCtrs(oldCtrList, itemInfo, "select", "CatalogId", itemInfo.CatalogId.ToString(), (s) => { itemInfo.CatalogId = int.Parse(s); itemInfo.ColumnId = 0; });
+            CheckCtrs(oldCtrList, itemInfo, "select", "ColumnId", itemInfo.ColumnId.ToString(), (s) => itemInfo.ColumnId = int.Parse(s));
+            CheckCtrs(oldCtrList, itemInfo, "multisel", "购入信息", itemInfo.BuyInfo, (s) => itemInfo.BuyInfo = s);
+            CheckCtrs(oldCtrList, itemInfo, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => itemInfo.StarNewbie = int.Parse(s));
+            CheckCtrs(oldCtrList, itemInfo, "star", "评分", itemInfo.Star.ToString(), (s) => itemInfo.Star = int.Parse(s));
+            CheckCtrs(oldCtrList, itemInfo, "multisel", "标签", itemInfo.Tag, (s) => itemInfo.Tag = s);
+            CheckCtrs(oldCtrList, itemInfo, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => itemInfo.NickName = s);
 
             Width = 700 - 5;
             Height = doubleBufferedPanel1.Controls.Count * 32 + 10;
+            ResumeLayout();
         }
 
-        private void CheckCtrs(List<Control> cc, string type, string k, string v, Action<string> onModify)
+        private void CheckCtrs(List<Control> cc, BGItemInfo itemInfo, string type, string k, string v, Action<string> onModify)
         {
             var found = FindCtr(cc, k);
             if(found == null)
@@ -51,13 +54,15 @@ namespace BGGallery.UIS
                     found = new UCDocMultiselItem();
                 else if (type == "star")
                     found = new UCDocStarItem();
+                else if (type == "select")
+                    found = new UCDocSelectItem();
 
                 var foundCtr = found as Control;
                 foundCtr.Name = k;
                 foundCtr.Height = 32;
             }
             found.OnModify = onModify;
-            found.SetData(k, v);
+            found.SetData(itemInfo, k, v);
             found.SetReadOnly(onModify == null);
 
             doubleBufferedPanel1.Controls.Add(found as Control);

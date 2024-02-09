@@ -16,7 +16,7 @@ namespace BGGallery.UIS
             DoubleBuffered = true;
         }
 
-        public void SetData(string k, string tagStr1)
+        public void SetData(Model.BGItemInfo i, string k, string tagStr1)
         {
             label1.Text = k;
             textBox1.Text = tagStr1;

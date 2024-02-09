@@ -77,6 +77,12 @@
     <Compile Include="Model\Types\ColorCfg.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="UIS\DocComp\IDocComp.cs" />
+    <Compile Include="UIS\DocComp\UCDocSelectItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocSelectItem.Designer.cs">
+      <DependentUpon>UCDocSelectItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\DocComp\UCDocStarItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -380,6 +386,9 @@
     <Compile Include="Utils\TimeTool.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocSelectItem.resx">
+      <DependentUpon>UCDocSelectItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\DocComp\UCDocStarItem.resx">
       <DependentUpon>UCDocStarItem.cs</DependentUpon>
