@@ -1,5 +1,8 @@
 ﻿using BGGallery.Model;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using YamlDotNet.Serialization;
 
 namespace BGGallery
 {
@@ -16,6 +19,13 @@ namespace BGGallery
         public int ColumnIndex = 100001;
         public int ItemIndex = 200001;
         public BGBookCfg Cfg = new BGBookCfg();
+
+        public void Save()
+        {
+            var serializer = new SerializerBuilder().Build();
+            var yaml = serializer.Serialize(this);
+            File.WriteAllText(ENV.BaseDir + "/memo.yaml", yaml, Encoding.UTF8);
+        }
 
         public BGCatalogInfo AddCatalog()
         {

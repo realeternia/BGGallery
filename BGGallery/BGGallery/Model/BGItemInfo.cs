@@ -75,6 +75,13 @@ namespace BGGallery.Model
         {
             return new FileInfo(string.Format("{0}/{1}.{2}", ENV.SaveDir, Id, IsEncrypt() ? "rz" : "rtf")).LastWriteTime;
         }
+        public long GetFileLength()
+        {
+            var path = string.Format("{0}/{1}.{2}", ENV.SaveDir, Id, IsEncrypt() ? "rz" : "rtf");
+            if (!File.Exists(path))
+                return 0;
+            return new FileInfo(path).Length;
+        }
 
         public bool IsEncrypt()
         {

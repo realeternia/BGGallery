@@ -189,6 +189,9 @@ namespace BGGallery
             if (ctr.Name == "dragctr0") // add 对象
                 return;
 
+            if (e.Y > 47) //图片点击不触发drag
+                return;
+
             HLog.Debug("UCTipColumn mouse down {0}", ctr.Name);
 
             delayTimer.Start();

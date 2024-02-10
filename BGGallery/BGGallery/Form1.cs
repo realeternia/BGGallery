@@ -335,9 +335,7 @@ namespace BGGallery
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var serializer = new SerializerBuilder().Build();
-            var yaml = serializer.Serialize(BGBook.Instance);
-            File.WriteAllText(ENV.BaseDir + "/memo.yaml", yaml, Encoding.UTF8);
+            BGBook.Instance.Save();
 
             HLog.Info("main form quit");
         }

@@ -93,6 +93,8 @@ namespace BGGallery.UIS
                             searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                         if (itemInfo.Tag != null && itemInfo.Tag.Contains(searchTxt))
                             searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                     }
                 }
 

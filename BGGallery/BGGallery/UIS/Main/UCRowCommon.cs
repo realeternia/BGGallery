@@ -122,13 +122,43 @@ namespace BGGallery
         {
             if (icon != null)
                 e.Graphics.DrawImage(icon, 1, 5, 32, 32);
+
+            var size = itemInfo.GetFileLength();
             e.Graphics.DrawString(title, Font, Brushes.WhiteSmoke, 35, 8);
+            if (size > 0)
+                e.Graphics.DrawString(string.Format("{0:0.0}k", (float)size / 1024), Font, Brushes.Yellow, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);
 
             if (isMouseOver)
                 e.Graphics.DrawImage(Resources.menu, menuRegion);
 
             if (selected)
                 e.Graphics.DrawRectangle(Pens.LightBlue, 0, 0, Width - 1, Height - 1);
+        }
+
+        private void DrawStars(Graphics g, int val, bool isNewBie, int startX, int startY)
+        {
+            var fullCount = val / 10;
+
+            bool needHalf = false;
+
+            if ((val % 10) >= 5)
+                needHalf = true;
+
+            List<string> starList = new List<string>();
+            for (int i = 0; i < fullCount; i++)
+                starList.Add("full");
+            if (needHalf)
+                starList.Add("half");
+
+            foreach (string type in starList)
+            {
+                if (type == "full")
+                    g.DrawImage(!isNewBie ? Resources.stary : Resources.starn, startX, startY, 15, 15);
+                else if (type == "half")
+                    g.DrawImage(!isNewBie ? Resources.stary1 : Resources.starn1, startX, startY, 15, 15);
+
+                startX += 15;
+            }
         }
 
         protected virtual void UCRowCommon_Paint(object sender, PaintEventArgs e)
@@ -153,7 +183,10 @@ namespace BGGallery
                         // 使用 DrawImage 方法绘制图像的一部分  
                         e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
 
-                        //  e.Graphics.DrawImage(cover, 0, Height - Width * 2 / 3, Width, Width * 2 / 3);
+                        if (itemInfo.Star > 0)
+                            DrawStars(e.Graphics, itemInfo.Star, false, 3, Height - imageHeight + 3);
+                        if (itemInfo.StarNewbie > 0)
+                            DrawStars(e.Graphics, itemInfo.StarNewbie, true, 3, Height - imageHeight + 3+20);
                     }
 
                 }
