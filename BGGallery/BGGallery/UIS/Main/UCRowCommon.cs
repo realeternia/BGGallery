@@ -167,7 +167,7 @@ namespace BGGallery
             {
                 try
                 {
-                    var cover = Image.FromFile(ENV.CoverDir + ItemId + ".jpg");
+                    var cover = ImageBook.Instance.Load(ENV.CoverDir + ItemId + ".jpg");
                     if (cover != null)
                     {
                         // 计算源矩形和目标矩形  

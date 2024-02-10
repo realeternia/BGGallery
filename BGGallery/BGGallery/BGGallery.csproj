@@ -320,6 +320,7 @@
     <Compile Include="Model\BGCatalogInfo.cs" />
     <Compile Include="Utils\DrawTool.cs" />
     <Compile Include="Utils\FontMgr.cs" />
+    <Compile Include="Utils\ImageBook.cs" />
     <Compile Include="Utils\MathTool.cs" />
     <Compile Include="Utils\ResLoader.cs" />
     <Compile Include="Program.cs" />
