@@ -71,10 +71,6 @@ namespace BGGallery.UIS.Panels
             if (e.KeyCode == Keys.Enter)
             {
                 buttonOk.PerformClick();
-                //if (AfterSelect != null)
-                //    AfterSelect(textBoxText.Text.Split('-')[0]);
-
-                //PanelManager.Instance.HideBlackPanel();
             }
         }
 
@@ -109,16 +105,7 @@ namespace BGGallery.UIS.Panels
                     continue;
                 }
 
-                var matchTxts = matchTxt.Split('-');
-                // 拼音匹配前半部分
-                if (ConvertPinyinName(matchTxts[0]).StartsWith(nowText) || matchTxt.StartsWith(nowText))
-                {
-                    results.Add(matchTxt);
-                    continue;
-                }
-
-                //匹配后半部分的描述
-                if(matchTxts.Length > 1 && matchTxts[1].Contains(nowText))
+                if (ConvertPinyinName(matchTxt).StartsWith(nowText) || matchTxt.StartsWith(nowText))
                 {
                     results.Add(matchTxt);
                     continue;
@@ -145,8 +132,7 @@ namespace BGGallery.UIS.Panels
         private void buttonOk_Click(object sender, EventArgs e)
         {
             if (AfterSelect != null)
-                AfterSelect(textBoxText.Text.Split('-')[0]);
-
+                AfterSelect(textBoxText.Text);
           
             PanelManager.Instance.HideBlackPanel();
         }

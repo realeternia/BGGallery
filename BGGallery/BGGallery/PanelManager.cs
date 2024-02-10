@@ -13,7 +13,7 @@ namespace BGGallery
         private Form1 form1;
         private UCSearch searchForm;
         private UCIconPicker iconPicker;
-        private UCNInput peoplePanel;
+        private UCNInput keyWordPanel;
         private UCBigBox bigBox;
         private UCSettingBar setupBar;
         private InputTextBox inputBox;
@@ -66,18 +66,18 @@ namespace BGGallery
             iconPicker.OnInit();
         }
 
-        public void ShowPeopleForm(int x, int y, Action<string> act)
+        public void ShowKeywordForm(int x, int y, Action<string> act)
         {
-            if (peoplePanel == null)
+            if (keyWordPanel == null)
             {
-                peoplePanel = new UCNInput();
+                keyWordPanel = new UCNInput();
             }
 
-            peoplePanel.AfterSelect = act;
+            keyWordPanel.AfterSelect = act;
 
-            ReLocate(ref x, ref y, peoplePanel.Size);
-            ShowBlackPanel(peoplePanel, x, y, 1);
-          //  peoplePanel.OnInit(BGBook.Instance.Cfg.PeopleNames);
+            ReLocate(ref x, ref y, keyWordPanel.Size);
+            ShowBlackPanel(keyWordPanel, x, y, 1);
+            keyWordPanel.OnInit(BGBook.Instance.Cfg.KeyWords);
         }
 
         public void ShowBigBox(string rtf)

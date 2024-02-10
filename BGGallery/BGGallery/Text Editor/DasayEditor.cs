@@ -571,7 +571,7 @@ namespace Text_Editor
                         RichtextSelect(richTextBox1.SelectionStart - 2, 2);
                         richTextBox1.SelectedText = "";
 
-                        AddPeople();
+                        AddKeywords();
                     }
                     break;
                 case Keys.T: //时间
@@ -668,7 +668,7 @@ namespace Text_Editor
             );
         }
 
-        private void AddPeople()
+        private void AddKeywords()
         {
             var pos = richTextBox1.SelectionStart;
             Point cursorPosition = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart);
@@ -676,17 +676,17 @@ namespace Text_Editor
             // 如果需要，将坐标转换为屏幕坐标
             cursorPosition = richTextBox1.PointToScreen(cursorPosition);
 
-            PanelManager.Instance.ShowPeopleForm(cursorPosition.X - ParentC.Location.X,
+            PanelManager.Instance.ShowKeywordForm(cursorPosition.X - ParentC.Location.X,
                 cursorPosition.Y - ParentC.Location.Y,
                 (name) =>
                 {
                     RtfModifier.InsertString(richTextBox1, name);
 
-                    RichtextSelect(pos, name.Length);
-                    richTextBox1.SelectionColor = BGBook.Instance.Cfg.PeopleColor.ToColor(); //给名字变色
+                    //RichtextSelect(pos, name.Length);
+                    //richTextBox1.SelectionColor = BGBook.Instance.Cfg.PeopleColor.ToColor(); //给名字变色
 
-                    RichtextSelect(pos + name.Length, 0);
-                    richTextBox1.SelectionColor = richTextBox1.ForeColor;
+                    //RichtextSelect(pos + name.Length, 0);
+                    //richTextBox1.SelectionColor = richTextBox1.ForeColor;
 
                     richTextBox1.Focus();
                     //DelayedActionExecutor.Trigger("choosetarget", 0.1f, () => richTextBox1.Focus()); //防止enter事件击穿
@@ -743,18 +743,31 @@ namespace Text_Editor
                 }
             }
 
+            foreach (var keywordInfo in GetKeywordColor())
+            {
+                int index = 0;
+                while (index < richTextBox1.TextLength)
+                {
+                    index = richTextBox1.Find(keywordInfo.Item1, index, RichTextBoxFinds.None);
+                    if (index == -1)
+                        break;
+
+                    RichtextSelect(index, keywordInfo.Item1.Length);
+                    richTextBox1.SelectionColor = keywordInfo.Item2;
+
+                    index += keywordInfo.Item1.Length;
+                }
+            }
+
             richTextBox1.ResumePainting();
         }
 
-        private static Color GetKeywordColor(string keyword)
+        private static IEnumerable<Tuple<string, Color>> GetKeywordColor()
         {
-            var color = BGBook.Instance.Cfg.KWUrlColor;
-            switch (keyword)
-            {
-                case "url": color = BGBook.Instance.Cfg.KWUrlColor; break;
-            }
+            yield return new Tuple<string, Color>("url", BGBook.Instance.Cfg.KWUrlColor.ToColor());
 
-            return color.ToColor();
+            foreach (var key in BGBook.Instance.Cfg.KeyWords)
+                yield return new Tuple<string, Color>(key, BGBook.Instance.Cfg.KWWordColor.ToColor());
         }
 
 

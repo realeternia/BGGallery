@@ -75,7 +75,7 @@ namespace BGGallery.Utils
             switch(word)
             {
                 case "存档": return Brushes.DarkRed;
-                case "未激活": return Brushes.DimGray;
+                case "未分类": return Brushes.DimGray;
                 case "未到货": return Brushes.Red;
                 case "汇总": return Brushes.MediumPurple;
                 case "加密": return Brushes.OrangeRed;

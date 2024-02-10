@@ -554,7 +554,7 @@ namespace BGGallery
 
                 List<string> tags = new List<string>();
                 if (itemInfo.ColumnId == 0)
-                    tags.Add("未激活");
+                    tags.Add("未分类");
                 if (itemInfo.HasTag("未到货"))
                     tags.Add("未到货");
                 foreach (string word in tags)
