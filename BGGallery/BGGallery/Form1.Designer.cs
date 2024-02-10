@@ -34,12 +34,11 @@ namespace BGGallery
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ucCatalogNew = new BGGallery.UCCatalogFix();
             this.ucCatalogSearch = new BGGallery.UCCatalogFix();
             this.ucCatalogSetup = new BGGallery.UCCatalogFix();
             this.flowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ucListSelectBar1 = new BGGallery.UIS.Main.UCListSelectBar();
             this.viewStack1 = new BGGallery.UIS.ViewStack();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -48,6 +47,7 @@ namespace BGGallery
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new BGGallery.UIS.DoubleBufferedListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.textBoxCatalogTitle = new BGGallery.UIS.HintTextBox();
             this.doubleBufferedFlowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
             this.pictureBoxPaperIcon = new System.Windows.Forms.PictureBox();
@@ -106,37 +106,6 @@ namespace BGGallery
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 3;
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.ucListSelectBar1);
-            this.splitContainer2.Panel1.Controls.Add(this.viewStack1);
-            this.splitContainer2.Panel1.Controls.Add(this.textBoxCatalogTitle);
-            this.splitContainer2.Panel1.Click += new System.EventHandler(this.splitContainer2_Panel1_Click);
-            this.splitContainer2.Panel1.Resize += new System.EventHandler(this.splitContainer2_Panel1_Resize);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.splitContainer2.Panel2.Controls.Add(this.doubleBufferedFlowLayoutPanel1);
-            this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(1569, 1078);
-            this.splitContainer2.SplitterDistance = 1074;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(40, 40);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // ucCatalogNew
             // 
             this.ucCatalogNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
@@ -189,6 +158,31 @@ namespace BGGallery
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 960);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.ucListSelectBar1);
+            this.splitContainer2.Panel1.Controls.Add(this.viewStack1);
+            this.splitContainer2.Panel1.Controls.Add(this.textBoxCatalogTitle);
+            this.splitContainer2.Panel1.Click += new System.EventHandler(this.splitContainer2_Panel1_Click);
+            this.splitContainer2.Panel1.Resize += new System.EventHandler(this.splitContainer2_Panel1_Resize);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.splitContainer2.Panel2.Controls.Add(this.doubleBufferedFlowLayoutPanel1);
+            this.splitContainer2.Panel2MinSize = 0;
+            this.splitContainer2.Size = new System.Drawing.Size(1569, 1078);
+            this.splitContainer2.SplitterDistance = 1074;
+            this.splitContainer2.TabIndex = 0;
             // 
             // ucListSelectBar1
             // 
@@ -294,6 +288,12 @@ namespace BGGallery
             // columnHeader1
             // 
             this.columnHeader1.Width = 50;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(40, 40);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // textBoxCatalogTitle
             // 

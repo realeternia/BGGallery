@@ -9,6 +9,8 @@ namespace BGGallery.UIS
 {
     public partial class UCDocPropertyList : UserControl
     {
+        private int itemId;
+
         public Color BgColor
         {
             get { return doubleBufferedPanel1.BackColor; }
@@ -22,6 +24,7 @@ namespace BGGallery.UIS
 
         public void Init(BGItemInfo itemInfo)
         {
+            itemId = itemInfo.Id;
             var oldCtrList = new List<Control>();
             foreach (Control c in doubleBufferedPanel1.Controls)
                 oldCtrList.Add(c);
@@ -29,18 +32,19 @@ namespace BGGallery.UIS
             SuspendLayout();
             doubleBufferedPanel1.Controls.Clear();
 
-            // 需要逆序
+            CheckCtrs(oldCtrList, itemInfo, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => { itemInfo.NickName = s; CheckChange(); });
+            CheckCtrs(oldCtrList, itemInfo, "multisel", "标签", itemInfo.Tag, (s) => { itemInfo.Tag = s; CheckChange(); });
+            CheckCtrs(oldCtrList, itemInfo, "star", "评分", itemInfo.Star.ToString(), (s) => { itemInfo.Star = int.Parse(s); CheckChange(); });
+            CheckCtrs(oldCtrList, itemInfo, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => { itemInfo.StarNewbie = int.Parse(s); CheckChange(); });
+            CheckCtrs(oldCtrList, itemInfo, "multisel", "购入信息", itemInfo.BuyInfo, (s) => { itemInfo.BuyInfo = s; CheckChange(); });
             CheckCtrs(oldCtrList, itemInfo, "select", "CatalogId", itemInfo.CatalogId.ToString(), (s) => { itemInfo.CatalogId = int.Parse(s); itemInfo.ColumnId = 0; CheckChange(); });
             CheckCtrs(oldCtrList, itemInfo, "select", "ColumnId", itemInfo.ColumnId.ToString(), (s) => { itemInfo.ColumnId = int.Parse(s); CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "multisel", "购入信息", itemInfo.BuyInfo, (s) => { itemInfo.BuyInfo = s; CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => { itemInfo.StarNewbie = int.Parse(s); CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "star", "评分", itemInfo.Star.ToString(), (s) => { itemInfo.Star = int.Parse(s); CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "multisel", "标签", itemInfo.Tag, (s) => { itemInfo.Tag = s; CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => { itemInfo.NickName = s; CheckChange(); });
 
-            Width = 700 - 5;
+            Width = Math.Max(Width, 700 - 5);
             Height = doubleBufferedPanel1.Controls.Count * 32 + 10;
             ResumeLayout();
+
+            doubleBufferedPanel1.Invalidate();
         }
 
         private void CheckCtrs(List<Control> cc, BGItemInfo itemInfo, string type, string k, string v, Action<string> onModify)
@@ -67,9 +71,9 @@ namespace BGGallery.UIS
 
             doubleBufferedPanel1.Controls.Add(found as Control);
             var foundCtr2 = found as Control;
-            foundCtr2.Location = new Point(0, doubleBufferedPanel1.Controls.Count * 32);
-            foundCtr2.Width = 700 - 5;
-            foundCtr2.Dock = DockStyle.Top;
+            foundCtr2.Location = new Point(0, (doubleBufferedPanel1.Controls.Count -1)* 32);
+            foundCtr2.Width = Math.Max(foundCtr2.Width, 450);
+          //  foundCtr2.Dock = DockStyle.Top;
         }
 
         DateTime lastCheckTime;
@@ -92,5 +96,17 @@ namespace BGGallery.UIS
             return null;
         }
 
+        private void doubleBufferedPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            if (itemId == 0)
+                return;
+
+            var width = 200;
+
+            var cover = Image.FromFile(ENV.CoverDir + itemId + ".jpg");
+            var height = width * cover.Height / cover.Width;
+            e.Graphics.DrawImage(cover, Width - 220, (Height - height) / 2, 200, height);
+            cover.Dispose();
+        }
     }
 }

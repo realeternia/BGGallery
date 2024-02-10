@@ -52,10 +52,10 @@ namespace BGGallery.UIS
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.textBox1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.textBox1.Location = new System.Drawing.Point(210, 6);
+            this.textBox1.Location = new System.Drawing.Point(110, 6);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(477, 18);
+            this.textBox1.Size = new System.Drawing.Size(327, 18);
             this.textBox1.TabIndex = 3;
             this.textBox1.Visible = false;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -71,7 +71,7 @@ namespace BGGallery.UIS
             this.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCDocStarItem";
-            this.Size = new System.Drawing.Size(700, 32);
+            this.Size = new System.Drawing.Size(450, 32);
             this.Click += new System.EventHandler(this.UCDocStarItem_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCDocStarItem_Paint);
             this.ResumeLayout(false);

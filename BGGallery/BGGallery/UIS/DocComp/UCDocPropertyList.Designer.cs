@@ -40,10 +40,10 @@ namespace BGGallery.UIS
             this.doubleBufferedPanel1.Name = "doubleBufferedPanel1";
             this.doubleBufferedPanel1.Size = new System.Drawing.Size(700, 487);
             this.doubleBufferedPanel1.TabIndex = 0;
+            this.doubleBufferedPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.doubleBufferedPanel1_Paint);
             // 
             // UCDocPropertyList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.doubleBufferedPanel1);
             this.Name = "UCDocPropertyList";

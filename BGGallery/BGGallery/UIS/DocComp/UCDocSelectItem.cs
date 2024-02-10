@@ -88,7 +88,7 @@ namespace BGGallery.UIS
             if (rjComboBox1.Visible)
                 return;
 
-            var startX = 210;
+            var startX = 110;
             var startY = 5;
 
             var checkitem = "未选择";

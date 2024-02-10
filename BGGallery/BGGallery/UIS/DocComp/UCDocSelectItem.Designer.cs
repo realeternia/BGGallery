@@ -57,11 +57,11 @@ namespace BGGallery.UIS
             this.rjComboBox1.IconColor = System.Drawing.Color.MediumSlateBlue;
             this.rjComboBox1.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.rjComboBox1.ListTextColor = System.Drawing.Color.DimGray;
-            this.rjComboBox1.Location = new System.Drawing.Point(210, 1);
+            this.rjComboBox1.Location = new System.Drawing.Point(110, 1);
             this.rjComboBox1.MinimumSize = new System.Drawing.Size(200, 30);
             this.rjComboBox1.Name = "rjComboBox1";
             this.rjComboBox1.Padding = new System.Windows.Forms.Padding(1);
-            this.rjComboBox1.Size = new System.Drawing.Size(467, 30);
+            this.rjComboBox1.Size = new System.Drawing.Size(327, 30);
             this.rjComboBox1.TabIndex = 1;
             this.rjComboBox1.Texts = "";
             this.rjComboBox1.Visible = false;
@@ -76,7 +76,7 @@ namespace BGGallery.UIS
             this.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCDocSelectItem";
-            this.Size = new System.Drawing.Size(700, 32);
+            this.Size = new System.Drawing.Size(450, 32);
             this.Click += new System.EventHandler(this.UCDocStarItem_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCDocStarItem_Paint);
             this.ResumeLayout(false);

@@ -39,7 +39,7 @@ namespace BGGallery.UIS
             if (textBox1.Visible)
                 return;
 
-            var startX = 210;
+            var startX = 110;
             var startY = 5;
 
             var val = 0;
