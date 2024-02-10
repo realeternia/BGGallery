@@ -81,8 +81,6 @@ namespace Text_Editor
                     {
                         var menuItem = o as ToolStripMenuItem;
                         richTextBox1.LoadFile(ENV.TemplateDir + menuItem.Text, RichTextBoxStreamType.RichText);
-                        var ttl = string.Format("{0}{1}", fileName.Replace(".rtf", ""), DateTime.Now.ToString("yy.MM.dd"));
-                        ParentC.SetRowTitleInfo(ttl, "Work/285665_calendar_calendar.png");
                     };
                 }
 
