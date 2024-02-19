@@ -8,7 +8,7 @@ namespace BGGallery.Utils
     class ImageBook
     {
         class ImageInfo {
-            public Bitmap BMP;
+            public Image BMP;
             public DateTime AccessTime;
         }
 
@@ -27,9 +27,11 @@ namespace BGGallery.Utils
 
             var fs = new FileStream(url, FileMode.Open);
             var img = new Bitmap(fs);
+            //var wid = Math.Min(250, img.Width);
+            //var het = img.Height * wid / img.Width;
             imgDict[url] = new ImageInfo { BMP = img, AccessTime = DateTime.Now };
             fs.Close();
-            return img;
+            return imgDict[url].BMP;
         }
 
         private DateTime lastCheckTime;
