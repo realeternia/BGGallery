@@ -11,6 +11,9 @@ namespace BGGallery.UIS
         public Action<Image> OnImageChanged;
         private Image editImg;
         private float ratio = 1;
+        private bool mouseDrawing = false;
+        private Point mouseStartPoint;
+        private Rectangle mouseRectangle;
 
         public UCEditImage()
         {
@@ -20,7 +23,9 @@ namespace BGGallery.UIS
         public void OnInit(Image img)
         {
             editImg = img;
-
+            ratio = 1;
+            mouseStartPoint = new Point();
+            mouseRectangle = new Rectangle();
             UpdateSize();
         }
 
@@ -47,19 +52,16 @@ namespace BGGallery.UIS
 
             e.Graphics.DrawImage(editImg, drawX, drawY, drawWidth, drawHeight);
 
-            if(!hideSelection)
-            {
-                using (Pen pen = new Pen(Color.Yellow, 2))
-                    e.Graphics.DrawRectangle(pen, rectangle);
+            using (Pen pen = new Pen(Color.Yellow, 2))
+                e.Graphics.DrawRectangle(pen, mouseRectangle);
 
-                // 获取矩形右下角的坐标
-                int right = rectangle.Right + 1;
-                int bottom = rectangle.Bottom + 1;
+            // 获取矩形右下角的坐标
+            int right = mouseRectangle.Right + 1;
+            int bottom = mouseRectangle.Bottom + 1;
 
-                // 绘制宽度和高度
-                string sizeText = $"({rectangle.Width}x{rectangle.Height})";
-                e.Graphics.DrawString(sizeText, Font, Brushes.Yellow, right, bottom);
-            }
+            // 绘制宽度和高度
+            string sizeText = $"({Math.Max(0,mouseRectangle.Width-4)}x{Math.Max(0,mouseRectangle.Height-4)})";
+            e.Graphics.DrawString(sizeText, Font, Brushes.Yellow, right, bottom);
         }
 
         private void textBoxRatio_TextChanged(object sender, EventArgs e)
@@ -75,24 +77,20 @@ namespace BGGallery.UIS
             }
         }
 
-        private bool drawing = false;
-        private Point startPoint;
-        private Rectangle rectangle;
-        private bool hideSelection;
         private void doubleBufferedPanel1_MouseDown(object sender, MouseEventArgs e)
         {
-            drawing = true;
-            startPoint = e.Location;
+            mouseDrawing = true;
+            mouseStartPoint = e.Location;
         }
 
         private void doubleBufferedPanel1_MouseMove(object sender, MouseEventArgs e)
         {
             // 鼠标移动时更新矩形
-            if (drawing)
+            if (mouseDrawing)
             {
-                int width = e.X - startPoint.X;
-                int height = e.Y - startPoint.Y;
-                rectangle = new Rectangle(startPoint.X, startPoint.Y, width, height);
+                int width = e.X - mouseStartPoint.X;
+                int height = e.Y - mouseStartPoint.Y;
+                mouseRectangle = new Rectangle(mouseStartPoint.X, mouseStartPoint.Y, width, height);
 
                 doubleBufferedPanel1.Invalidate(); // 强制重绘Panel
             }
@@ -101,7 +99,7 @@ namespace BGGallery.UIS
         private void doubleBufferedPanel1_MouseUp(object sender, MouseEventArgs e)
         {
             // 鼠标松开时完成绘制
-            drawing = false;
+            mouseDrawing = false;
             doubleBufferedPanel1.Invalidate(); // 强制重绘Panel
         }
 
@@ -110,7 +108,7 @@ namespace BGGallery.UIS
             if (OnImageChanged == null)
                 return;
 
-            if (rectangle.X == 0 && rectangle.Y == 0)
+            if (mouseRectangle.X == 0 && mouseRectangle.Y == 0)
             {
                 if (ratio == 1)
                 {
@@ -122,16 +120,15 @@ namespace BGGallery.UIS
                 PanelManager.Instance.HideBlackPanel();
                 return;
             }
-            hideSelection = true;
-            doubleBufferedPanel1.Invalidate();
+
             // 截取Panel上的矩形区域
-            Bitmap screenshot = new Bitmap(rectangle.Width, rectangle.Height);
+            Bitmap screenshot = new Bitmap(mouseRectangle.Width-4, mouseRectangle.Height-4);
             using (Graphics g = Graphics.FromImage(screenshot))
             {
-                g.CopyFromScreen(doubleBufferedPanel1.PointToScreen(rectangle.Location), Point.Empty, rectangle.Size);
+                g.CopyFromScreen(doubleBufferedPanel1.PointToScreen(new Point(mouseRectangle.X+2, mouseRectangle.Y+2)), Point.Empty, new Size(mouseRectangle.Width-4, mouseRectangle.Height-4));
             }
-            hideSelection = false;
             OnImageChanged(screenshot);
+            Clipboard.SetImage(editImg); //还原图片，方便redo
             PanelManager.Instance.HideBlackPanel();
         }
     }
