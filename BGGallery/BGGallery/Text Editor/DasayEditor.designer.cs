@@ -58,6 +58,8 @@
             this.qutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.showlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemKeywords = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.rjDropdownMenuRightClick.SuspendLayout();
             this.rjDropdownMenuBar.SuspendLayout();
@@ -245,12 +247,13 @@
             this.cutToolStripMenuItem,
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
+            this.searchToolStripMenuItem,
             this.removeToolStripMenuItem});
             this.rjDropdownMenuRightClick.MenuItemHeight = 25;
             this.rjDropdownMenuRightClick.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenuRightClick.Name = "rjDropdownMenu1";
             this.rjDropdownMenuRightClick.PrimaryColor = System.Drawing.Color.Empty;
-            this.rjDropdownMenuRightClick.Size = new System.Drawing.Size(158, 100);
+            this.rjDropdownMenuRightClick.Size = new System.Drawing.Size(158, 124);
             // 
             // cutToolStripMenuItem
             // 
@@ -298,12 +301,13 @@
             this.head3ToolStripMenuItem,
             this.qutoToolStripMenuItem,
             this.toolStripSeparator3,
+            this.toolStripMenuItemKeywords,
             this.showlineToolStripMenuItem});
             this.rjDropdownMenuBar.MenuItemHeight = 25;
             this.rjDropdownMenuBar.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenuBar.Name = "rjDropdownMenu1";
             this.rjDropdownMenuBar.PrimaryColor = System.Drawing.Color.Empty;
-            this.rjDropdownMenuBar.Size = new System.Drawing.Size(200, 220);
+            this.rjDropdownMenuBar.Size = new System.Drawing.Size(200, 250);
             // 
             // textToolStripMenuItem1
             // 
@@ -368,6 +372,21 @@
             this.showlineToolStripMenuItem.Size = new System.Drawing.Size(199, 30);
             this.showlineToolStripMenuItem.Text = "查看文本";
             // 
+            // toolStripMenuItemKeywords
+            // 
+            this.toolStripMenuItemKeywords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemKeywords.Image = global::BGGallery.Properties.Resources.trace;
+            this.toolStripMenuItemKeywords.Name = "toolStripMenuItemKeywords";
+            this.toolStripMenuItemKeywords.Size = new System.Drawing.Size(199, 30);
+            this.toolStripMenuItemKeywords.Text = "查找关键词";
+            // 
+            // toolStripMenuItemSearch
+            // 
+            this.searchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.searchToolStripMenuItem.Name = "toolStripMenuItemSearch";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.searchToolStripMenuItem.Text = "查找";
+            // 
             // DasayEditor
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -419,5 +438,7 @@
         private System.Windows.Forms.ToolStripMenuItem qutoToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxKeyText;
         private System.Windows.Forms.ToolStripButton toolStripButtonFindNext;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKeywords;
+        private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
     }
 }

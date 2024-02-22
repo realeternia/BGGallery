@@ -70,6 +70,7 @@ namespace Text_Editor
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             pasteToolStripMenuItem.Click += pasteToolStripMenuItem_Click;
             removeToolStripMenuItem.Click += deleteStripMenuItem_Click;
+            searchToolStripMenuItem.Click += searchStripMenuItem_Click;
 
             if (Directory.Exists(ENV.TemplateDir))
                 foreach (var file in Directory.GetFiles(ENV.TemplateDir))
@@ -431,6 +432,10 @@ namespace Text_Editor
         private void deleteStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.SelectedText = ""; // delete selected text
+        }
+        private void searchStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PanelManager.Instance.ShowSearchForm(richTextBox1.SelectedText);
         }
 
         private void clearFormattingStripButton_Click(object sender, EventArgs e)
@@ -809,9 +814,37 @@ namespace Text_Editor
             showlineToolStripMenuItem.Visible = richTextBox1.Lines[rjButtonLeftSLineId].Length > 30;
             var nowLine = richTextBox1.Lines[rjButtonLeftSLineId];
 
+            List<string> searchNameList = new List<string>();
+
+            foreach (var name in BGBook.Instance.Cfg.KeyWords)
+            {
+                if (nowLine.Contains(name))
+                    searchNameList.Add(name);
+            }
+
+            if (searchNameList.Count > 0)
+            {
+                toolStripMenuItemKeywords.DropDownItems.Clear();
+                toolStripMenuItemKeywords.Visible = true;
+
+                foreach (var name in searchNameList)
+                {
+                    var toolStripMenuItemSearch = new ToolStripMenuItem();
+                    toolStripMenuItemSearch.BackColor = Color.FromArgb(32, 32, 32);
+                    //  this.toolStripMenuItemPeople.Name = "toolStripMenuItemPeople";
+                    toolStripMenuItemSearch.Size = new Size(232, 36);
+                    toolStripMenuItemSearch.Text = name;
+                    toolStripMenuItemSearch.Click += ToolStripMenuItemSearch_Click;
+                    toolStripMenuItemKeywords.DropDownItems.Add(toolStripMenuItemSearch);
+                }
+            }
+            else
+            {
+                toolStripMenuItemKeywords.Visible = false;
+            }
+
             rjDropdownMenuBar.Show(rjButtonLeftS, -rjDropdownMenuBar.Width, 0);
         }
-
         private void ToolStripMenuItemSearch_Click(object sender, EventArgs e)
         {
             PanelManager.Instance.ShowSearchForm((sender as ToolStripMenuItem).Text);
