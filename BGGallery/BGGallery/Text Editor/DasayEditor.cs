@@ -464,18 +464,9 @@ namespace Text_Editor
                 string fileName = openImageDlg.FileName;
                 if (null == fileName || fileName.Trim().Length == 0)
                     return;
-                try
-                {
-                    bmp = new Bitmap(fileName);
-                    Clipboard.SetDataObject(bmp);
-                    DataFormats.Format dataFormat = DataFormats.GetFormat(DataFormats.Bitmap);
-                    if (richTextBox1.CanPaste(dataFormat))
-                        richTextBox1.Paste(dataFormat);
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show("图片插入失败。" + exc.Message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+
+                bmp = new Bitmap(fileName);
+                PanelManager.Instance.ShowEditImage(bmp, img => { Clipboard.SetImage(img); richTextBox1.Paste(); });
             }
         }
 
@@ -483,7 +474,7 @@ namespace Text_Editor
         {
             if (Clipboard.ContainsImage())
             {
-                richTextBox1.Paste();
+                PanelManager.Instance.ShowEditImage(Clipboard.GetImage(), img=> { Clipboard.SetImage(img); richTextBox1.Paste(); });
             }
         }
 

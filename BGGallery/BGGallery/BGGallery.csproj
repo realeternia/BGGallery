@@ -116,6 +116,12 @@
     <Compile Include="UIS\Main\UCListSelectBar.Designer.cs">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\UCEditImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCEditImage.Designer.cs">
+      <DependentUpon>UCEditImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\Panels\UCGmRunSvTime.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Main\UCListSelectBar.resx">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCEditImage.resx">
+      <DependentUpon>UCEditImage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCGmRunSvTime.resx">
       <DependentUpon>UCGmRunSvTime.cs</DependentUpon>

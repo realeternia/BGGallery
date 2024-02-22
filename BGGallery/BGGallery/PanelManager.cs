@@ -22,6 +22,7 @@ namespace BGGallery
         private InputColorBox colorBox;
         private UCGmRunSvTime timePicker;
         private UCAddBG addBG;
+        private UCEditImage editImage;
 
         public void Init(Form1 form)
         {
@@ -188,6 +189,18 @@ namespace BGGallery
 
             ShowBlackPanel(addBG, 0, 0);
             addBG.OnInit(str);
+        }
+        public void ShowEditImage(Image img, Action<Image> callback)
+        {
+            if (editImage == null)
+            {
+                editImage = new UCEditImage();
+            }
+
+            editImage.OnImageChanged = (s1) => callback(s1);
+
+            ShowBlackPanel(editImage, 0, 0);
+            editImage.OnInit(img);
         }
 
         public void ShowBlackPanel(Control ctr, int x, int y, float bright = 0.5f)
