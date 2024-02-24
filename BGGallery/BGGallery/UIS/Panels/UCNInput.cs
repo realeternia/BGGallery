@@ -72,6 +72,12 @@ namespace BGGallery.UIS.Panels
             {
                 buttonOk.PerformClick();
             }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                if (AfterSelect != null)
+                    AfterSelect("");
+                PanelManager.Instance.HideBlackPanel();
+            }
         }
 
         private void textBoxText_TextChanged(object sender, EventArgs e)
@@ -131,6 +137,9 @@ namespace BGGallery.UIS.Panels
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(textBoxText.Text))
+                return;
+
             if (AfterSelect != null)
                 AfterSelect(textBoxText.Text);
           

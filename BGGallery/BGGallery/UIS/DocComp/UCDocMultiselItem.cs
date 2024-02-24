@@ -65,7 +65,7 @@ namespace BGGallery.UIS
             }
             else
             {
-                e.Graphics.DrawString("点击输入", Font, Brushes.DarkGray, startX + 3, startY + 5);
+                e.Graphics.DrawString("点击输入", Font, Brushes.DarkGray, startX, startY + 5);
             }
         }
 

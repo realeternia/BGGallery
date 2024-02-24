@@ -41,13 +41,13 @@
             this.toolStripDropDownButtonTemplate = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripTextBoxKeyText = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonFindNext = new System.Windows.Forms.ToolStripButton();
-            this.rjButtonLeftS = new RJControls.RJButton();
             this.ucToolbar1 = new Text_Editor.UCToolbar();
             this.richTextBox1 = new Text_Editor.RichTextBoxEx();
             this.rjDropdownMenuRightClick = new RJControls.RJDropdownMenu(this.components);
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rjDropdownMenuBar = new RJControls.RJDropdownMenu(this.components);
             this.textToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,12 +57,18 @@
             this.head3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.qutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.showlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemKeywords = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rjDropdownMenuLine = new RJControls.RJDropdownMenu(this.components);
+            this.toolStripMenuItemKeys = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemEmotion = new System.Windows.Forms.ToolStripMenuItem();
+            this.rjButtonLeftS = new RJControls.RJButton();
             this.toolStrip1.SuspendLayout();
             this.rjDropdownMenuRightClick.SuspendLayout();
             this.rjDropdownMenuBar.SuspendLayout();
+            this.rjDropdownMenuLine.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -93,7 +99,7 @@
             this.undoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undoStripButton.Name = "undoStripButton";
             this.undoStripButton.Size = new System.Drawing.Size(28, 28);
-            this.undoStripButton.Text = "Undo Move";
+            this.undoStripButton.Text = "撤销";
             this.undoStripButton.Click += new System.EventHandler(this.undoStripButton_Click);
             // 
             // redoStripButton
@@ -103,7 +109,7 @@
             this.redoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redoStripButton.Name = "redoStripButton";
             this.redoStripButton.Size = new System.Drawing.Size(28, 28);
-            this.redoStripButton.Text = "Redo Move";
+            this.redoStripButton.Text = "重做";
             this.redoStripButton.Click += new System.EventHandler(this.redoStripButton_Click);
             // 
             // toolStripSeparator1
@@ -176,28 +182,6 @@
             this.toolStripButtonFindNext.Visible = false;
             this.toolStripButtonFindNext.Click += new System.EventHandler(this.toolStripButtonFindNext_Click);
             // 
-            // rjButtonLeftS
-            // 
-            this.rjButtonLeftS.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButtonLeftS.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjButtonLeftS.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButtonLeftS.BorderRadius = 0;
-            this.rjButtonLeftS.BorderSize = 0;
-            this.rjButtonLeftS.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.rjButtonLeftS.FlatAppearance.BorderSize = 0;
-            this.rjButtonLeftS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButtonLeftS.ForeColor = System.Drawing.Color.White;
-            this.rjButtonLeftS.Image = global::BGGallery.Properties.Resources.selector;
-            this.rjButtonLeftS.Location = new System.Drawing.Point(83, 325);
-            this.rjButtonLeftS.Margin = new System.Windows.Forms.Padding(0);
-            this.rjButtonLeftS.Name = "rjButtonLeftS";
-            this.rjButtonLeftS.Size = new System.Drawing.Size(21, 34);
-            this.rjButtonLeftS.TabIndex = 22;
-            this.rjButtonLeftS.TextColor = System.Drawing.Color.White;
-            this.rjButtonLeftS.UseVisualStyleBackColor = false;
-            this.rjButtonLeftS.Visible = false;
-            this.rjButtonLeftS.Click += new System.EventHandler(this.rjButtonLeftS_Click);
-            // 
             // ucToolbar1
             // 
             this.ucToolbar1.BackColor = System.Drawing.Color.White;
@@ -226,7 +210,6 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.WordWrap = false;
-            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             this.richTextBox1.VScroll += new System.EventHandler(this.richTextBox1_VScroll);
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
@@ -278,6 +261,13 @@
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.pasteToolStripMenuItem.Text = "黏贴";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
+            this.searchToolStripMenuItem.Text = "查找";
             // 
             // removeToolStripMenuItem
             // 
@@ -364,14 +354,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(196, 6);
             // 
-            // showlineToolStripMenuItem
-            // 
-            this.showlineToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.showlineToolStripMenuItem.Image = global::BGGallery.Properties.Resources.trace;
-            this.showlineToolStripMenuItem.Name = "showlineToolStripMenuItem";
-            this.showlineToolStripMenuItem.Size = new System.Drawing.Size(199, 30);
-            this.showlineToolStripMenuItem.Text = "查看文本";
-            // 
             // toolStripMenuItemKeywords
             // 
             this.toolStripMenuItemKeywords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
@@ -380,12 +362,85 @@
             this.toolStripMenuItemKeywords.Size = new System.Drawing.Size(199, 30);
             this.toolStripMenuItemKeywords.Text = "查找关键词";
             // 
-            // toolStripMenuItemSearch
+            // showlineToolStripMenuItem
             // 
-            this.searchToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.searchToolStripMenuItem.Name = "toolStripMenuItemSearch";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
-            this.searchToolStripMenuItem.Text = "查找";
+            this.showlineToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.showlineToolStripMenuItem.Image = global::BGGallery.Properties.Resources.trace;
+            this.showlineToolStripMenuItem.Name = "showlineToolStripMenuItem";
+            this.showlineToolStripMenuItem.Size = new System.Drawing.Size(199, 30);
+            this.showlineToolStripMenuItem.Text = "查看文本";
+            // 
+            // rjDropdownMenuLine
+            // 
+            this.rjDropdownMenuLine.BackColor = System.Drawing.Color.Black;
+            this.rjDropdownMenuLine.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.rjDropdownMenuLine.ForeColor = System.Drawing.Color.White;
+            this.rjDropdownMenuLine.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.rjDropdownMenuLine.IsMainMenu = false;
+            this.rjDropdownMenuLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemKeys,
+            this.toolStripMenuItemPage,
+            this.toolStripMenuItemTime,
+            this.toolStripMenuItemEmotion});
+            this.rjDropdownMenuLine.MenuItemHeight = 25;
+            this.rjDropdownMenuLine.MenuItemTextColor = System.Drawing.Color.Empty;
+            this.rjDropdownMenuLine.Name = "rjDropdownMenu1";
+            this.rjDropdownMenuLine.PrimaryColor = System.Drawing.Color.Empty;
+            this.rjDropdownMenuLine.Size = new System.Drawing.Size(139, 108);
+            // 
+            // toolStripMenuItemKeys
+            // 
+            this.toolStripMenuItemKeys.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemKeys.Image = global::BGGallery.Properties.Resources.bubble;
+            this.toolStripMenuItemKeys.Name = "toolStripMenuItemKeys";
+            this.toolStripMenuItemKeys.Size = new System.Drawing.Size(138, 26);
+            this.toolStripMenuItemKeys.Text = "关键词";
+            // 
+            // toolStripMenuItemPage
+            // 
+            this.toolStripMenuItemPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemPage.Image = global::BGGallery.Properties.Resources.paper;
+            this.toolStripMenuItemPage.Name = "toolStripMenuItemPage";
+            this.toolStripMenuItemPage.Size = new System.Drawing.Size(138, 26);
+            this.toolStripMenuItemPage.Text = "页面引用";
+            // 
+            // toolStripMenuItemTime
+            // 
+            this.toolStripMenuItemTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemTime.Image = global::BGGallery.Properties.Resources.time;
+            this.toolStripMenuItemTime.Name = "toolStripMenuItemTime";
+            this.toolStripMenuItemTime.Size = new System.Drawing.Size(138, 26);
+            this.toolStripMenuItemTime.Text = "时间";
+            // 
+            // toolStripMenuItemEmotion
+            // 
+            this.toolStripMenuItemEmotion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemEmotion.Image = global::BGGallery.Properties.Resources.emo;
+            this.toolStripMenuItemEmotion.Name = "toolStripMenuItemEmotion";
+            this.toolStripMenuItemEmotion.Size = new System.Drawing.Size(138, 26);
+            this.toolStripMenuItemEmotion.Text = "表情";
+            // 
+            // rjButtonLeftS
+            // 
+            this.rjButtonLeftS.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButtonLeftS.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjButtonLeftS.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButtonLeftS.BorderRadius = 0;
+            this.rjButtonLeftS.BorderSize = 0;
+            this.rjButtonLeftS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rjButtonLeftS.FlatAppearance.BorderSize = 0;
+            this.rjButtonLeftS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButtonLeftS.ForeColor = System.Drawing.Color.White;
+            this.rjButtonLeftS.Image = global::BGGallery.Properties.Resources.selector;
+            this.rjButtonLeftS.Location = new System.Drawing.Point(83, 325);
+            this.rjButtonLeftS.Margin = new System.Windows.Forms.Padding(0);
+            this.rjButtonLeftS.Name = "rjButtonLeftS";
+            this.rjButtonLeftS.Size = new System.Drawing.Size(21, 34);
+            this.rjButtonLeftS.TabIndex = 22;
+            this.rjButtonLeftS.TextColor = System.Drawing.Color.White;
+            this.rjButtonLeftS.UseVisualStyleBackColor = false;
+            this.rjButtonLeftS.Visible = false;
+            this.rjButtonLeftS.Click += new System.EventHandler(this.rjButtonLeftS_Click);
             // 
             // DasayEditor
             // 
@@ -403,6 +458,7 @@
             this.toolStrip1.PerformLayout();
             this.rjDropdownMenuRightClick.ResumeLayout(false);
             this.rjDropdownMenuBar.ResumeLayout(false);
+            this.rjDropdownMenuLine.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,7 +466,7 @@
 
         #endregion
 
-        private RichTextBoxEx richTextBox1;
+        public RichTextBoxEx richTextBox1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton undoStripButton;
@@ -440,5 +496,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonFindNext;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKeywords;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
+        private RJControls.RJDropdownMenu rjDropdownMenuLine;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemEmotion;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKeys;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPage;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTime;
     }
 }

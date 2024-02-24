@@ -205,7 +205,7 @@ namespace BGGallery.UIS
             var lineInfo = searchResults[selectLine.Index];
             var itemInfo = BGBook.Instance.GetItem(int.Parse(lineInfo.Title.Replace(".rtf", "")));
 
-            Form1.ShowPaperPadEx(itemInfo.CatalogId, itemInfo, lineInfo.Line.Trim());
+            Form1.ShowPaperPadEx(itemInfo, new Model.Types.ShowPaperParm { SearchTxt = lineInfo.Line.Trim() });
 
             PanelManager.Instance.HideBlackPanel();
         }

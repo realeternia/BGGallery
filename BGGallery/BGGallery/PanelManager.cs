@@ -13,7 +13,7 @@ namespace BGGallery
         private Form1 form1;
         private UCSearch searchForm;
         private UCIconPicker iconPicker;
-        private UCNInput keyWordPanel;
+        private UCNInput inputPanel;
         private UCBigBox bigBox;
         private UCSettingBar setupBar;
         private InputTextBox inputBox;
@@ -69,17 +69,32 @@ namespace BGGallery
 
         public void ShowKeywordForm(int x, int y, Action<string> act)
         {
-            if (keyWordPanel == null)
+            if (inputPanel == null)
             {
-                keyWordPanel = new UCNInput();
+                inputPanel = new UCNInput();
             }
 
-            keyWordPanel.AfterSelect = act;
+            inputPanel.AfterSelect = act;
 
-            ReLocate(ref x, ref y, keyWordPanel.Size);
-            ShowBlackPanel(keyWordPanel, x, y, 1);
-            keyWordPanel.OnInit(BGBook.Instance.Cfg.KeyWords);
+            ReLocate(ref x, ref y, inputPanel.Size);
+            ShowBlackPanel(inputPanel, x, y, 1);
+            inputPanel.OnInit(BGBook.Instance.Cfg.KeyWords);
         }
+
+        public void ShowPageForm(int x, int y, Action<string> act)
+        {
+            if (inputPanel == null)
+            {
+                inputPanel = new UCNInput();
+            }
+
+            inputPanel.AfterSelect = act;
+
+            ReLocate(ref x, ref y, inputPanel.Size);
+            ShowBlackPanel(inputPanel, x, y, 1);
+            inputPanel.OnInit(BGBook.Instance.GetAllPageInfos());
+        }
+
 
         public void ShowBigBox(string rtf)
         {

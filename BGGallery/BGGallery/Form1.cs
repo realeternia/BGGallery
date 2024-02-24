@@ -1,4 +1,5 @@
 ﻿using BGGallery.Model;
+using BGGallery.Model.Types;
 using BGGallery.UIS;
 using BGGallery.Utils;
 using System;
@@ -35,6 +36,9 @@ namespace BGGallery
 
             ucTipAdd1.button1.Click += columnNew_Click;
             ucListSelectBar1.OnIndexChanged = OnSelectBarIndexChanged;
+            dasayEditor1.richTextBox1.LinkClicked += new LinkClickedEventHandler(this.richTextBox1_LinkClicked);
+            ucDocTopBar1.buttonFormer.Click += ButtonFormer_Click;
+            ucDocTopBar1.buttonNext.Click += ButtonNext_Click;
 
             // 先隐藏面板
             HidePaperPad();
@@ -251,24 +255,27 @@ namespace BGGallery
         }
 
         //外部调用展示面板
-        public void ShowPaperPadEx(int catalogId, BGItemInfo item, string searchTxt = "")
+        public void ShowPaperPadEx(BGItemInfo item, ShowPaperParm parm)
         {
-            foreach(UCCatalogItem ctr in flowLayoutPanel1.Controls)
+            foreach (UCCatalogItem ctr in flowLayoutPanel1.Controls)
             {
-                if(ctr != null && ctr.Id == catalogId)
+                if (ctr != null && ctr.Id == item.CatalogId)
                     SelectCatalogItem(ctr);
             }
 
-            ShowPaperPad(item, searchTxt);
+            ShowPaperPad(item, parm);
         }
 
-        private void ShowPaperPad(BGItemInfo itemInfo, string searchTxt = "")
+        private void ShowPaperPad(BGItemInfo itemInfo, ShowPaperParm parm = null)
         {
             if(itemInfo == null)
             {
                 HidePaperPad();
                 return;
             }
+
+            if (nowRowItem == itemInfo)
+                return;
 
             //更新选中
             if (nowRowItemCtr != null)
@@ -287,6 +294,7 @@ namespace BGGallery
             nowRowItem = itemInfo;
             listView1.Invalidate(); //todo 有优化空间
 
+            doubleBufferedFlowLayoutPanel1.SuspendLayout();
             //更新显示文件内容
             textChangeLock = true;
             textBoxRowItemTitle.TrueText = nowRowItem.Title;
@@ -301,10 +309,15 @@ namespace BGGallery
             if (splitContainer2.SplitterDistance > splitContainer2.Width-10)
                 splitContainer2.SplitterDistance = Math.Min(lastDistance, Math.Max(0, splitContainer2.Width - 800));
 
-            if(!string.IsNullOrEmpty(searchTxt))
-            {
-                dasayEditor1.SearchTxt(searchTxt);
-            }
+            doubleBufferedFlowLayoutPanel1.ResumeLayout();
+
+            dasayEditor1.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height - 10;
+
+            if (parm != null && !string.IsNullOrEmpty(parm.SearchTxt))
+                dasayEditor1.SearchTxt(parm.SearchTxt);
+
+            if (parm == null || !parm.NoSaveHistory)
+                PageHistoryManager.Instance.Record(itemInfo.Id);
         }
 
         private int lastDistance;
@@ -505,6 +518,7 @@ namespace BGGallery
             dasayEditor1.Width = doubleBufferedFlowLayoutPanel1.Width;
             dasayEditor1.Height = doubleBufferedFlowLayoutPanel1.Height - uckvList1.Location.Y - uckvList1.Height-10;
             uckvList1.Width = doubleBufferedFlowLayoutPanel1.Width;
+            ucDocTopBar1.Width = doubleBufferedFlowLayoutPanel1.Width;
             textBoxRowItemTitle.Width = doubleBufferedFlowLayoutPanel1.Width-100;
         }
 
@@ -670,6 +684,30 @@ namespace BGGallery
         {
             viewStack1.Height = splitContainer2.Panel1.Height - 135;
             viewStack1.Width = splitContainer2.Panel1.Width;
+        }
+
+        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            if (e.LinkText.StartsWith("file://"))
+            {
+                var id = int.Parse(e.LinkText.Substring(7));
+                ShowPaperPad(BGBook.Instance.GetItem(id));
+                return;
+            }
+
+            System.Diagnostics.Process.Start(e.LinkText);
+        }
+        private void ButtonFormer_Click(object sender, EventArgs e)
+        {
+            var pageId = PageHistoryManager.Instance.FindFormer();
+            if (pageId > 0)
+                ShowPaperPad(BGBook.Instance.GetItem(pageId), new ShowPaperParm { NoSaveHistory = true });
+        }
+        private void ButtonNext_Click(object sender, EventArgs e)
+        {
+            var pageId = PageHistoryManager.Instance.FindNext();
+            if (pageId > 0)
+                ShowPaperPad(BGBook.Instance.GetItem(pageId), new ShowPaperParm { NoSaveHistory = true });
         }
 
     }

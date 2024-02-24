@@ -75,6 +75,7 @@
     <Compile Include="Model\IRowItem.cs" />
     <Compile Include="Model\BGBookCfg.cs" />
     <Compile Include="Model\Types\ColorCfg.cs" />
+    <Compile Include="Model\Types\ShowPaperParm.cs" />
     <Compile Include="PanelManager.cs" />
     <Compile Include="UIS\DocComp\IDocComp.cs" />
     <Compile Include="UIS\DocComp\UCDocSelectItem.cs">
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="UIS\DocComp\UCDocStarItem.Designer.cs">
       <DependentUpon>UCDocStarItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocTopBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocTopBar.designer.cs">
+      <DependentUpon>UCDocTopBar.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\DoubleBufferedTabPage.cs">
       <SubType>Component</SubType>
@@ -328,6 +335,7 @@
     <Compile Include="Utils\FontMgr.cs" />
     <Compile Include="Utils\ImageBook.cs" />
     <Compile Include="Utils\MathTool.cs" />
+    <Compile Include="Utils\PageHistoryManager.cs" />
     <Compile Include="Utils\ResLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -399,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\DocComp\UCDocStarItem.resx">
       <DependentUpon>UCDocStarItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocTopBar.resx">
+      <DependentUpon>UCDocTopBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputNumberBox.resx">
       <DependentUpon>InputNumberBox.cs</DependentUpon>
@@ -554,6 +565,7 @@
     <None Include="Resources\null.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\time.png" />
     <None Include="Resources\starn.png" />
     <None Include="Resources\starn1.png" />
     <None Include="Resources\stary.png" />
@@ -574,6 +586,8 @@
     <None Include="Resources\bold.png" />
     <None Include="Resources\clearformat.png" />
     <None Include="Resources\bubble.png" />
+    <None Include="Resources\arrowdown.png" />
+    <None Include="Resources\arrowup.png" />
     <Content Include="Resources\convert.jpg" />
     <Content Include="Resources\copy.jpg" />
     <Content Include="Resources\del.jpg" />
@@ -584,6 +598,8 @@
     <None Include="Resources\iter.png" />
     <None Include="Resources\main.png" />
     <None Include="Resources\eye.png" />
+    <None Include="Resources\paper.png" />
+    <None Include="Resources\emo.png" />
     <Content Include="Resources\pictureadd.png" />
     <Content Include="Resources\picturepaste.png" />
     <Content Include="Resources\selector.jpg" />

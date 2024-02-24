@@ -246,6 +246,11 @@ namespace BGGallery.UIS.Panels
                 case Keys.Enter:
                     CheckResult();
                     break;
+                case Keys.Escape:
+                    if (AfterSelect != null)
+                        AfterSelect("");
+                    PanelManager.Instance.HideBlackPanel();
+                    break;
             }
         }
     }

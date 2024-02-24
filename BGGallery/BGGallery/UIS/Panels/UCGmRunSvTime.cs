@@ -14,11 +14,19 @@ namespace BGGallery.UIS.Panels
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                    control.KeyUp += TextBox_KeyDown;
+            }
         }
+
 
         public void OnInit()
         {
             SetTime(DateTime.Now);
+            this.Focus();
         }
 
 
@@ -96,6 +104,30 @@ namespace BGGallery.UIS.Panels
                 AfterSelect((rjToggleButtonIsddl.Checked ? "ddl " : "time ") + TimeTool.FormatTime(nowDate));
 
             PanelManager.Instance.HideBlackPanel();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    if (AfterSelect != null)
+                        AfterSelect("");
+                    PanelManager.Instance.HideBlackPanel();
+                    break;
+            }
+        }
+
+        private void UCGmRunSvTime_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Escape:
+                    if (AfterSelect != null)
+                        AfterSelect("");
+                    PanelManager.Instance.HideBlackPanel();
+                    break;
+            }
         }
     }
 }

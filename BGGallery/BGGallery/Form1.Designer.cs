@@ -50,6 +50,7 @@ namespace BGGallery
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.textBoxCatalogTitle = new BGGallery.UIS.HintTextBox();
             this.doubleBufferedFlowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
+            this.ucDocTopBar1 = new BGGallery.UIS.UCDocTopBar();
             this.pictureBoxPaperIcon = new System.Windows.Forms.PictureBox();
             this.textBoxRowItemTitle = new BGGallery.UIS.HintTextBox();
             this.uckvList1 = new BGGallery.UIS.UCDocPropertyList();
@@ -314,6 +315,7 @@ namespace BGGallery
             // 
             // doubleBufferedFlowLayoutPanel1
             // 
+            this.doubleBufferedFlowLayoutPanel1.Controls.Add(this.ucDocTopBar1);
             this.doubleBufferedFlowLayoutPanel1.Controls.Add(this.pictureBoxPaperIcon);
             this.doubleBufferedFlowLayoutPanel1.Controls.Add(this.textBoxRowItemTitle);
             this.doubleBufferedFlowLayoutPanel1.Controls.Add(this.uckvList1);
@@ -324,11 +326,20 @@ namespace BGGallery
             this.doubleBufferedFlowLayoutPanel1.Size = new System.Drawing.Size(491, 1078);
             this.doubleBufferedFlowLayoutPanel1.TabIndex = 6;
             this.doubleBufferedFlowLayoutPanel1.SizeChanged += new System.EventHandler(this.doubleBufferedFlowLayoutPanel1_SizeChanged);
+            // ucDocTopBar1
+            // 
+            this.ucDocTopBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ucDocTopBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.ucDocTopBar1.Location = new System.Drawing.Point(3, 3);
+            this.ucDocTopBar1.Name = "ucDocTopBar1";
+            this.ucDocTopBar1.Size = new System.Drawing.Size(476, 27);
+            this.ucDocTopBar1.TabIndex = 6;
+            // 
             // 
             // pictureBoxPaperIcon
             // 
-            this.pictureBoxPaperIcon.Location = new System.Drawing.Point(20, 35);
-            this.pictureBoxPaperIcon.Margin = new System.Windows.Forms.Padding(20, 35, 3, 20);
+            this.pictureBoxPaperIcon.Location = new System.Drawing.Point(20, 58);
+            this.pictureBoxPaperIcon.Margin = new System.Windows.Forms.Padding(20, 25, 3, 20);
             this.pictureBoxPaperIcon.Name = "pictureBoxPaperIcon";
             this.pictureBoxPaperIcon.Size = new System.Drawing.Size(32, 32);
             this.pictureBoxPaperIcon.TabIndex = 3;
@@ -345,8 +356,8 @@ namespace BGGallery
             this.textBoxRowItemTitle.Font = new System.Drawing.Font("微软雅黑", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBoxRowItemTitle.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBoxRowItemTitle.ForeColorDE = System.Drawing.Color.White;
-            this.textBoxRowItemTitle.Location = new System.Drawing.Point(65, 30);
-            this.textBoxRowItemTitle.Margin = new System.Windows.Forms.Padding(10, 30, 10, 10);
+            this.textBoxRowItemTitle.Location = new System.Drawing.Point(65, 53);
+            this.textBoxRowItemTitle.Margin = new System.Windows.Forms.Padding(10, 20, 10, 20);
             this.textBoxRowItemTitle.Name = "textBoxRowItemTitle";
             this.textBoxRowItemTitle.Size = new System.Drawing.Size(387, 32);
             this.textBoxRowItemTitle.TabIndex = 2;
@@ -359,7 +370,7 @@ namespace BGGallery
             this.uckvList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.uckvList1.BackColor = System.Drawing.Color.DarkBlue;
             this.uckvList1.BgColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.uckvList1.Location = new System.Drawing.Point(3, 90);
+            this.uckvList1.Location = new System.Drawing.Point(3, 116);
             this.uckvList1.Name = "uckvList1";
             this.uckvList1.Size = new System.Drawing.Size(491, 139);
             this.uckvList1.TabIndex = 5;
@@ -367,7 +378,7 @@ namespace BGGallery
             // dasayEditor1
             // 
             this.dasayEditor1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.dasayEditor1.Location = new System.Drawing.Point(4, 234);
+            this.dasayEditor1.Location = new System.Drawing.Point(4, 286);
             this.dasayEditor1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dasayEditor1.Name = "dasayEditor1";
             this.dasayEditor1.Size = new System.Drawing.Size(491, 803);
@@ -559,6 +570,7 @@ namespace BGGallery
         private UIS.Main.UCListSelectBar ucListSelectBar1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCata;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCryto;
+        private BGGallery.UIS.UCDocTopBar ucDocTopBar1;
     }
 }
 

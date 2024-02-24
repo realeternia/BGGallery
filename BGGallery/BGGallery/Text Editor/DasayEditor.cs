@@ -72,6 +72,11 @@ namespace Text_Editor
             removeToolStripMenuItem.Click += deleteStripMenuItem_Click;
             searchToolStripMenuItem.Click += searchStripMenuItem_Click;
 
+            toolStripMenuItemKeys.Click += ToolStripMenuItemKeys_Click;
+            toolStripMenuItemTime.Click += ToolStripMenuItemTime_Click;
+            toolStripMenuItemPage.Click += ToolStripMenuItemPage_Click;
+            toolStripMenuItemEmotion.Click += ToolStripMenuItemEmotion_Click;
+
             if (Directory.Exists(ENV.TemplateDir))
                 foreach (var file in Directory.GetFiles(ENV.TemplateDir))
                 {
@@ -91,7 +96,28 @@ namespace Text_Editor
             rjDropdownMenuRightClick.PrimaryColor = Color.SeaGreen;
             rjDropdownMenuRightClick.MenuItemTextColor = Color.White;
             rjDropdownMenuRightClick.MenuItemHeight = 25;
+            rjDropdownMenuLine.PrimaryColor = Color.SeaGreen;
+            rjDropdownMenuLine.MenuItemTextColor = Color.White;
+            rjDropdownMenuLine.MenuItemHeight = 25;
+        }
+        private void ToolStripMenuItemKeys_Click(object sender, EventArgs e)
+        {
+            AddKeywords();
+        }
 
+        private void ToolStripMenuItemPage_Click(object sender, EventArgs e)
+        {
+            AddPage();
+        }
+
+        private void ToolStripMenuItemTime_Click(object sender, EventArgs e)
+        {
+            AddTime();
+        }
+
+        private void ToolStripMenuItemEmotion_Click(object sender, EventArgs e)
+        {
+            AddIcon();
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -550,33 +576,14 @@ namespace Text_Editor
                     }
 
                     break;
-                case Keys.E: //表情
-                    if (richTextBox1.SelectionStart >= 2 && richTextBox1.Text[richTextBox1.SelectionStart - 2] == '/')
-                    { // /e
-                        RichtextSelect(richTextBox1.SelectionStart - 2, 2);
-                        richTextBox1.SelectedText = "";
-                        
-                        AddIcon();
-                    }
-                    break;
-                case Keys.P: //人名
-                    if (richTextBox1.SelectionStart >= 2 && richTextBox1.Text[richTextBox1.SelectionStart - 2] == '/')
-                    { // /p
-                        RichtextSelect(richTextBox1.SelectionStart - 2, 2);
-                        richTextBox1.SelectedText = "";
+            }
+            if(!e.Shift && e.KeyCode == Keys.OemQuestion)
+            {
+                RichtextSelect(richTextBox1.SelectionStart - 1, 1);
+                richTextBox1.SelectedText = "";
 
-                        AddKeywords();
-                    }
-                    break;
-                case Keys.T: //时间
-                    if (richTextBox1.SelectionStart >= 2 && richTextBox1.Text[richTextBox1.SelectionStart - 2] == '/')
-                    { // /p
-                        RichtextSelect(richTextBox1.SelectionStart - 2, 2);
-                        richTextBox1.SelectedText = "";
-
-                        AddTime();
-                    }
-                    break;
+                Point cursorLocation = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart);
+                rjDropdownMenuLine.Show(richTextBox1, cursorLocation.X + 10, cursorLocation.Y + 10);
             }
         }
 
@@ -632,11 +639,6 @@ namespace Text_Editor
             }
         }
 
-        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(e.LinkText);
-        }
-
 
         private void AddIcon()
         {
@@ -651,6 +653,12 @@ namespace Text_Editor
                 cursorPosition.Y - ParentC.Location.Y,
                 (iconPath) =>
                 {
+                    if (string.IsNullOrEmpty(iconPath))
+                    {
+                        richTextBox1.Focus();
+                        return;
+                    }
+
                     // 将图片添加到剪贴板
                     Clipboard.SetImage(ImageTool.Transparent2Color((Bitmap)ResLoader.Read(iconPath), richTextBox1.BackColor, 24, 24));
                     richTextBox1.Paste();
@@ -674,6 +682,12 @@ namespace Text_Editor
                 cursorPosition.Y - ParentC.Location.Y,
                 (name) =>
                 {
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        richTextBox1.Focus();
+                        return;
+                    }
+
                     RtfModifier.InsertString(richTextBox1, name);
 
                     //RichtextSelect(pos, name.Length);
@@ -681,6 +695,34 @@ namespace Text_Editor
 
                     //RichtextSelect(pos + name.Length, 0);
                     //richTextBox1.SelectionColor = richTextBox1.ForeColor;
+
+                    richTextBox1.Focus();
+                    //DelayedActionExecutor.Trigger("choosetarget", 0.1f, () => richTextBox1.Focus()); //防止enter事件击穿
+                }
+            );
+        }
+        private void AddPage()
+        {
+            var pos = richTextBox1.SelectionStart;
+            Point cursorPosition = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart);
+
+            // 如果需要，将坐标转换为屏幕坐标
+            cursorPosition = richTextBox1.PointToScreen(cursorPosition);
+
+            PanelManager.Instance.ShowPageForm(cursorPosition.X - ParentC.Location.X,
+                cursorPosition.Y - ParentC.Location.Y,
+                (name) =>
+                {
+                    if (string.IsNullOrEmpty(name))
+                    {
+                        richTextBox1.Focus();
+                        return;
+                    }
+
+                    var splitDatas = name.Split('@');
+                    var checkStr = "file://" + splitDatas[splitDatas.Length - 1];
+
+                    RtfModifier.InsertString(richTextBox1, checkStr);
 
                     richTextBox1.Focus();
                     //DelayedActionExecutor.Trigger("choosetarget", 0.1f, () => richTextBox1.Focus()); //防止enter事件击穿
@@ -701,6 +743,12 @@ namespace Text_Editor
                 cursorPosition.Y - ParentC.Location.Y,
                 (timeStr) =>
                 {
+                    if (string.IsNullOrEmpty(timeStr))
+                    {
+                        richTextBox1.Focus();
+                        return;
+                    }
+
                     RtfModifier.InsertString(richTextBox1, timeStr);
 
                     RichtextSelect(pos, timeStr.Length);
