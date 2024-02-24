@@ -241,4 +241,25 @@
   <data name="time" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="btnDrag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnDrag.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnFitToScreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnFitToScreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnRotate270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnRotate270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnRotate90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnRotate90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnSelect" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnSelect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnZoomIn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnZoomIn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="btnZoomOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btnZoomOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿
 using BGGallery.UIS;
+using System.Drawing;
 
 namespace BGGallery
 {
@@ -34,12 +35,11 @@ namespace BGGallery
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ucCatalogNew = new BGGallery.UCCatalogFix();
             this.ucCatalogSearch = new BGGallery.UCCatalogFix();
             this.ucCatalogSetup = new BGGallery.UCCatalogFix();
             this.flowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.ucListSelectBar1 = new BGGallery.UIS.Main.UCListSelectBar();
             this.viewStack1 = new BGGallery.UIS.ViewStack();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -48,6 +48,7 @@ namespace BGGallery
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listView1 = new BGGallery.UIS.DoubleBufferedListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.textBoxCatalogTitle = new BGGallery.UIS.HintTextBox();
             this.doubleBufferedFlowLayoutPanel1 = new BGGallery.UIS.DoubleBufferedFlowLayoutPanel();
             this.ucDocTopBar1 = new BGGallery.UIS.UCDocTopBar();
@@ -59,6 +60,7 @@ namespace BGGallery
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dasayEditor1 = new Text_Editor.DasayEditor();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.imageGallery1 = new BGGallery.UIS.Main.ImageGallery();
             this.panelBlack = new BGGallery.UIS.TransparentPanel();
             this.rjDropdownMenuCol = new RJControls.RJDropdownMenu(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,6 +88,7 @@ namespace BGGallery
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaperIcon)).BeginInit();
             this.viewStack2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.rjDropdownMenuCol.SuspendLayout();
             this.rjDropdownMenuCatlog.SuspendLayout();
             this.rjDropdownMenuRow.SuspendLayout();
@@ -112,37 +115,6 @@ namespace BGGallery
             this.splitContainer1.Size = new System.Drawing.Size(1813, 1078);
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.ucListSelectBar1);
-            this.splitContainer2.Panel1.Controls.Add(this.viewStack1);
-            this.splitContainer2.Panel1.Controls.Add(this.textBoxCatalogTitle);
-            this.splitContainer2.Panel1.Click += new System.EventHandler(this.splitContainer2_Panel1_Click);
-            this.splitContainer2.Panel1.Resize += new System.EventHandler(this.splitContainer2_Panel1_Resize);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.splitContainer2.Panel2.Controls.Add(this.doubleBufferedFlowLayoutPanel1);
-            this.splitContainer2.Panel2MinSize = 0;
-            this.splitContainer2.Size = new System.Drawing.Size(1569, 1078);
-            this.splitContainer2.SplitterDistance = 1074;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(40, 40);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // ucCatalogNew
             // 
@@ -196,6 +168,31 @@ namespace BGGallery
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 960);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.ucListSelectBar1);
+            this.splitContainer2.Panel1.Controls.Add(this.viewStack1);
+            this.splitContainer2.Panel1.Controls.Add(this.textBoxCatalogTitle);
+            this.splitContainer2.Panel1.Click += new System.EventHandler(this.splitContainer2_Panel1_Click);
+            this.splitContainer2.Panel1.Resize += new System.EventHandler(this.splitContainer2_Panel1_Resize);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.splitContainer2.Panel2.Controls.Add(this.doubleBufferedFlowLayoutPanel1);
+            this.splitContainer2.Panel2MinSize = 0;
+            this.splitContainer2.Size = new System.Drawing.Size(1569, 1078);
+            this.splitContainer2.SplitterDistance = 1074;
+            this.splitContainer2.TabIndex = 0;
             // 
             // ucListSelectBar1
             // 
@@ -302,6 +299,12 @@ namespace BGGallery
             // 
             this.columnHeader1.Width = 50;
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(40, 40);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // textBoxCatalogTitle
             // 
             this.textBoxCatalogTitle.BackColor = System.Drawing.Color.Black;
@@ -398,22 +401,24 @@ namespace BGGallery
             // 
             // viewStack2
             // 
+            this.viewStack2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.viewStack2.Controls.Add(this.tabPage3);
             this.viewStack2.Controls.Add(this.tabPage4);
-            this.viewStack2.Location = new System.Drawing.Point(4, 290);
-            this.viewStack2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.viewStack2.Location = new System.Drawing.Point(3, 291);
             this.viewStack2.Name = "viewStack2";
             this.viewStack2.SelectedIndex = 0;
             this.viewStack2.Size = new System.Drawing.Size(491, 803);
+            this.viewStack2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.viewStack2.TabIndex = 7;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dasayEditor1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.BackColor = Color.FromArgb(32, 32, 32);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(483, 777);
+            this.tabPage3.Size = new System.Drawing.Size(483, 774);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -425,18 +430,28 @@ namespace BGGallery
             this.dasayEditor1.Location = new System.Drawing.Point(3, 3);
             this.dasayEditor1.Margin = new System.Windows.Forms.Padding(0);
             this.dasayEditor1.Name = "dasayEditor1";
-            this.dasayEditor1.Size = new System.Drawing.Size(477, 771);
+            this.dasayEditor1.Size = new System.Drawing.Size(477, 768);
             this.dasayEditor1.TabIndex = 0;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Controls.Add(this.imageGallery1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.BackColor = Color.FromArgb(32,32,32);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(483, 777);
+            this.tabPage4.Size = new System.Drawing.Size(483, 774);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // imageGallery1
+            // 
+            this.imageGallery1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageGallery1.Location = new System.Drawing.Point(3, 3);
+            this.imageGallery1.Name = "imageGallery1";
+            this.imageGallery1.Size = new System.Drawing.Size(477, 768);
+            this.imageGallery1.TabIndex = 0;
             // 
             // panelBlack
             // 
@@ -586,6 +601,7 @@ namespace BGGallery
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPaperIcon)).EndInit();
             this.viewStack2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.rjDropdownMenuCol.ResumeLayout(false);
             this.rjDropdownMenuCatlog.ResumeLayout(false);
             this.rjDropdownMenuRow.ResumeLayout(false);
@@ -627,10 +643,11 @@ namespace BGGallery
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCata;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCryto;
         private BGGallery.UIS.UCDocTopBar ucDocTopBar1;
-        private BGGallery.UIS.ViewStack viewStack2;
+        private ViewStack viewStack2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private UIS.Main.UCListSelectBar ucListSelectBar2;
+        private UIS.Main.ImageGallery imageGallery1;
     }
 }
 

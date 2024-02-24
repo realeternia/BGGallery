@@ -33,6 +33,7 @@ namespace BGGallery
             InitializeComponent();
 
             dasayEditor1.ParentC = this;
+            imageGallery1.ParentC = this;
 
             ucTipAdd1.button1.Click += columnNew_Click;
             ucListSelectBar1.OnIndexChanged = OnSelectBarIndexChanged;
@@ -306,6 +307,12 @@ namespace BGGallery
            // dasayEditor1.Location = new Point(uckvList1.Location.X, uckvList1.Location.Y + uckvList1.Height);
             viewStack2.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height-45;
             dasayEditor1.LoadFile(nowRowItem);
+            if (ucListSelectBar2.SelectedIndex != 0)
+            { //切回首页
+                ucListSelectBar2.SelectedIndex = 0;
+                ucListSelectBar2.Invalidate();
+                viewStack2.SelectedIndex = 0;
+            }
 
             if (splitContainer2.SplitterDistance > splitContainer2.Width-10)
                 splitContainer2.SplitterDistance = Math.Min(lastDistance, Math.Max(0, splitContainer2.Width - 800));
@@ -679,9 +686,14 @@ namespace BGGallery
         {
             viewStack1.SelectedIndex = idx;
         }
+
         private void OnSelectBar2IndexChanged(int idx)
         {
             viewStack2.SelectedIndex = idx;
+            if (idx == 1)
+            {
+                imageGallery1.Init(nowRowItem);
+            }
         }
         #endregion
 

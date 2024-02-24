@@ -1,4 +1,5 @@
 ﻿using BGGallery.UIS;
+using BGGallery.UIS.ImageView;
 using BGGallery.UIS.Panels;
 using System;
 using System.Drawing;
@@ -23,6 +24,7 @@ namespace BGGallery
         private UCGmRunSvTime timePicker;
         private UCAddBG addBG;
         private UCEditImage editImage;
+        private KpImageViewer imageViewer;
 
         public void Init(Form1 form)
         {
@@ -205,6 +207,7 @@ namespace BGGallery
             ShowBlackPanel(addBG, 0, 0);
             addBG.OnInit(str);
         }
+
         public void ShowEditImage(Image img, Action<Image> callback)
         {
             if (editImage == null)
@@ -216,6 +219,16 @@ namespace BGGallery
 
             ShowBlackPanel(editImage, 0, 0);
             editImage.OnInit(img);
+        }
+        public void ShowImageViewer(string path)
+        {
+            if (imageViewer == null)
+            {
+                imageViewer = new KpImageViewer();
+            }
+
+            ShowBlackPanel(imageViewer, 0, 0);
+            imageViewer.OnInit(path);
         }
 
         public void ShowBlackPanel(Control ctr, int x, int y, float bright = 0.5f)

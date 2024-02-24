@@ -104,7 +104,7 @@ namespace BGGallery.UIS
 
             var width = 200;
 
-            var cover = ImageBook.Instance.Load(ENV.CoverDir + itemId + ".jpg");
+            var cover = ImageBook.Instance.Load(ENV.CoverDir + itemId + "/cover.jpg");
             var height = width * cover.Height / cover.Width;
             e.Graphics.DrawImage(cover, Width - 220, (Height - height) / 2, 200, height);
         }

@@ -99,6 +99,17 @@
     <Compile Include="UIS\DoubleBufferedTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UIS\ImageView\KP-DrawEngine.cs" />
+    <Compile Include="UIS\ImageView\KP-DrawObject.cs" />
+    <Compile Include="UIS\ImageView\KP-ImageViewerV2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\ImageView\KP-ImageViewerV2.designer.cs">
+      <DependentUpon>KP-ImageViewerV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\ImageView\PanelDoubleBuffered.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UIS\InputNumberBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +127,18 @@
     </Compile>
     <Compile Include="UIS\InputColorBox.Designer.cs">
       <DependentUpon>InputColorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\ImageGallery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\ImageGallery.Designer.cs">
+      <DependentUpon>ImageGallery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Main\UCImageGalleryItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\UCImageGalleryItem.Designer.cs">
+      <DependentUpon>UCImageGalleryItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\Main\UCListSelectBar.cs">
       <SubType>UserControl</SubType>
@@ -411,6 +434,9 @@
     <EmbeddedResource Include="UIS\DocComp\UCDocTopBar.resx">
       <DependentUpon>UCDocTopBar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIS\ImageView\KP-ImageViewerV2.resx">
+      <DependentUpon>KP-ImageViewerV2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputNumberBox.resx">
       <DependentUpon>InputNumberBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -419,6 +445,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputColorBox.resx">
       <DependentUpon>InputColorBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\ImageGallery.resx">
+      <DependentUpon>ImageGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\UCImageGalleryItem.resx">
+      <DependentUpon>UCImageGalleryItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Main\UCListSelectBar.resx">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
@@ -588,6 +620,13 @@
     <None Include="Resources\bubble.png" />
     <None Include="Resources\arrowdown.png" />
     <None Include="Resources\arrowup.png" />
+    <None Include="Resources\btnRotate90.png" />
+    <None Include="Resources\btnRotate270.png" />
+    <None Include="Resources\btnSelect.png" />
+    <None Include="Resources\btnZoomIn.png" />
+    <None Include="Resources\btnZoomOut.png" />
+    <None Include="Resources\btnDrag.png" />
+    <None Include="Resources\btnFitToScreen.png" />
     <Content Include="Resources\convert.jpg" />
     <Content Include="Resources\copy.jpg" />
     <Content Include="Resources\del.jpg" />

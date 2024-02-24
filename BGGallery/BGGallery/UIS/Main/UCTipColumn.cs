@@ -389,7 +389,9 @@ namespace BGGallery
 
                 BGBook.Instance.Items.Add(itmInfo);
 
-                await BGInfoSyncer.DownloadImageAsync(gameInfo.ImageUrl, string.Format("img/{0}.jpg", gameInfo.Id));
+                Directory.CreateDirectory(string.Format("{0}/{1}", ENV.CoverDir, gameInfo.Id));
+
+                await BGInfoSyncer.DownloadImageAsync(gameInfo.ImageUrl, string.Format("{0}/{1}/cover.jpg", ENV.CoverDir, gameInfo.Id));
 
                 RefreshLabels();
 
