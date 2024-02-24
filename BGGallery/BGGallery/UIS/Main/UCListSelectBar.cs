@@ -24,10 +24,12 @@ namespace BGGallery.UIS.Main
         }
         private void UCListSelectBar_Load(object sender, System.EventArgs e)
         {
+            if (string.IsNullOrEmpty(TabNames))
+                return;
             var infos = TabNames.Split('|');
             regions = new Rectangle[infos.Length];
             for (int i = 0; i < infos.Length; i++)
-                regions[i] = new Rectangle(10 + i * 130, 0, 120, Height);
+                regions[i] = new Rectangle(10 + i * 95, 0, 90, Height);
         }
 
         private void UCListSelectBar_Paint(object sender, PaintEventArgs e)
@@ -42,13 +44,10 @@ namespace BGGallery.UIS.Main
 
                     using (var b = new SolidBrush(i == SelectedIndex ? ForeColor : Color.Gray))
                     {
-
                         if (i < infos.Length)
                         {
-                            if (i < imageList1.Images.Count)
-                                e.Graphics.DrawImage(imageList1.Images[i], bounds.Left + 6, bounds.Top + 8, 20, 20);
-
-                            e.Graphics.DrawString(infos[i], Font, b, bounds.Left + 6 + 28, bounds.Top + 5);
+                            var len = e.Graphics.MeasureString(infos[i], Font).Width;
+                            e.Graphics.DrawString(infos[i], Font, b, bounds.Left + (bounds.Width - len) / 2, bounds.Top + 5);
                         }
                     }
 
