@@ -123,10 +123,10 @@ namespace BGGallery
             if (icon != null)
                 e.Graphics.DrawImage(icon, 1, 5, 32, 32);
 
-            var size = itemInfo.GetFileLength();
             e.Graphics.DrawString(title, Font, Brushes.WhiteSmoke, 35, 8);
-            if (size > 0)
-                e.Graphics.DrawString(string.Format("{0:0.0}k", (float)size / 1024), Font, Brushes.Yellow, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);
+            var size = itemInfo.GetParm("wcount");
+            if (!string.IsNullOrEmpty(size))
+                e.Graphics.DrawString(string.Format("{0}字", size), Font, Brushes.Yellow, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);
 
             if (isMouseOver)
                 e.Graphics.DrawImage(Resources.menu, menuRegion);

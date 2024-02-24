@@ -14,10 +14,10 @@ namespace BGGallery.UIS
 
         protected override void OnKeyDown(KeyEventArgs ke)
         {
-            if (ke.KeyCode == Keys.Left || ke.KeyCode == Keys.Right || ke.KeyCode == Keys.Home || ke.KeyCode == Keys.End)
-            {
-                ke.Handled = true;
-            }
+            //if (ke.KeyCode == Keys.Left || ke.KeyCode == Keys.Right || ke.KeyCode == Keys.Home || ke.KeyCode == Keys.End)
+            //{
+            //    ke.Handled = true;
+            //}
             base.OnKeyDown(ke);
         }
     }

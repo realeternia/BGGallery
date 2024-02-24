@@ -540,6 +540,9 @@ namespace Text_Editor
 
         private bool CheckLineMyBullet(int lineIndex)
         {
+            if (lineIndex == 0)
+                return false;
+
             // 获取当前行的文本
             string currentLineText = richTextBox1.Lines[lineIndex];
 
@@ -785,10 +788,12 @@ namespace Text_Editor
                 }
             }
 
+            var textLen = richTextBox1.TextLength;
+            memoItemInfo.SetParm("wcount", textLen.ToString());
             foreach (var keywordInfo in GetKeywordColor())
             {
                 int index = 0;
-                while (index < richTextBox1.TextLength)
+                while (index < textLen)
                 {
                     index = richTextBox1.Find(keywordInfo.Item1, index, RichTextBoxFinds.None);
                     if (index == -1)

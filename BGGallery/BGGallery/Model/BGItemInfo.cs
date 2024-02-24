@@ -67,6 +67,24 @@ namespace BGGallery.Model
             return results;
         }
 
+        public string GetParm(string sname)
+        {
+            if (string.IsNullOrEmpty(Parm))
+                return "";
+
+            var items = Parm.Split('|');
+            foreach (var item in items)
+            {
+                if (string.IsNullOrEmpty(item))
+                    continue;
+                
+                var itInfo = item.Split(':');
+                if (itInfo[0] == sname)
+                    return itInfo[1];
+            }
+            return "";
+        }
+
         public DateTime GetCreateTime()
         {
             return new FileInfo(string.Format("{0}/{1}.{2}", ENV.SaveDir, Id, IsEncrypt() ? "rz" : "rtf")).CreationTime;
