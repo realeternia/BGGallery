@@ -307,12 +307,13 @@ namespace BGGallery
            // dasayEditor1.Location = new Point(uckvList1.Location.X, uckvList1.Location.Y + uckvList1.Height);
             viewStack2.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height-45;
             dasayEditor1.LoadFile(nowRowItem);
+            ucListSelectBar2.TabNames = string.Format("描述 {0:0.0}k|图片 {1} 张", (float)itemInfo.GetFileLength()/1024, itemInfo.GetImageCount());
             if (ucListSelectBar2.SelectedIndex != 0)
             { //切回首页
                 ucListSelectBar2.SelectedIndex = 0;
-                ucListSelectBar2.Invalidate();
                 viewStack2.SelectedIndex = 0;
             }
+            ucListSelectBar2.Invalidate();
 
             if (splitContainer2.SplitterDistance > splitContainer2.Width-10)
                 splitContainer2.SplitterDistance = Math.Min(lastDistance, Math.Max(0, splitContainer2.Width - 800));

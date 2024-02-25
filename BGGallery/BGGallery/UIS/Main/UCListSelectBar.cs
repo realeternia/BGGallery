@@ -9,7 +9,7 @@ namespace BGGallery.UIS.Main
     public partial class UCListSelectBar : UserControl
     {
         [EditorBrowsable(EditorBrowsableState.Always)]
-        public string TabNames { get; set; } // \n 分割
+        public string TabNames { get; set; } // | 分割
 
         public int SelectedIndex { get; set; }
 
@@ -20,7 +20,7 @@ namespace BGGallery.UIS.Main
         public UCListSelectBar()
         {
             InitializeComponent();
-
+            DoubleBuffered = true;
         }
         private void UCListSelectBar_Load(object sender, System.EventArgs e)
         {

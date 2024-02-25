@@ -100,6 +100,12 @@ namespace BGGallery.Model
                 return 0;
             return new FileInfo(path).Length;
         }
+        public int GetImageCount()
+        {
+            if (!Directory.Exists(ENV.CoverDir + Id))
+                return 0;
+            return Directory.GetFiles(ENV.CoverDir + Id).Length;
+        }
 
         public bool IsEncrypt()
         {
