@@ -10,6 +10,7 @@ namespace BGGallery.UIS.Main
 {
     public partial class UCImageGalleryItem : UserControl
     {
+        private int itemId;
         private string path;
         private float scale;
         public UCImageGalleryItem()
@@ -19,8 +20,9 @@ namespace BGGallery.UIS.Main
             DoubleBuffered = true;
         }
 
-        public void Init(string pat)
+        public void Init(int id, string pat)
         {
+            itemId = id;
             path = pat;
 
             var img = ImageBook.Instance.Load(path);
@@ -117,7 +119,10 @@ namespace BGGallery.UIS.Main
 
         private void UCImageGalleryItem_MouseClick(object sender, MouseEventArgs e)
         {
-            PanelManager.Instance.ShowImageViewer(path);
+            if (e.Button == MouseButtons.Left)
+                PanelManager.Instance.ShowImageViewer(path);
+            else
+                Clipboard.SetText(string.Format("file://img/{0}/{1}", itemId, new FileInfo(path).Name));
         }
     }
 }

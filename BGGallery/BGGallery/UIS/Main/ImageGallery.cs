@@ -30,10 +30,10 @@ namespace BGGallery.UIS.Main
         {
             doubleBufferedFlowLayoutPanel1.Controls.Clear();
 
-            foreach (var path in Directory.GetFiles(ENV.CoverDir + itemInfo.Id))
+            foreach (var path in Directory.GetFiles(ENV.ImgDir + itemInfo.Id))
             {
                 var showItem = new UCImageGalleryItem();
-                showItem.Init(path);
+                showItem.Init(itemInfo.Id, path);
                 doubleBufferedFlowLayoutPanel1.Controls.Add(showItem);
             }
         }
@@ -42,7 +42,7 @@ namespace BGGallery.UIS.Main
         {
             // 获取拖放的文件路径
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            var destPath = Path.Combine(Directory.GetCurrentDirectory(), ENV.CoverDir + itemInfo.Id);
+            var destPath = Path.Combine(Directory.GetCurrentDirectory(), ENV.ImgDir + itemInfo.Id);
             foreach (var f in files)
             {
                 File.Move(f, destPath + "\\" + new FileInfo(f).Name);

@@ -722,7 +722,7 @@ namespace Text_Editor
                     }
 
                     var splitDatas = name.Split('@');
-                    var checkStr = "file://" + splitDatas[splitDatas.Length - 1];
+                    var checkStr = "file://page/" + splitDatas[splitDatas.Length - 1];
 
                     RtfModifier.InsertString(richTextBox1, checkStr);
 

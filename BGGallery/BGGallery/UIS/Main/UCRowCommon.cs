@@ -49,7 +49,7 @@ namespace BGGallery
         {
             Height = 47;
 
-            if (File.Exists(ENV.CoverDir + ItemId + "/cover.jpg"))
+            if (File.Exists(ENV.ImgDir + ItemId + "/cover.jpg"))
             {
                 ShowCover = true;
                 Height += imageHeight;
@@ -167,7 +167,7 @@ namespace BGGallery
             {
                 try
                 {
-                    var cover = ImageBook.Instance.Load(ENV.CoverDir + ItemId + "/cover.jpg");
+                    var cover = ImageBook.Instance.Load(ENV.ImgDir + ItemId + "/cover.jpg");
                     if (cover != null)
                     {
                         // 计算源矩形和目标矩形  
