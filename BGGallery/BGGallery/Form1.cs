@@ -279,6 +279,8 @@ namespace BGGallery
             if (nowRowItem == itemInfo)
                 return;
 
+            dasayEditor1.SaveOnClose();
+
             //更新选中
             if (nowRowItemCtr != null)
                 nowRowItemCtr.SetSelect(false);
@@ -483,9 +485,7 @@ namespace BGGallery
 
             var itemInfo = BGBook.Instance.RemoveItem(itemId);
 
-            var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, itemId);
-            if (itemInfo.IsEncrypt())
-                fullPath = fullPath.Replace(".rtf", ".rz");
+            var fullPath = itemInfo.GetPath();
             if (File.Exists(fullPath))
                 File.Delete(fullPath);
 

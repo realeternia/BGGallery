@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace BGGallery.Model
 {
@@ -18,6 +19,42 @@ namespace BGGallery.Model
         public string BuyInfo { get; set; } //别名
         public int Star { get; set; }
         public int StarNewbie { get; set; }
+
+        private bool isDirty;
+
+        public bool GetAndResetDirty()
+        {
+            var v = isDirty;
+            isDirty = false;
+            return v;
+        }
+
+        public void SetTag(string tag1)
+        {
+            if (tag1 == Tag)
+                return;
+
+            var oldTags = (Tag ?? "").Split(',');
+            var newTags = (tag1 ?? "").Split(',');
+
+            Tag = tag1;
+
+            var newTagsNotInOld = newTags.Except(oldTags).ToArray();
+            var oldTagsNotInNew = oldTags.Except(newTags).ToArray();
+
+            foreach (var tagNotInOld in newTagsNotInOld)
+                OnTagAdd(tagNotInOld);
+
+            foreach (var tagNotInNew in oldTagsNotInNew)
+                OnTagRemoved(tagNotInNew);
+        }
+        public string GetPath()
+        {
+            var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, Id);
+            if (IsEncrypt())
+                fullPath = fullPath.Replace(".rtf", ".rz");
+            return fullPath;
+        }
 
         public string GetCatalog() { return BGBook.Instance.CatalogInfos.Find(a => a.Id == CatalogId).Name; }
         public string GetColumn()
@@ -112,14 +149,16 @@ namespace BGGallery.Model
             return HasTag("加密");
         }
 
-        public void AddTag(string s)
+        public void AddTag(string tagName)
         {
-            if (Tag != null && Tag.Contains(s))
+            if (Tag != null && Tag.Contains(tagName))
                 return;
+
+            OnTagAdd(tagName);
             if (Tag == null || Tag.Length == 0)
-                Tag = s;
+                Tag = tagName;
             else
-                Tag += "," + s;
+                Tag += "," + tagName;
         }
 
         public bool HasTag(string s)
@@ -127,6 +166,23 @@ namespace BGGallery.Model
             if (Tag == null)
                 return false;
             return Tag.Contains(s);
+        }
+        private void OnTagAdd(string tag)
+        {
+            if (tag == "加密")
+            {
+                isDirty = true;
+                File.Delete(string.Format("{0}/{1}.rtf", ENV.SaveDir, Id));
+            }
+        }
+
+        private void OnTagRemoved(string tag)
+        {
+            if (tag == "加密")
+            {
+                isDirty = true;
+                File.Delete(string.Format("{0}/{1}.rz", ENV.SaveDir, Id));
+            }
         }
     }
 }

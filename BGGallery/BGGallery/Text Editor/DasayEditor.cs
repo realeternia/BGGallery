@@ -18,7 +18,6 @@ namespace Text_Editor
     public partial class DasayEditor : UserControl
     {
         private BGItemInfo memoItemInfo;
-        private string filenamee;    // file opened inside of RTB
         public Form1 ParentC;
         private bool checkChangeLock = true;
         private bool hasModify;
@@ -177,6 +176,16 @@ namespace Text_Editor
             HighlightKeywords();
         }
 
+        public void SaveOnClose()
+        {
+            if (memoItemInfo != null)
+            {
+                // 立刻存档，并且取消timer
+                if (hasModify || memoItemInfo.GetAndResetDirty())
+                    DelayedExecutor.Trigger("desaySave", 0, () => Save(true));
+            }
+        }
+
         public void Save(bool checkSaveAct)
         {
             if (checkSaveAct)
@@ -190,31 +199,21 @@ namespace Text_Editor
             {
                 string tempFilePath = Path.GetTempFileName();
                 richTextBox1.SaveFile(tempFilePath, RichTextBoxStreamType.RichText);
-              
-                FileEncryption.EncryptFile(tempFilePath, filenamee.Replace(".rtf", ".rz"));
-                File.Delete(filenamee); //如果有未加密文件存在，删一下
+
+                FileEncryption.EncryptFile(tempFilePath, memoItemInfo.GetPath());
             }
             else
             {
-                richTextBox1.SaveFile(filenamee, RichTextBoxStreamType.RichText);
-                File.Delete(filenamee.Replace(".rtf", ".rz")); //如果有加密文件存在，删一下
+                richTextBox1.SaveFile(memoItemInfo.GetPath(), RichTextBoxStreamType.RichText);
             }
             
-            HLog.Info("SaveFile {0} finish checkSaveAct={1}", filenamee, checkSaveAct);
+            HLog.Info("SaveFile {0} finish checkSaveAct={1}", memoItemInfo.Id, checkSaveAct);
         }
 
         public void LoadFile(BGItemInfo itemInfo)
         {
-            if (!string.IsNullOrEmpty(filenamee))
-            {
-                // 立刻存档，并且取消timer
-                if (hasModify)
-                    DelayedExecutor.Trigger("desaySave", 0, () => Save(true));
-            }
-
             memoItemInfo = itemInfo;
-            var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, memoItemInfo.Id);
-            filenamee = fullPath;
+            var fullPath = memoItemInfo.GetPath();
             if (memoItemInfo.IsEncrypt())
                 fullPath = fullPath.Replace(".rtf", ".rz");
             hasModify = false;

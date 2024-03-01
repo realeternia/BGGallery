@@ -34,7 +34,7 @@ namespace BGGallery.UIS
             doubleBufferedPanel1.Controls.Clear();
 
             CheckCtrs(oldCtrList, itemInfo, "common", "别名", string.IsNullOrEmpty(itemInfo.NickName) ? itemInfo.Id.ToString() : itemInfo.NickName, (s) => { itemInfo.NickName = s; CheckChange(); });
-            CheckCtrs(oldCtrList, itemInfo, "multisel", "标签", itemInfo.Tag, (s) => { itemInfo.Tag = s; CheckChange(); });
+            CheckCtrs(oldCtrList, itemInfo, "multisel", "标签", itemInfo.Tag, (s) => { itemInfo.SetTag(s); CheckChange(); });
             CheckCtrs(oldCtrList, itemInfo, "star", "评分", itemInfo.Star.ToString(), (s) => { itemInfo.Star = int.Parse(s); CheckChange(); });
             CheckCtrs(oldCtrList, itemInfo, "star", "新手评分", itemInfo.StarNewbie.ToString(), (s) => { itemInfo.StarNewbie = int.Parse(s); CheckChange(); });
             CheckCtrs(oldCtrList, itemInfo, "multisel", "购入信息", itemInfo.BuyInfo, (s) => { itemInfo.BuyInfo = s; CheckChange(); });

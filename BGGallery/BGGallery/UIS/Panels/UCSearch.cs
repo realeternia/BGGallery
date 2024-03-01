@@ -14,6 +14,7 @@ namespace BGGallery.UIS
         class SearchData
         {
             public string Title;
+            public int ItemId;
             public string Line;
             public int LineIndex;
             public DateTime CreateTime;
@@ -60,11 +61,12 @@ namespace BGGallery.UIS
 
                 foreach (var itemInfo in BGBook.Instance.Items)
                 {
-                    var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, itemInfo.Id);
                     if (itemInfo.IsEncrypt())
-                        fullPath = fullPath.Replace(".rtf", ".rz");
+                        continue;
 
-                    if(File.Exists(fullPath))
+                    var fullPath = itemInfo.GetPath();
+
+                    if (File.Exists(fullPath))
                     {
                         var fi = new FileInfo(fullPath);
                         if (fi.LastWriteTime < searchBegin)
@@ -73,9 +75,9 @@ namespace BGGallery.UIS
                         var itemIdStr = fi.Name;
 
                         if (itemInfo.Title.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
                         if (itemInfo.Tag.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
 
                         string plainText = RtfModifier.ReadRtfPlainText(itemInfo.Id);
 
@@ -83,18 +85,18 @@ namespace BGGallery.UIS
                         foreach (var line in plainText.Split('\n'))
                         {
                             if (line.IndexOf(searchTxt) >= 0)
-                                searchResults.Add(new SearchData { Line = line, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = lineid + 1 });
+                                searchResults.Add(new SearchData { Line = line, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = lineid + 1 });
                             lineid++;
                         }
                     }
                     else
                     {
                         if (itemInfo.Title.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Title, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                         if (itemInfo.Tag != null && itemInfo.Tag.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Tag, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                         if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
                     }
                 }
 
@@ -161,7 +163,7 @@ namespace BGGallery.UIS
         private void listView1_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
             var lineInfo = searchResults[e.ItemIndex];
-            var itemInfo = BGBook.Instance.GetItem(int.Parse(lineInfo.Title.Replace(".rtf", "")));
+            var itemInfo = BGBook.Instance.GetItem(lineInfo.ItemId);
             if (itemInfo != null)
             {
                 e.Graphics.DrawImage(ResLoader.Read(itemInfo.Icon), e.Bounds.X + 8, e.Bounds.Y + 10, 24, 24);
@@ -203,7 +205,7 @@ namespace BGGallery.UIS
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var lineInfo = searchResults[selectLine.Index];
-            var itemInfo = BGBook.Instance.GetItem(int.Parse(lineInfo.Title.Replace(".rtf", "")));
+            var itemInfo = BGBook.Instance.GetItem(lineInfo.ItemId);
 
             Form1.ShowPaperPadEx(itemInfo, new Model.Types.ShowPaperParm { SearchTxt = lineInfo.Line.Trim() });
 

@@ -28,7 +28,7 @@ namespace BGGallery.Utils
                 return null;
 
             CsvDb db = new CsvDb();
-            var fileStr = RtfModifier.ReadRtfPlainText(itemId, true);
+            var fileStr = RtfModifier.ReadRtfPlainText(itemId);
             db.ParseCsvText(fileStr);
 
             return db;
