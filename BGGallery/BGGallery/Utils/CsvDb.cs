@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace BGGallery.Utils
 {
     class CsvDb
     {
+        private int itemId;
         private List<string> headers = new List<string>();
         private List<string[]> rows = new List<string[]>();
 
         public static CsvDb Create(string name)
         {
             int itemId = 0;
-            if(int.TryParse(name, out var s))
+            if (int.TryParse(name, out var s))
             {
                 itemId = s;
             }
@@ -27,11 +29,25 @@ namespace BGGallery.Utils
             if (itemId == 0)
                 return null;
 
-            CsvDb db = new CsvDb();
+            CsvDb db = new CsvDb(itemId);
             var fileStr = RtfModifier.ReadRtfPlainText(itemId);
             db.ParseCsvText(fileStr);
 
             return db;
+        }
+
+        public CsvDb(int id)
+        {
+            itemId = id;
+        }
+
+        private void Save()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(string.Join("\t", headers));
+            foreach (var row in rows)
+                sb.AppendLine(string.Join("\t", row));
+            RtfModifier.WriteRtfPlainText(itemId, sb.ToString());
         }
 
         private void ParseCsvText(string csvText)
@@ -55,6 +71,25 @@ namespace BGGallery.Utils
             }
         }
 
+        public void AddValue(string key, string[] values)
+        {
+            if (headers.Count != values.Length)
+                return;
+
+            foreach (string[] row in rows)
+            {
+                if (row[0] == key)
+                {
+                    for (int i = 1; i < row.Length; i++)
+                        row[i] = values[i];
+                    Save();
+                    return;
+                }
+            }
+            rows.Add(values);
+            Save();
+        }
+
         public string GetValueByKey(string key, string header)
         {
             int keyIndex = headers.IndexOf(header);
@@ -72,6 +107,44 @@ namespace BGGallery.Utils
             }
 
             throw new ArgumentException($"Key '{key}' not found.");
+        }
+
+        public void SetValueByKey(string key, string header, string val)
+        {
+            int keyIndex = headers.IndexOf(header);
+            if (keyIndex == -1)
+            {
+                return;
+            }
+
+            foreach (string[] row in rows)
+            {
+                if (row.Length > keyIndex && row[0] == key)
+                {
+                    row[keyIndex] = val;
+                    Save();
+                    break;
+                }
+            }
+        }
+
+        public string FindKeyByValue(string header, string val)
+        {
+            int keyIndex = headers.IndexOf(header);
+            if (keyIndex == -1)
+            {
+                throw new ArgumentException($"Header '{header}' not found.");
+            }
+
+            foreach (string[] row in rows)
+            {
+                if (row.Length > keyIndex && row[keyIndex] == val)
+                {
+                    return row[0];
+                }
+            }
+
+            return "";
         }
 
         public List<string> GetValuesByHeader(string header)

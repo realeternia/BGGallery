@@ -87,5 +87,32 @@ namespace BGGallery.Utils
             }
         }
 
+        public static void WriteRtfPlainText(int itemId, string str)
+        {
+            var itemInfo = BGBook.Instance.GetItem(itemId);
+            var fullPath = itemInfo.GetPath();
+
+            if (!File.Exists(fullPath))
+                return;
+
+            using (RichTextBox richTextBox = new RichTextBox())
+            {
+                richTextBox.AppendText(str);
+                richTextBox.SelectAll();
+                richTextBox.SelectionFont = new Font("微软雅黑", 12);
+                richTextBox.SelectionColor = System.Drawing.Color.Gainsboro;
+                if (itemInfo.IsEncrypt())
+                {
+                    string tempFilePath = Path.GetTempFileName();
+                    richTextBox.SaveFile(tempFilePath, RichTextBoxStreamType.RichText);
+
+                    FileEncryption.EncryptFile(tempFilePath, itemInfo.GetPath());
+                }
+                else
+                {
+                    richTextBox.SaveFile(itemInfo.GetPath(), RichTextBoxStreamType.RichText);
+                }
+            }
+        }
     }
 }
