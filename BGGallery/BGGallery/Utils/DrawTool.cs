@@ -79,10 +79,18 @@ namespace BGGallery.Utils
                 case "未到货": return Brushes.Red;
                 case "汇总": return Brushes.MediumPurple;
                 case "加密": return Brushes.OrangeRed;
+
+                case "美式": return Brushes.Brown;
+                case "德式": return Brushes.DimGray;
+                case "聚会": return Brushes.CadetBlue;
+                case "卡牌": return Brushes.DarkOrange;
             }
 
             if (word.Contains("￥"))
                 return Brushes.Green;
+
+            if (word.StartsWith("2") && word.Length == 4 && int.TryParse(word, out _)) //year
+                return Brushes.DeepPink;
 
             if (defaultB != null)
                 return defaultB;

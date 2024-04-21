@@ -576,9 +576,11 @@ namespace BGGallery
             int xoff = 0;
             if (e.ColumnIndex == 0)
             {
+                List<string> tags = new List<string>();
                 var itemInfo = BGBook.Instance.GetItem((int)e.Item.Tag);
                 if (itemInfo != null)
                 {
+                    tags.AddRange(itemInfo.Tag.Split(','));
                     e.Graphics.DrawImage(ResLoader.Read(itemInfo.Icon), e.Bounds.X + 3, e.Bounds.Y + 3, 24, 24);
                     xoff += 24;
                 }
@@ -588,17 +590,16 @@ namespace BGGallery
                 SizeF textSize1 = e.Graphics.MeasureString(e.SubItem.Text, listView1.Font);
                 xoff += (int)textSize1.Width;
 
-                List<string> tags = new List<string>();
-            //    if (itemInfo.ColumnId == 0)
-            //        tags.Add("未分类");
-            //    if (itemInfo.HasTag("未到货"))
-            //        tags.Add("未到货");
+                if (itemInfo.ColumnId == 0)
+                    tags.Add("未分类");
+                if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains("未到货"))
+                    tags.Add("未到货");
                 foreach (string word in tags)
                 {
                     // 获取文本框的大小
                     SizeF textSize = e.Graphics.MeasureString(word, Font);
 
-                    Rectangle borderRect = new Rectangle(xoff+3, e.Bounds.Y+5, (int)textSize.Width + 6, (int)textSize.Height + 5);
+                    Rectangle borderRect = new Rectangle(xoff+3, e.Bounds.Y+5, (int)textSize.Width + 6, 15 + 6);
                     var brush = DrawTool.GetTagBrush(word);
                     e.Graphics.FillRoundRectangle(brush, borderRect, 3);
 
