@@ -179,8 +179,17 @@ namespace BGGallery
             if (viewStack1.SelectedIndex == 1)
             {
                 listMouseOnLine = null;
-                listCachedItems = BGBook.Instance.GetItemsByCatalog(catalogId);
-                listView1.VirtualListSize = listCachedItems.Count;
+                var listCachedItems = BGBook.Instance.GetItemsByCatalog(catalogId);
+                listView1.Items.Clear();
+                foreach(var item in listCachedItems)
+                {
+                    var listItem = new ListViewItem(item.Title);
+                    listItem.SubItems.Add(item.Star.ToString());
+                    listItem.SubItems.Add(item.StarNewbie.ToString());
+                    listItem.SubItems.Add(item.GetModifyTime().ToString("yyyy-MM-dd"));
+                    listItem.Tag = item.Id;
+                    listView1.Items.Add(listItem);
+                }
             }
         }
 
@@ -296,7 +305,7 @@ namespace BGGallery
             }
 
             nowRowItem = itemInfo;
-            listView1.Invalidate(); //todo 有优化空间
+          //  listView1.Invalidate(); //todo 有优化空间
 
             doubleBufferedFlowLayoutPanel1.SuspendLayout();
             //更新显示文件内容
@@ -543,101 +552,101 @@ namespace BGGallery
 
         #region 全部信息列表
 
-        private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        private void listView1_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
         {
-            if (e.ItemIndex >= 0 && e.ItemIndex < listCachedItems.Count)
+            // 自定义绘制列标题的背景
+            using (SolidBrush brush1 = new SolidBrush(Color.FromArgb(16, 16, 16)))
             {
-                ListViewItem item = new ListViewItem();
-                item.Tag = listCachedItems[e.ItemIndex].Id;
-
-                e.Item = item;
+                e.Graphics.FillRectangle(brush1, e.Bounds);
             }
+
+            // 设置绘制文本的字体和颜色
+            using (var font = new Font("微软雅黑", 12, FontStyle.Bold))
+                e.Graphics.DrawString(e.Header.Text, font, Brushes.WhiteSmoke, e.Bounds.X, e.Bounds.Y + 3);
         }
 
         private void listView1_DrawSubItem(object sender, DrawListViewSubItemEventArgs e)
         {
-            if (listCachedItems == null)
-                return;
-
-            var itemInfo = listCachedItems[e.ItemIndex];
-            if (itemInfo != null)
+            // 自定义绘制列标题的背景
+            using (SolidBrush brush1 = new SolidBrush(e.Item == listMouseOnLine ? Color.DarkBlue : Color.FromArgb(32, 32, 32)))
             {
-                e.Graphics.DrawImage(ResLoader.Read(itemInfo.Icon), e.Bounds.X + 8, e.Bounds.Y + 10, 24, 24);
+                e.Graphics.FillRectangle(brush1, e.Bounds);
+            }
 
-                string textToDraw = string.Format("{0}/{1}", itemInfo.Id, itemInfo.Title);
-                e.Graphics.DrawString(textToDraw,
-                    e.Item.Font, Brushes.White, e.Bounds.X + 8 + 30, e.Bounds.Y + 10, StringFormat.GenericDefault);
+            int xoff = 0;
+            if (e.ColumnIndex == 0)
+            {
+                var itemInfo = BGBook.Instance.GetItem((int)e.Item.Tag);
+                if (itemInfo != null)
+                {
+                    e.Graphics.DrawImage(ResLoader.Read(itemInfo.Icon), e.Bounds.X + 3, e.Bounds.Y + 3, 24, 24);
+                    xoff += 24;
+                }
 
+                e.Graphics.DrawString(e.SubItem.Text, listView1.Font, Brushes.White, e.Bounds.X + 4 + xoff, e.Bounds.Y + 5);
                 // 获取文本的大小
-                SizeF textSize1 = e.Graphics.MeasureString(textToDraw, e.Item.Font);
-
-                // 调整坐标以居中绘制文本
-                int startX = e.Bounds.X + 8 + 30 + (int)textSize1.Width;
-                int startY = e.Bounds.Y + 10;
+                SizeF textSize1 = e.Graphics.MeasureString(e.SubItem.Text, listView1.Font);
+                xoff += (int)textSize1.Width;
 
                 List<string> tags = new List<string>();
-                if (itemInfo.ColumnId == 0)
-                    tags.Add("未分类");
-                if (itemInfo.HasTag("未到货"))
-                    tags.Add("未到货");
+            //    if (itemInfo.ColumnId == 0)
+            //        tags.Add("未分类");
+            //    if (itemInfo.HasTag("未到货"))
+            //        tags.Add("未到货");
                 foreach (string word in tags)
                 {
                     // 获取文本框的大小
                     SizeF textSize = e.Graphics.MeasureString(word, Font);
 
-                    Rectangle borderRect = new Rectangle(startX, startY, (int)textSize.Width + 6, (int)textSize.Height + 6);
+                    Rectangle borderRect = new Rectangle(xoff+3, e.Bounds.Y+5, (int)textSize.Width + 6, (int)textSize.Height + 5);
                     var brush = DrawTool.GetTagBrush(word);
                     e.Graphics.FillRoundRectangle(brush, borderRect, 3);
 
-                    e.Graphics.DrawString(word, Font, Brushes.White, startX + 3, startY + 5);
+                    e.Graphics.DrawString(word, listView1.Font, Brushes.White, xoff + 3, e.Bounds.Y + 5);
 
                     // 调整下一个词的位置
-                    startX += (int)textSize.Width + 6 + 6;
-                }
-
-                using (var ft = new Font("Arial", 9))
-                {
-                    StringFormat stringFormat = new StringFormat();
-                    stringFormat.FormatFlags = StringFormatFlags.DirectionRightToLeft;
-                    e.Graphics.DrawString(string.Format("{0}", itemInfo.GetCreateTime()),
-                 ft, Brushes.Gray, e.Bounds.X + listView1.Width - 8, e.Bounds.Y + 10 + 3, stringFormat);
+                    xoff += (int)textSize.Width + 6 + 6;
                 }
             }
-
-            //using (var ft = new Font("微软雅黑", 9.5f))
-            //    DrawLine(e, e.SubItem.Text, textBox1.Text, ft);
-        }
-
-
-        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
-        {
-            if (listCachedItems == null)
-                return;
-
-            var itemInfo = listCachedItems[e.ItemIndex];
-
-            var destRT = new Rectangle(e.Bounds.X + 5, e.Bounds.Y + 2, e.Bounds.Width-5, e.Bounds.Height - 4);
-
-            if (listMouseOnLine != null && e.ItemIndex == listMouseOnLine.Index)
+            else if (e.ColumnIndex == 2 || e.ColumnIndex == 1)
             {
-                using (var b = new SolidBrush(Color.FromArgb(60, 60, 60)))
-                    e.Graphics.FillRectangle(b, destRT);
+                var brush = Brushes.White;
+                var mark = int.Parse(e.SubItem.Text);
+                if (mark == 0)
+                    brush = Brushes.DimGray;
+                else if (mark >= 90)
+                    brush = Brushes.Red;
+                else if (mark >= 80)
+                    brush = Brushes.Orange;
+                else if (mark >= 70)
+                    brush = Brushes.Yellow;
+                else if (mark >= 60)
+                    brush = Brushes.LawnGreen;
+                e.Graphics.DrawString(e.SubItem.Text, listView1.Font, brush, e.Bounds.X + 4 + xoff, e.Bounds.Y + 5);
             }
-            if (nowRowItem != null && itemInfo.Id == nowRowItem.Id)
+            else
             {
-                e.Graphics.DrawRectangle(Pens.LightBlue, destRT);
+                e.Graphics.DrawString(e.SubItem.Text, listView1.Font, Brushes.White, e.Bounds.X + 4 + xoff, e.Bounds.Y + 5);
             }
         }
 
-        private List<BGItemInfo> listCachedItems;
         private ListViewItem listMouseOnLine;
 
         private void viewStack1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (viewStack1.SelectedIndex == 1)
             {
-                listCachedItems = BGBook.Instance.GetItemsByCatalog(catalogId);
-                listView1.VirtualListSize = listCachedItems.Count;
+                var listCachedItems = BGBook.Instance.GetItemsByCatalog(catalogId);
+                listView1.Items.Clear();
+                foreach (var item in listCachedItems)
+                {
+                    var listItem = new ListViewItem(item.Title);
+                    listItem.SubItems.Add(item.Star.ToString());
+                    listItem.SubItems.Add(item.StarNewbie.ToString());
+                    listItem.SubItems.Add(item.GetModifyTime().ToString("yyyy-MM-dd"));
+                    listItem.Tag = item.Id;
+                    listView1.Items.Add(listItem);
+                }
             }
         }
 
@@ -649,8 +658,8 @@ namespace BGGallery
             }
             else
             {
-                var lineInfo = listCachedItems[listMouseOnLine.Index];
-                ShowPaperPad(BGBook.Instance.GetItem(lineInfo.Id));
+                var lineInfo = (int)listView1.Items[listMouseOnLine.Index].Tag;
+                ShowPaperPad(BGBook.Instance.GetItem(lineInfo));
             }
         }
 
@@ -680,7 +689,7 @@ namespace BGGallery
 
         private void listView1_SizeChanged(object sender, EventArgs e)
         {
-            listView1.Columns[0].Width = listView1.Width - 8;
+            listView1.Columns[0].Width = listView1.Width - 240;
         }
 
         private void OnSelectBarIndexChanged(int idx)
@@ -733,6 +742,16 @@ namespace BGGallery
             var pageId = PageHistoryManager.Instance.FindNext();
             if (pageId > 0)
                 ShowPaperPad(BGBook.Instance.GetItem(pageId), new ShowPaperParm { NoSaveHistory = true });
+        }
+
+        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+
+        }
+
+        private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        {
+
         }
 
     }
