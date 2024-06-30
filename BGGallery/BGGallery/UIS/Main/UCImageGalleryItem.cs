@@ -149,10 +149,14 @@ namespace BGGallery.UIS.Main
         {
             Point absoluteLocation = this.PointToScreen(new Point(0, 0));
 
+            var fInfo = new FileInfo(path);
+            var fileName = fInfo.Name.Replace(".jpg", "");
+
             var inputBox = new InputTextBox();
+            inputBox.Text = fileName;
             inputBox.OnCustomTextChanged = OnRename;
 
-            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X, absoluteLocation.Y, 1);
+            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X - Width, absoluteLocation.Y, 1);
             inputBox.Focus();
         }
 

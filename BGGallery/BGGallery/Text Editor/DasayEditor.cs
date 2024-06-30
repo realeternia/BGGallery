@@ -18,6 +18,7 @@ namespace Text_Editor
     public partial class DasayEditor : UserControl
     {
         private BGItemInfo memoItemInfo;
+        private int expId;
         public Form1 ParentC;
         private bool checkChangeLock = true;
         private bool hasModify;
@@ -201,7 +202,7 @@ namespace Text_Editor
         }
 
         private string lastLoadPath;
-        public void LoadFile(BGItemInfo itemInfo, int expId = 0)
+        public void LoadFile(BGItemInfo itemInfo, int expId1 = 0)
         {
             if(memoItemInfo != null)
             {
@@ -211,7 +212,8 @@ namespace Text_Editor
             }
 
             memoItemInfo = itemInfo;
-            var fullPath = memoItemInfo.GetPath(expId);
+            expId = expId1;
+            var fullPath = memoItemInfo.GetPath(expId1);
             lastLoadPath = fullPath;
             if (memoItemInfo.IsEncrypt())
                 fullPath = fullPath.Replace(".rtf", ".rz");
@@ -787,7 +789,8 @@ namespace Text_Editor
             }
 
             var textLen = richTextBox1.TextLength;
-            memoItemInfo.SetParm("wcount", textLen.ToString());
+            if (expId == 0)
+                memoItemInfo.SetParm("wcount", textLen.ToString());
             foreach (var keywordInfo in GetKeywordColor())
             {
                 int index = 0;

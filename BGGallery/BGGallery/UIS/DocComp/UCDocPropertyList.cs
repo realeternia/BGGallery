@@ -112,24 +112,41 @@ namespace BGGallery.UIS
 
             var width = 200;
 
-            if(expIndex > 0)
+            // 加载经验图片（如果存在）  
+            Image img = null;
+            if (expIndex > 0)
             {
-                var img = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/exp" + expIndex + ".jpg");
-                if (img != null)
-                {
-                    var height1 = width * img.Height / img.Width;
-                    e.Graphics.DrawImage(img, Width - 220, (Height - height1) / 2, 200, height1);
-                    return;
-                }
+                img = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/exp" + expIndex + ".jpg");
             }
 
-            var cover = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/cover.jpg");
-            if (cover != null)
+            // 如果没有经验图片或者加载失败，则加载封面图片  
+            if (img == null)
             {
-                var height = width * cover.Height / cover.Width;
-                e.Graphics.DrawImage(cover, Width - 220, (Height - height) / 2, 200, height);
+                img = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/cover.jpg");
             }
 
+            // 如果图片加载成功  
+            if (img != null)
+            {
+                int maxWidth = 200;
+                // 计算缩放比例  
+                float scaleWidth = (float)maxWidth / img.Width;
+                float scaleHeight = (float)Height / img.Height;
+
+                if (scaleHeight < scaleWidth)
+                    scaleWidth = scaleHeight;
+
+                // 计算缩放后的图片尺寸  
+                int scaledWidth = (int)(img.Width * scaleWidth);
+                int scaledHeight = (int)(img.Height * scaleWidth);
+
+                // 计算图片绘制的起始位置，确保图片在目标区域内居中  
+                int x = Math.Max(0, Width - 220); // 减去220是为了在右侧留出空间  
+                int y = (Height - scaledHeight) / 2;
+
+                // 在指定位置绘制图片  
+                e.Graphics.DrawImage(img, new Rectangle(x, y, scaledWidth, scaledHeight), new Rectangle(0, 0, img.Width, img.Height), GraphicsUnit.Pixel);
+            }
         }
     }
 }
