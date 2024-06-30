@@ -41,6 +41,7 @@ namespace BGGallery
             dasayEditor1.richTextBox1.LinkClicked += new LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             ucDocTopBar1.buttonFormer.Click += ButtonFormer_Click;
             ucDocTopBar1.buttonNext.Click += ButtonNext_Click;
+            ucDocTopBar1.buttonExpAdd.Click += ButtonExpAdd_Click;
 
             // 先隐藏面板
             HidePaperPad();
@@ -288,8 +289,6 @@ namespace BGGallery
             if (nowRowItem == itemInfo)
                 return;
 
-            dasayEditor1.SaveOnClose();
-
             //更新选中
             if (nowRowItemCtr != null)
                 nowRowItemCtr.SetSelect(false);
@@ -314,16 +313,16 @@ namespace BGGallery
 
             UpdatePaperIcon(nowRowItem.Icon);
             textChangeLock = false;
-            uckvList1.Init(itemInfo);
+            uckvList1.Init(itemInfo, 0);
            // dasayEditor1.Location = new Point(uckvList1.Location.X, uckvList1.Location.Y + uckvList1.Height);
             viewStack2.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height-45;
-            dasayEditor1.LoadFile(nowRowItem);
             ucListSelectBar2.TabNames = string.Format("描述 {0:0.0}k|图片 {1} 张", (float)itemInfo.GetFileLength()/1024, itemInfo.GetImageCount());
-            if (ucListSelectBar2.SelectedIndex != 0)
-            { //切回首页
+            if (itemInfo.Expansions != null)
+                ucListSelectBar2.TempTabs = string.Join("|", itemInfo.Expansions);
+            else
+                ucListSelectBar2.TempTabs = "";
+         //   if (ucListSelectBar2.SelectedIndex != 0)
                 ucListSelectBar2.SelectedIndex = 0;
-                viewStack2.SelectedIndex = 0;
-            }
             ucListSelectBar2.Invalidate();
 
             if (splitContainer2.SplitterDistance > splitContainer2.Width-10)
@@ -494,9 +493,18 @@ namespace BGGallery
 
             var itemInfo = BGBook.Instance.RemoveItem(itemId);
 
-            var fullPath = itemInfo.GetPath();
+            var fullPath = itemInfo.GetPath(0);
             if (File.Exists(fullPath))
                 File.Delete(fullPath);
+
+            for (int i = 1; i <= itemInfo.Expansions.Count; i ++)
+            {
+                var expFullPath = itemInfo.GetPath(i);
+                if (File.Exists(expFullPath))
+                    File.Delete(expFullPath);
+            }
+
+            Directory.Delete(string.Format("{0}/{1}", ENV.ImgDir, itemId), true);
 
             columnCtr.RefreshLabels();
         }
@@ -700,11 +708,25 @@ namespace BGGallery
 
         private void OnSelectBar2IndexChanged(int idx)
         {
-            viewStack2.SelectedIndex = idx;
-            if (idx == 1)
+
+            if (idx == 0)
             {
+                viewStack2.SelectedIndex = idx;
+                dasayEditor1.LoadFile(nowRowItem);
+                uckvList1.SetExpIndex(0);
+            }
+            else if (idx == 1)
+            {
+                viewStack2.SelectedIndex = idx;
                 imageGallery1.Init(nowRowItem);
             }
+            else
+            {
+                viewStack2.SelectedIndex = 0;
+                dasayEditor1.LoadFile(nowRowItem, idx - 1);
+                uckvList1.SetExpIndex(idx - 1);
+            }
+
         }
         #endregion
 
@@ -745,15 +767,34 @@ namespace BGGallery
                 ShowPaperPad(BGBook.Instance.GetItem(pageId), new ShowPaperParm { NoSaveHistory = true });
         }
 
-        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
+        private void ButtonExpAdd_Click(object sender, EventArgs e)
         {
+            if (nowRowItem == null)
+                return;
 
+            Point absoluteLocation = ucDocTopBar1.PointToScreen(new Point(0, 0));
+
+            var inputBox = new InputTextBox();
+            inputBox.OnCustomTextChanged = OnAddExpansion;
+
+            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X - Location.X, absoluteLocation.Y - Location.Y, 1);
+            inputBox.Focus();
         }
 
-        private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)
+        private void OnAddExpansion(string obj)
         {
+            if (nowRowItem == null)
+                return;
 
+            if (string.IsNullOrWhiteSpace(obj))
+                return;
+
+            if (nowRowItem.Expansions == null)
+                nowRowItem.Expansions = new List<string>();
+            nowRowItem.Expansions.Add(obj);
+
+            ucListSelectBar2.TempTabs = string.Join("|", nowRowItem.Expansions);
+            ucListSelectBar2.Invalidate();
         }
-
     }
 }

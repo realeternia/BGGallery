@@ -13,17 +13,23 @@ namespace BGGallery.UIS.Main
         private int itemId;
         private string path;
         private float scale;
+        private Point parentPos;
+
         public UCImageGalleryItem()
         {
             InitializeComponent();
 
             DoubleBuffered = true;
+            rjDropdownMenuRow.PrimaryColor = Color.SeaGreen;
+            rjDropdownMenuRow.MenuItemTextColor = Color.White;
+            rjDropdownMenuRow.MenuItemHeight = 25;
         }
 
-        public void Init(int id, string pat)
+        public void Init(int id, string pat, Point pPoint)
         {
             itemId = id;
             path = pat;
+            parentPos = pPoint;
 
             var img = ImageBook.Instance.Load(path);
             if (img == null)
@@ -120,9 +126,54 @@ namespace BGGallery.UIS.Main
         private void UCImageGalleryItem_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
+            {
                 PanelManager.Instance.ShowImageViewer(path);
+            }
             else
-                Clipboard.SetText(string.Format("file://img/{0}/{1}", itemId, new FileInfo(path).Name));
+            {
+                rjDropdownMenuRow.Show(this, Width, 0);
+
+            }
+        }
+
+        private void toolStripMenuItemRemove_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(string.Format("file://img/{0}/{1}", itemId, new FileInfo(path).Name));
+        }
+
+        private void toolStripMenuItemRename_Click(object sender, EventArgs e)
+        {
+            Point absoluteLocation = this.PointToScreen(new Point(0, 0));
+
+            var inputBox = new InputTextBox();
+            inputBox.OnCustomTextChanged = OnRename;
+
+            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X, absoluteLocation.Y, 1);
+            inputBox.Focus();
+        }
+
+        private void OnRename(string obj)
+        {
+            if (string.IsNullOrWhiteSpace(obj))
+                return;
+            
+            // 获取原始文件的目录  
+            string directory = Path.GetDirectoryName(path);
+            // 假设你知道文件的原始扩展名（例如 ".txt"），或者你可以从原始路径中提取它  
+            string originalExtension = Path.GetExtension(path); // 这将获取 ".txt"  
+
+            // 构建新的完整路径  
+            // 如果 newNameWithoutExtension 已经包含了扩展名，你可以直接使用它并跳过下面的步骤  
+            string newFileName = obj + originalExtension; // 例如 "newfile.txt"  
+            string newPath = Path.Combine(directory, newFileName); // 例如 "C:\\path\\to\\newfile.txt"  
+
+            File.Move(path, newPath);
+            path = newPath;
+
         }
     }
 }

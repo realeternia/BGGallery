@@ -11,6 +11,7 @@ namespace BGGallery.UIS
     public partial class UCDocPropertyList : UserControl
     {
         private int itemId;
+        private int expIndex; //0是本体
 
         public Color BgColor
         {
@@ -23,9 +24,10 @@ namespace BGGallery.UIS
             InitializeComponent();
         }
 
-        public void Init(BGItemInfo itemInfo)
+        public void Init(BGItemInfo itemInfo, int expInde)
         {
             itemId = itemInfo.Id;
+            expIndex = expInde;
             var oldCtrList = new List<Control>();
             foreach (Control c in doubleBufferedPanel1.Controls)
                 oldCtrList.Add(c);
@@ -45,6 +47,12 @@ namespace BGGallery.UIS
             Height = doubleBufferedPanel1.Controls.Count * 32 + 10;
             ResumeLayout();
 
+            doubleBufferedPanel1.Invalidate();
+        }
+
+        public void SetExpIndex(int expInde)
+        {
+            expIndex = expInde;
             doubleBufferedPanel1.Invalidate();
         }
 
@@ -104,9 +112,24 @@ namespace BGGallery.UIS
 
             var width = 200;
 
+            if(expIndex > 0)
+            {
+                var img = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/exp" + expIndex + ".jpg");
+                if (img != null)
+                {
+                    var height1 = width * img.Height / img.Width;
+                    e.Graphics.DrawImage(img, Width - 220, (Height - height1) / 2, 200, height1);
+                    return;
+                }
+            }
+
             var cover = ImageBook.Instance.Load(ENV.ImgDir + itemId + "/cover.jpg");
-            var height = width * cover.Height / cover.Width;
-            e.Graphics.DrawImage(cover, Width - 220, (Height - height) / 2, 200, height);
+            if (cover != null)
+            {
+                var height = width * cover.Height / cover.Width;
+                e.Graphics.DrawImage(cover, Width - 220, (Height - height) / 2, 200, height);
+            }
+
         }
     }
 }

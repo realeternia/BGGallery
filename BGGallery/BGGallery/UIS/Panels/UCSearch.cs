@@ -64,7 +64,7 @@ namespace BGGallery.UIS
                     if (itemInfo.IsEncrypt())
                         continue;
 
-                    var fullPath = itemInfo.GetPath();
+                    var fullPath = itemInfo.GetPath(0);
 
                     if (File.Exists(fullPath))
                     {

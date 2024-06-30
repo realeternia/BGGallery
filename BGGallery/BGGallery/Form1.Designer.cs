@@ -648,7 +648,7 @@ namespace BGGallery
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private UCCatalogFix ucCatalogNew;
         private System.Windows.Forms.ToolStripMenuItem storeToolStripMenuItem;
-        private ViewStack viewStack1;
+        public ViewStack viewStack1;
         private System.Windows.Forms.TabPage tabPage1;
         public DoubleBufferedPanel panel1;
         private UCColumnAdd ucTipAdd1;

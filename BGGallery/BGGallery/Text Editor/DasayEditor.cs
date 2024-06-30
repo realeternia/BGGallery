@@ -176,16 +176,6 @@ namespace Text_Editor
             HighlightKeywords();
         }
 
-        public void SaveOnClose()
-        {
-            if (memoItemInfo != null)
-            {
-                // 立刻存档，并且取消timer
-                if (hasModify || memoItemInfo.GetAndResetDirty())
-                    DelayedExecutor.Trigger("desaySave", 0, () => Save(true));
-            }
-        }
-
         public void Save(bool checkSaveAct)
         {
             if (checkSaveAct)
@@ -200,20 +190,29 @@ namespace Text_Editor
                 string tempFilePath = Path.GetTempFileName();
                 richTextBox1.SaveFile(tempFilePath, RichTextBoxStreamType.RichText);
 
-                FileEncryption.EncryptFile(tempFilePath, memoItemInfo.GetPath());
+                FileEncryption.EncryptFile(tempFilePath, lastLoadPath);
             }
             else
             {
-                richTextBox1.SaveFile(memoItemInfo.GetPath(), RichTextBoxStreamType.RichText);
+                richTextBox1.SaveFile(lastLoadPath, RichTextBoxStreamType.RichText);
             }
             
             HLog.Info("SaveFile {0} finish checkSaveAct={1}", memoItemInfo.Id, checkSaveAct);
         }
 
-        public void LoadFile(BGItemInfo itemInfo)
+        private string lastLoadPath;
+        public void LoadFile(BGItemInfo itemInfo, int expId = 0)
         {
+            if(memoItemInfo != null)
+            {
+                // 立刻存档，并且取消timer
+                if (hasModify || memoItemInfo.GetAndResetDirty())
+                    DelayedExecutor.Trigger("desaySave", 0, () => Save(true));
+            }
+
             memoItemInfo = itemInfo;
-            var fullPath = memoItemInfo.GetPath();
+            var fullPath = memoItemInfo.GetPath(expId);
+            lastLoadPath = fullPath;
             if (memoItemInfo.IsEncrypt())
                 fullPath = fullPath.Replace(".rtf", ".rz");
             hasModify = false;

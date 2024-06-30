@@ -25,6 +25,9 @@ namespace BGGallery.Utils
 
             LazyClean();
 
+            if (!File.Exists(url))
+                return null;
+
             var fs = new FileStream(url, FileMode.Open);
             var img = new Bitmap(fs);
             //var wid = Math.Min(250, img.Width);

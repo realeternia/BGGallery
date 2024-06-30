@@ -33,7 +33,7 @@ namespace BGGallery.UIS.Main
             foreach (var path in Directory.GetFiles(ENV.ImgDir + itemInfo.Id))
             {
                 var showItem = new UCImageGalleryItem();
-                showItem.Init(itemInfo.Id, path);
+                showItem.Init(itemInfo.Id, path, ParentC.viewStack1.Location);
                 doubleBufferedFlowLayoutPanel1.Controls.Add(showItem);
             }
         }

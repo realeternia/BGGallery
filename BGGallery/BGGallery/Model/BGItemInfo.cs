@@ -20,6 +20,8 @@ namespace BGGallery.Model
         public int Star { get; set; }
         public int StarNewbie { get; set; }
 
+        public List<string> Expansions { get; set; }
+
         private bool isDirty;
 
         public bool GetAndResetDirty()
@@ -48,9 +50,9 @@ namespace BGGallery.Model
             foreach (var tagNotInNew in oldTagsNotInNew)
                 OnTagRemoved(tagNotInNew);
         }
-        public string GetPath()
+        public string GetPath(int expId)
         {
-            var fullPath = string.Format("{0}/{1}.rtf", ENV.SaveDir, Id);
+            var fullPath = string.Format("{0}/{1}{2}.rtf", ENV.SaveDir, Id, expId > 0 ? "_" + expId : "");
             if (IsEncrypt())
                 fullPath = fullPath.Replace(".rtf", ".rz");
             return fullPath;

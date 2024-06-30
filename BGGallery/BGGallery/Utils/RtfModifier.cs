@@ -62,7 +62,7 @@ namespace BGGallery.Utils
         public static string ReadRtfPlainText(int itemId)
         {
             var itemInfo = BGBook.Instance.GetItem(itemId);
-            var fullPath = itemInfo.GetPath();
+            var fullPath = itemInfo.GetPath(0);
 
             if (!File.Exists(fullPath))
                 return "";
@@ -90,7 +90,7 @@ namespace BGGallery.Utils
         public static void WriteRtfPlainText(int itemId, string str)
         {
             var itemInfo = BGBook.Instance.GetItem(itemId);
-            var fullPath = itemInfo.GetPath();
+            var fullPath = itemInfo.GetPath(0);
 
             if (!File.Exists(fullPath))
                 return;
@@ -106,11 +106,11 @@ namespace BGGallery.Utils
                     string tempFilePath = Path.GetTempFileName();
                     richTextBox.SaveFile(tempFilePath, RichTextBoxStreamType.RichText);
 
-                    FileEncryption.EncryptFile(tempFilePath, itemInfo.GetPath());
+                    FileEncryption.EncryptFile(tempFilePath, itemInfo.GetPath(0));
                 }
                 else
                 {
-                    richTextBox.SaveFile(itemInfo.GetPath(), RichTextBoxStreamType.RichText);
+                    richTextBox.SaveFile(itemInfo.GetPath(0), RichTextBoxStreamType.RichText);
                 }
             }
         }
