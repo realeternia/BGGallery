@@ -156,7 +156,7 @@ namespace BGGallery.UIS.Main
             inputBox.Text = fileName;
             inputBox.OnCustomTextChanged = OnRename;
 
-            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X - Width, absoluteLocation.Y, 1);
+            PanelManager.Instance.ShowBlackPanel(inputBox, absoluteLocation.X - parentPos.X, absoluteLocation.Y - parentPos.Y, 1);
             inputBox.Focus();
         }
 

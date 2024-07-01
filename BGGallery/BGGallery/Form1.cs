@@ -325,8 +325,10 @@ namespace BGGallery
                 ucListSelectBar2.SelectedIndex = 0;
             ucListSelectBar2.Invalidate();
 
-            if (splitContainer2.SplitterDistance > splitContainer2.Width-10)
+            var savePos = tabPage1.AutoScrollPosition; //保存滚轮纵向位置
+            if (splitContainer2.SplitterDistance > splitContainer2.Width - 10)
                 splitContainer2.SplitterDistance = Math.Min(lastDistance, Math.Max(0, splitContainer2.Width - 800));
+            tabPage1.AutoScrollPosition = new Point(-tabPage1.AutoScrollPosition.X, -savePos.Y); //还原滚轮纵向位置
 
             doubleBufferedFlowLayoutPanel1.ResumeLayout();
 
@@ -350,8 +352,10 @@ namespace BGGallery
             nowRowItemCtr = null;
             nowRowItem = null;
 
+            var savePos = tabPage1.AutoScrollPosition; //保存滚轮纵向位置
             lastDistance = splitContainer2.SplitterDistance;
             splitContainer2.SplitterDistance = splitContainer2.Width;
+            tabPage1.AutoScrollPosition = new Point(-savePos.X, -savePos.Y); //还原滚轮纵向位置
         }
 
         private void UpdatePaperIcon(string icon)

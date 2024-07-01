@@ -132,7 +132,10 @@ namespace BGGallery
                 e.Graphics.DrawImage(Resources.menu, menuRegion);
 
             if (selected)
-                e.Graphics.DrawRectangle(Pens.LightBlue, 0, 0, Width - 1, Height - 1);
+            {
+                using (var p = new Pen(Color.LightBlue, 2))
+                    e.Graphics.DrawRectangle(p, 1, 1, Width - 2, Height - 2);
+            }
         }
 
         private void DrawStars(Graphics g, int val, bool isNewBie, int startX, int startY)
