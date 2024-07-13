@@ -90,6 +90,12 @@
     <Compile Include="UIS\DocComp\UCDocStarItem.Designer.cs">
       <DependentUpon>UCDocStarItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\DocComp\UCDocButtonItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\DocComp\UCDocButtonItem.Designer.cs">
+      <DependentUpon>UCDocButtonItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\DocComp\UCDocTopBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +151,12 @@
     </Compile>
     <Compile Include="UIS\Main\UCListSelectBar.Designer.cs">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCBGPropertyModify.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCBGPropertyModify.Designer.cs">
+      <DependentUpon>UCBGPropertyModify.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\Panels\UCEditImage.cs">
       <SubType>UserControl</SubType>
@@ -431,6 +443,9 @@
     <EmbeddedResource Include="UIS\DocComp\UCDocStarItem.resx">
       <DependentUpon>UCDocStarItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIS\DocComp\UCDocButtonItem.resx">
+      <DependentUpon>UCDocButtonItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIS\DocComp\UCDocTopBar.resx">
       <DependentUpon>UCDocTopBar.cs</DependentUpon>
     </EmbeddedResource>
@@ -454,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Main\UCListSelectBar.resx">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCBGPropertyModify.resx">
+      <DependentUpon>UCBGPropertyModify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCEditImage.resx">
       <DependentUpon>UCEditImage.cs</DependentUpon>

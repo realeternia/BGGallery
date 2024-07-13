@@ -25,6 +25,7 @@ namespace BGGallery
         private UCAddBG addBG;
         private UCEditImage editImage;
         private KpImageViewer imageViewer;
+        private UCBGPropertyModify bgModify;
 
         public void Init(Form1 form)
         {
@@ -230,7 +231,16 @@ namespace BGGallery
             ShowBlackPanel(imageViewer, 0, 0);
             imageViewer.OnInit(path);
         }
+        public void ShowBGPropertyModify(int bgId)
+        {
+            if (bgModify == null)
+            {
+                bgModify = new UCBGPropertyModify();
+            }
 
+            ShowBlackPanel(bgModify, 0, 0);
+            bgModify.OnInit(bgId);
+        }
         public void ShowBlackPanel(Control ctr, int x, int y, float bright = 0.5f)
         {
             Bitmap bitmap = new Bitmap(form1.Width+2, form1.Height+2);
