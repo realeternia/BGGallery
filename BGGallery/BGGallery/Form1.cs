@@ -501,6 +501,7 @@ namespace BGGallery
             if (File.Exists(fullPath))
                 File.Delete(fullPath);
 
+            if(itemInfo.Expansions != null)
             for (int i = 1; i <= itemInfo.Expansions.Count; i ++)
             {
                 var expFullPath = itemInfo.GetPath(i);

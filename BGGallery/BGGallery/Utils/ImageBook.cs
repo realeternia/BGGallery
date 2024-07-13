@@ -28,13 +28,20 @@ namespace BGGallery.Utils
             if (!File.Exists(url))
                 return null;
 
-            var fs = new FileStream(url, FileMode.Open);
-            var img = new Bitmap(fs);
-            //var wid = Math.Min(250, img.Width);
-            //var het = img.Height * wid / img.Width;
-            imgDict[url] = new ImageInfo { BMP = img, AccessTime = DateTime.Now };
-            fs.Close();
-            return imgDict[url].BMP;
+            try
+            {
+                var fs = new FileStream(url, FileMode.Open, FileAccess.Read, FileShare.Read);
+                var img = new Bitmap(fs);
+                //var wid = Math.Min(250, img.Width);
+                //var het = img.Height * wid / img.Width;
+                imgDict[url] = new ImageInfo { BMP = img, AccessTime = DateTime.Now };
+                fs.Close();
+                return imgDict[url].BMP;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private DateTime lastCheckTime;
