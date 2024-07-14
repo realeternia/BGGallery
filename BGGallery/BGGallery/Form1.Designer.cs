@@ -75,6 +75,8 @@ namespace BGGallery
             this.toolStripMenuItemCata = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCryto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.upToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -208,7 +210,7 @@ namespace BGGallery
             this.ucListSelectBar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ucListSelectBar1.Name = "ucListSelectBar1";
             this.ucListSelectBar1.SelectedIndex = 0;
-            this.ucListSelectBar1.Size = new System.Drawing.Size(1074, 40);
+            this.ucListSelectBar1.Size = new System.Drawing.Size(200, 40);
             this.ucListSelectBar1.TabIndex = 3;
             this.ucListSelectBar1.TabNames = "进行中|所有内容";
             this.ucListSelectBar1.TempTabs = null;
@@ -413,7 +415,7 @@ namespace BGGallery
             this.ucListSelectBar2.Margin = new System.Windows.Forms.Padding(0);
             this.ucListSelectBar2.Name = "ucListSelectBar2";
             this.ucListSelectBar2.SelectedIndex = 0;
-            this.ucListSelectBar2.Size = new System.Drawing.Size(208, 35);
+            this.ucListSelectBar2.Size = new System.Drawing.Size(200, 35);
             this.ucListSelectBar2.TabIndex = 8;
             this.ucListSelectBar2.TabNames = "说明|图片";
             this.ucListSelectBar2.TempTabs = null;
@@ -546,6 +548,8 @@ namespace BGGallery
             this.rjDropdownMenuRow.IsMainMenu = false;
             this.rjDropdownMenuRow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.storeToolStripMenuItem,
+            this.upToolStripMenuItem,
+            this.downToolStripMenuItem,
             this.toolStripMenuItemCata,
             this.toolStripMenuItemCryto,
             this.toolStripMenuItem2});
@@ -553,13 +557,13 @@ namespace BGGallery
             this.rjDropdownMenuRow.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenuRow.Name = "rjDropdownMenu1";
             this.rjDropdownMenuRow.PrimaryColor = System.Drawing.Color.Empty;
-            this.rjDropdownMenuRow.Size = new System.Drawing.Size(163, 100);
+            this.rjDropdownMenuRow.Size = new System.Drawing.Size(181, 170);
             // 
             // storeToolStripMenuItem
             // 
             this.storeToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.storeToolStripMenuItem.Name = "storeToolStripMenuItem";
-            this.storeToolStripMenuItem.Size = new System.Drawing.Size(162, 24);
+            this.storeToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.storeToolStripMenuItem.Text = "存档";
             this.storeToolStripMenuItem.Click += new System.EventHandler(this.storeToolStripMenuItem_Click);
             // 
@@ -567,7 +571,7 @@ namespace BGGallery
             // 
             this.toolStripMenuItemCata.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.toolStripMenuItemCata.Name = "toolStripMenuItemCata";
-            this.toolStripMenuItemCata.Size = new System.Drawing.Size(162, 24);
+            this.toolStripMenuItemCata.Size = new System.Drawing.Size(180, 24);
             this.toolStripMenuItemCata.Text = "标记为：汇总";
             this.toolStripMenuItemCata.Click += new System.EventHandler(this.toolStripMenuItemCata_Click);
             // 
@@ -575,7 +579,7 @@ namespace BGGallery
             // 
             this.toolStripMenuItemCryto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.toolStripMenuItemCryto.Name = "toolStripMenuItemCryto";
-            this.toolStripMenuItemCryto.Size = new System.Drawing.Size(162, 24);
+            this.toolStripMenuItemCryto.Size = new System.Drawing.Size(180, 24);
             this.toolStripMenuItemCryto.Text = "标记为：加密";
             this.toolStripMenuItemCryto.Click += new System.EventHandler(this.toolStripMenuItemCryto_Click);
             // 
@@ -584,9 +588,25 @@ namespace BGGallery
             this.toolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.toolStripMenuItem2.ForeColor = System.Drawing.Color.IndianRed;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 24);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
             this.toolStripMenuItem2.Text = "删除";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.deleteToolStripMenuItemRow_Click);
+            // 
+            // upToolStripMenuItem
+            // 
+            this.upToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.upToolStripMenuItem.Name = "upToolStripMenuItem";
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.upToolStripMenuItem.Text = "移动到最上方";
+            this.upToolStripMenuItem.Click += new System.EventHandler(this.upToolStripMenuItem_Click);
+            // 
+            // downToolStripMenuItem
+            // 
+            this.downToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
+            this.downToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.downToolStripMenuItem.Text = "移动到最下方";
+            this.downToolStripMenuItem.Click += new System.EventHandler(this.downToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -670,6 +690,8 @@ namespace BGGallery
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
     }
 }
 

@@ -118,26 +118,6 @@ namespace BGGallery
             Invalidate();
         }
 
-        protected void DrawBase(PaintEventArgs e)
-        {
-            if (icon != null)
-                e.Graphics.DrawImage(icon, 1, 5, 32, 32);
-
-            e.Graphics.DrawString(title, Font, Brushes.WhiteSmoke, 35, 8);
-            var size = itemInfo.GetParm("wcount");
-            if (!string.IsNullOrEmpty(size))
-                e.Graphics.DrawString(string.Format("{0}字", size), Font, Brushes.Yellow, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);
-
-            if (isMouseOver)
-                e.Graphics.DrawImage(Resources.menu, menuRegion);
-
-            if (selected)
-            {
-                using (var p = new Pen(Color.LightBlue, 2))
-                    e.Graphics.DrawRectangle(p, 1, 1, Width - 2, Height - 2);
-            }
-        }
-
         private void DrawStars(Graphics g, int val, bool isNewBie, int startX, int startY)
         {
             var fullCount = val / 10;
@@ -198,7 +178,29 @@ namespace BGGallery
                 }
              
             }
-            DrawBase(e);
+            if (icon != null)
+                e.Graphics.DrawImage(icon, 1, 5, 32, 32);
+
+            if (itemInfo.Star < 90)
+            {
+                e.Graphics.DrawString(title, Font, Brushes.WhiteSmoke, 35, 8);
+            }
+            else
+            {
+                e.Graphics.DrawString(title, Font, Brushes.Goldenrod, 35, 8);
+            }
+            var size = itemInfo.GetParm("wcount");
+            if (!string.IsNullOrEmpty(size))
+                e.Graphics.DrawString(string.Format("{0}字", size), Font, Brushes.LightGray, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);
+
+            if (isMouseOver)
+                e.Graphics.DrawImage(Resources.menu, menuRegion);
+
+            if (selected)
+            {
+                using (var p = new Pen(Color.LightBlue, 2))
+                    e.Graphics.DrawRectangle(p, 1, 1, Width - 2, Height - 2);
+            }
         }
 
         private int DrawItem(Graphics g, Image img, int val, int posX)

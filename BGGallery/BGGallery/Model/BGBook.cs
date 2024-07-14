@@ -141,6 +141,35 @@ namespace BGGallery
             Items.Remove(itm);
             return itm;
         }
+
+        public void SetItemUp(int id)
+        {
+            // 查找具有指定ID的元素  
+            var itemToMove = Items.Find(item => item.Id == id);
+
+            // 如果找到了元素  
+            if (itemToMove != null)
+            {
+                // 移除该元素  
+                Items.Remove(itemToMove);
+                // 将它添加到列表的开始位置  
+                Items.Insert(0, itemToMove);
+            }
+        }
+        public void SetItemDown(int id)
+        {
+            // 查找具有指定ID的元素  
+            var itemToMove = Items.Find(item => item.Id == id);
+
+            // 如果找到了元素  
+            if (itemToMove != null)
+            {
+                // 移除该元素  
+                Items.Remove(itemToMove);
+                Items.Add(itemToMove);
+            }
+        }
+
         public string[] GetAllPageInfos()
         {
             return Items.ConvertAll(a => string.Format("{1}@{0}", a.Id, a.Title)).ToArray();

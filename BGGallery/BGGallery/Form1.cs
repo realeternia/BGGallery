@@ -529,7 +529,6 @@ namespace BGGallery
         private void toolStripMenuItemCata_Click(object sender, EventArgs e)
         {
             var itemId = int.Parse(rjDropdownMenuRow.Tag.ToString());
-            var columnCtr = rjDropdownMenuRow.Bind as UCTipColumn;
 
             var itemInfo = BGBook.Instance.GetItem(itemId);
             itemInfo.AddTag("汇总");
@@ -538,10 +537,27 @@ namespace BGGallery
         private void toolStripMenuItemCryto_Click(object sender, EventArgs e)
         {
             var itemId = int.Parse(rjDropdownMenuRow.Tag.ToString());
-            var columnCtr = rjDropdownMenuRow.Bind as UCTipColumn;
 
             var itemInfo = BGBook.Instance.GetItem(itemId);
             itemInfo.AddTag("加密");
+        }
+
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var itemId = int.Parse(rjDropdownMenuRow.Tag.ToString());
+            BGBook.Instance.SetItemUp(itemId);
+            var columnCtr = rjDropdownMenuRow.Bind as UCTipColumn;
+
+            columnCtr.RefreshLabels();
+        }
+
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var itemId = int.Parse(rjDropdownMenuRow.Tag.ToString());
+            BGBook.Instance.SetItemDown(itemId);
+            var columnCtr = rjDropdownMenuRow.Bind as UCTipColumn;
+
+            columnCtr.RefreshLabels();
         }
         #endregion
 
@@ -802,5 +818,6 @@ namespace BGGallery
             ucListSelectBar2.TempTabs = string.Join("|", nowRowItem.Expansions);
             ucListSelectBar2.Invalidate();
         }
+
     }
 }

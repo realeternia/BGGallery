@@ -26,19 +26,31 @@ namespace BGGallery.UIS.Panels
             // 定义颜色映射  
             Dictionary<string, Tuple<Color, Color>> colorMap = new Dictionary<string, Tuple<Color, Color>>
             {
-                { "牌套", new Tuple<Color, Color>(Color.DimGray, Color.LightGray) },  
+                { "收纳", new Tuple<Color, Color>(Color.DimGray, Color.BurlyWood) },
+                { "牌套", new Tuple<Color, Color>(Color.DimGray, Color.LightGray) },
+                { "3d", new Tuple<Color, Color>(Color.Firebrick, Color.White) },
+                { "众筹", new Tuple<Color, Color>(Color.Cyan, Color.White) },
             };
 
             // 默认颜色  
             foreColor = Color.LawnGreen;
             bgColor = Color.White; // 假设默认背景色是白色  
 
-            // 检查是否有匹配的颜色设置  
-            if (colorMap.TryGetValue(wrd, out var colors))
+            foreach(var map in colorMap)
             {
-                foreColor = colors.Item1;
-                bgColor = colors.Item2;
+                if(wrd.Contains(map.Key))
+                {
+                    foreColor = map.Value.Item1;
+                    bgColor = map.Value.Item2;
+                    break;
+                }
             }
+            // 检查是否有匹配的颜色设置  
+            //if (colorMap.TryGetValue(wrd, out var colors))
+            //{
+            //    foreColor = colors.Item1;
+            //    bgColor = colors.Item2;
+            //}
         }
 
         protected override void OnPaint(PaintEventArgs e)
