@@ -97,30 +97,26 @@ namespace BGGallery.UIS
             var myTags = new HashSet<string>();
             if(bGItemInfo.TagInfo != null)
             {
-                foreach(var tag in bGItemInfo.TagInfo.Split(','))
+                var listTag = new List<string>(bGItemInfo.TagInfo.Split(','));
+                listTag.Sort();
+                foreach (var tag in listTag)
                 {
-                    var tagItem = new UCBGPropertyAttrItem();
-                    tagItem.Text = tag;
-                    tagItem.Checked = true;
-                    tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
-                    flowLayoutPanel1.Controls.Add(tagItem);
-
+                    AddAttrItem(tag, true);
                     myTags.Add(tag);
                 }
             }
-            foreach (var tag in TagsInfoManager.Tags)
+            var list = new List<string>(TagsInfoManager.Tags);
+            list.Sort();
+            foreach (var tag in list)
             {
                 if (myTags.Contains(tag))
                     continue;
-                var tagItem = new UCBGPropertyAttrItem();
-                tagItem.Text = tag;
-                tagItem.Checked = false;
-                tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
-                flowLayoutPanel1.Controls.Add(tagItem);
+                AddAttrItem(tag, false);
             }
             if (addLabel == null)
             {
                 var btn = new Label();
+                btn.Cursor = Cursors.Hand;
                 btn.AutoSize = true;
                 btn.Font = new Font("微软雅黑", 11, FontStyle.Regular);
                 btn.BackColor = Color.FromArgb(32, 32, 32);
@@ -142,14 +138,20 @@ namespace BGGallery.UIS
 
         private void OnAddTag(string tag)
         {
-            var tagItem = new UCBGPropertyAttrItem();
-            tagItem.Text = tag;
-            tagItem.Checked = true;
-            tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
-            flowLayoutPanel1.Controls.Add(tagItem);
+            AddAttrItem(tag, true);
             flowLayoutPanel1.Controls.SetChildIndex(addLabel, flowLayoutPanel1.Controls.Count);
 
             TagsInfoManager.Add(tag);
+        }
+
+        private void AddAttrItem(string tag, bool checked1)
+        {
+            var tagItem = new UCBGPropertyAttrItem();
+            tagItem.Cursor = Cursors.Hand;
+            tagItem.Text = tag;
+            tagItem.Checked = checked1;
+            tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
+            flowLayoutPanel1.Controls.Add(tagItem);
         }
 
         private void rjComboBoxCatalog_OnSelectedIndexChanged(object sender, EventArgs e)

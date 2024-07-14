@@ -36,7 +36,7 @@ namespace BGGallery
         {
             if (!string.IsNullOrWhiteSpace(Title))
                 using (var b = new SolidBrush(ForeColor))
-                    e.Graphics.DrawString(Title, Font, b, 34, 5);
+                    e.Graphics.DrawString(Title, Font, b, 34, 8);
 
             e.Graphics.DrawImage(Resources.note, 5, 7, 24, 24);
 

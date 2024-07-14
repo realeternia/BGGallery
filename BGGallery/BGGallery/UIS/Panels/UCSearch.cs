@@ -16,7 +16,7 @@ namespace BGGallery.UIS
             public string Title;
             public int ItemId;
             public string Line;
-            public int LineIndex;
+            public string LineInfo;
             public DateTime CreateTime;
         }
 
@@ -75,9 +75,13 @@ namespace BGGallery.UIS
                         var itemIdStr = fi.Name;
 
                         if (itemInfo.Title.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标题" });
                         if (itemInfo.Tag.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
+                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "购买信息" });
+                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.TagInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
 
                         string plainText = RtfModifier.ReadRtfPlainText(itemInfo.Id);
 
@@ -85,18 +89,20 @@ namespace BGGallery.UIS
                         foreach (var line in plainText.Split('\n'))
                         {
                             if (line.IndexOf(searchTxt) >= 0)
-                                searchResults.Add(new SearchData { Line = line, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineIndex = lineid + 1 });
+                                searchResults.Add(new SearchData { Line = line, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "Ln:" + (lineid + 1) });
                             lineid++;
                         }
                     }
                     else
                     {
                         if (itemInfo.Title.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标题" });
                         if (itemInfo.Tag != null && itemInfo.Tag.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标签" });
                         if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
-                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineIndex = 0 });
+                            searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "购买信息" });
+                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.Contains(searchTxt))
+                            searchResults.Add(new SearchData { Line = itemInfo.TagInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标签" });
                     }
                 }
 
@@ -167,7 +173,7 @@ namespace BGGallery.UIS
             if (itemInfo != null)
             {
                 e.Graphics.DrawImage(ResLoader.Read(itemInfo.Icon), e.Bounds.X + 8, e.Bounds.Y + 10, 24, 24);
-                e.Graphics.DrawString(string.Format("{2} ({0}/{1} Ln:{3})", itemInfo.GetCatalog(), itemInfo.GetColumn(), itemInfo.Title, lineInfo.LineIndex),
+                e.Graphics.DrawString(string.Format("{2} ({0}/{1}) - {3}", itemInfo.GetCatalog(), itemInfo.GetColumn(), itemInfo.Title, lineInfo.LineInfo),
                     e.Item.Font, Brushes.White, e.Bounds.X + 8 + 30, e.Bounds.Y + 10, StringFormat.GenericDefault);
             }
 

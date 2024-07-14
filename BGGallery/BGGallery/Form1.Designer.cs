@@ -211,6 +211,7 @@ namespace BGGallery
             this.ucListSelectBar1.Size = new System.Drawing.Size(1074, 40);
             this.ucListSelectBar1.TabIndex = 3;
             this.ucListSelectBar1.TabNames = "进行中|所有内容";
+            this.ucListSelectBar1.TempTabs = null;
             // 
             // viewStack1
             // 
@@ -359,7 +360,7 @@ namespace BGGallery
             this.ucDocTopBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ucDocTopBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.ucDocTopBar1.Location = new System.Drawing.Point(2, 2);
-            this.ucDocTopBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ucDocTopBar1.Margin = new System.Windows.Forms.Padding(2);
             this.ucDocTopBar1.Name = "ucDocTopBar1";
             this.ucDocTopBar1.Size = new System.Drawing.Size(476, 27);
             this.ucDocTopBar1.TabIndex = 6;
@@ -415,6 +416,7 @@ namespace BGGallery
             this.ucListSelectBar2.Size = new System.Drawing.Size(208, 35);
             this.ucListSelectBar2.TabIndex = 8;
             this.ucListSelectBar2.TabNames = "说明|图片";
+            this.ucListSelectBar2.TempTabs = null;
             // 
             // viewStack2
             // 
