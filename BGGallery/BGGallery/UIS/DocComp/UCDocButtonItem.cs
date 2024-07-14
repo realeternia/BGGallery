@@ -31,8 +31,8 @@ namespace BGGallery.UIS
         {
             PanelManager.Instance.ShowBGPropertyModify(bgId);
 
-            if (OnModify != null)
-                OnModify("");
+            //if (OnModify != null)
+            //    OnModify("");
         }
     }
 }

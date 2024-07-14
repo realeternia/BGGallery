@@ -152,6 +152,9 @@
     <Compile Include="UIS\Main\UCListSelectBar.Designer.cs">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\UCBGPropertyAttrItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UIS\Panels\UCBGPropertyModify.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -432,6 +435,7 @@
     <Compile Include="Utils\CsvDbHouse.cs" />
     <Compile Include="Utils\RtfModifier.cs" />
     <Compile Include="Utils\StringTool.cs" />
+    <Compile Include="Utils\TagsInfoManager.cs" />
     <Compile Include="Utils\TextBoxSelectRecover.cs" />
     <Compile Include="Utils\TimeTool.cs" />
     <EmbeddedResource Include="Form1.resx">

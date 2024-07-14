@@ -73,6 +73,7 @@ namespace BGGallery
                 if (itm != null)
                     SelectCatalogItem(itm);
             }
+            TagsInfoManager.Init();
 
             rjDropdownMenuCatlog.PrimaryColor = Color.SeaGreen;
             rjDropdownMenuCatlog.MenuItemTextColor = Color.White;

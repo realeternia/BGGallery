@@ -12,6 +12,7 @@ namespace BGGallery.Model
         public string Title { get; set; }
         public string NickName { get; set; } //别名
         public string Tag { get; set; }
+        public string TagInfo { get; set; }
         public string Icon { get; set; }
         public string Parm { get; set; } //额外数据
         public int CatalogId { get; set; } 

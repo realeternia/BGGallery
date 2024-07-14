@@ -34,21 +34,20 @@ namespace BGGallery.UIS
         {
             this.components = new System.ComponentModel.Container();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.textBoxBuyTime = new BGGallery.UIS.HintTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelId = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.hintTextBoxPrice = new BGGallery.UIS.HintTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.rjComboBoxCatalog = new RJControls.RJComboBox();
-            this.rjComboBoxColumn = new RJControls.RJComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.rjButtonOk = new RJControls.RJButton();
-            this.rjButtonCancel = new RJControls.RJButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.hintTextBoxBuyOther = new BGGallery.UIS.HintTextBox();
+            this.rjButtonOk = new RJControls.RJButton();
+            this.rjComboBoxColumn = new RJControls.RJComboBox();
+            this.rjComboBoxCatalog = new RJControls.RJComboBox();
+            this.hintTextBoxPrice = new BGGallery.UIS.HintTextBox();
+            this.textBoxBuyTime = new BGGallery.UIS.HintTextBox();
             this.SuspendLayout();
             // 
             // imageList1
@@ -56,22 +55,6 @@ namespace BGGallery.UIS
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(30, 30);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // textBoxBuyTime
-            // 
-            this.textBoxBuyTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.textBoxBuyTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBuyTime.DefaultText = "输入搜索";
-            this.textBoxBuyTime.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxBuyTime.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.textBoxBuyTime.ForeColorDE = System.Drawing.Color.PaleGreen;
-            this.textBoxBuyTime.Location = new System.Drawing.Point(92, 56);
-            this.textBoxBuyTime.Name = "textBoxBuyTime";
-            this.textBoxBuyTime.Size = new System.Drawing.Size(81, 27);
-            this.textBoxBuyTime.TabIndex = 0;
-            this.textBoxBuyTime.Text = "输入搜索";
-            this.textBoxBuyTime.TrueText = "";
-            this.textBoxBuyTime.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
@@ -117,21 +100,6 @@ namespace BGGallery.UIS
             this.label2.TabIndex = 5;
             this.label2.Text = "购入价格";
             // 
-            // hintTextBoxPrice
-            // 
-            this.hintTextBoxPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.hintTextBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.hintTextBoxPrice.DefaultText = "输入搜索";
-            this.hintTextBoxPrice.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hintTextBoxPrice.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.hintTextBoxPrice.ForeColorDE = System.Drawing.Color.LightSalmon;
-            this.hintTextBoxPrice.Location = new System.Drawing.Point(360, 56);
-            this.hintTextBoxPrice.Name = "hintTextBoxPrice";
-            this.hintTextBoxPrice.Size = new System.Drawing.Size(81, 27);
-            this.hintTextBoxPrice.TabIndex = 4;
-            this.hintTextBoxPrice.Text = "输入搜索";
-            this.hintTextBoxPrice.TrueText = "";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -143,45 +111,6 @@ namespace BGGallery.UIS
             this.label3.TabIndex = 7;
             this.label3.Text = "Catalog";
             // 
-            // rjComboBoxCatalog
-            // 
-            this.rjComboBoxCatalog.BackColor = System.Drawing.Color.Black;
-            this.rjComboBoxCatalog.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.rjComboBoxCatalog.BorderSize = 1;
-            this.rjComboBoxCatalog.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rjComboBoxCatalog.Font = new System.Drawing.Font("宋体", 10F);
-            this.rjComboBoxCatalog.ForeColor = System.Drawing.Color.DimGray;
-            this.rjComboBoxCatalog.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjComboBoxCatalog.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.rjComboBoxCatalog.ListTextColor = System.Drawing.Color.DimGray;
-            this.rjComboBoxCatalog.Location = new System.Drawing.Point(92, 122);
-            this.rjComboBoxCatalog.MinimumSize = new System.Drawing.Size(150, 30);
-            this.rjComboBoxCatalog.Name = "rjComboBoxCatalog";
-            this.rjComboBoxCatalog.Padding = new System.Windows.Forms.Padding(1);
-            this.rjComboBoxCatalog.Size = new System.Drawing.Size(150, 30);
-            this.rjComboBoxCatalog.TabIndex = 8;
-            this.rjComboBoxCatalog.Texts = "";
-            this.rjComboBoxCatalog.OnSelectedIndexChanged += new System.EventHandler(this.rjComboBoxCatalog_OnSelectedIndexChanged);
-            // 
-            // rjComboBoxColumn
-            // 
-            this.rjComboBoxColumn.BackColor = System.Drawing.Color.Black;
-            this.rjComboBoxColumn.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.rjComboBoxColumn.BorderSize = 1;
-            this.rjComboBoxColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.rjComboBoxColumn.Font = new System.Drawing.Font("宋体", 10F);
-            this.rjComboBoxColumn.ForeColor = System.Drawing.Color.DimGray;
-            this.rjComboBoxColumn.IconColor = System.Drawing.Color.MediumSlateBlue;
-            this.rjComboBoxColumn.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.rjComboBoxColumn.ListTextColor = System.Drawing.Color.DimGray;
-            this.rjComboBoxColumn.Location = new System.Drawing.Point(360, 122);
-            this.rjComboBoxColumn.MinimumSize = new System.Drawing.Size(150, 30);
-            this.rjComboBoxColumn.Name = "rjComboBoxColumn";
-            this.rjComboBoxColumn.Padding = new System.Windows.Forms.Padding(1);
-            this.rjComboBoxColumn.Size = new System.Drawing.Size(150, 30);
-            this.rjComboBoxColumn.TabIndex = 10;
-            this.rjComboBoxColumn.Texts = "";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -192,42 +121,6 @@ namespace BGGallery.UIS
             this.label4.Size = new System.Drawing.Size(65, 20);
             this.label4.TabIndex = 9;
             this.label4.Text = "Column";
-            // 
-            // rjButtonOk
-            // 
-            this.rjButtonOk.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rjButtonOk.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rjButtonOk.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButtonOk.BorderRadius = 0;
-            this.rjButtonOk.BorderSize = 0;
-            this.rjButtonOk.FlatAppearance.BorderSize = 0;
-            this.rjButtonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButtonOk.ForeColor = System.Drawing.Color.White;
-            this.rjButtonOk.Location = new System.Drawing.Point(161, 449);
-            this.rjButtonOk.Name = "rjButtonOk";
-            this.rjButtonOk.Size = new System.Drawing.Size(92, 27);
-            this.rjButtonOk.TabIndex = 11;
-            this.rjButtonOk.Text = "确 认";
-            this.rjButtonOk.TextColor = System.Drawing.Color.White;
-            this.rjButtonOk.UseVisualStyleBackColor = false;
-            // 
-            // rjButtonCancel
-            // 
-            this.rjButtonCancel.BackColor = System.Drawing.Color.SkyBlue;
-            this.rjButtonCancel.BackgroundColor = System.Drawing.Color.SkyBlue;
-            this.rjButtonCancel.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rjButtonCancel.BorderRadius = 0;
-            this.rjButtonCancel.BorderSize = 0;
-            this.rjButtonCancel.FlatAppearance.BorderSize = 0;
-            this.rjButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rjButtonCancel.ForeColor = System.Drawing.Color.White;
-            this.rjButtonCancel.Location = new System.Drawing.Point(372, 449);
-            this.rjButtonCancel.Name = "rjButtonCancel";
-            this.rjButtonCancel.Size = new System.Drawing.Size(92, 27);
-            this.rjButtonCancel.TabIndex = 12;
-            this.rjButtonCancel.Text = "放 弃";
-            this.rjButtonCancel.TextColor = System.Drawing.Color.White;
-            this.rjButtonCancel.UseVisualStyleBackColor = false;
             // 
             // flowLayoutPanel1
             // 
@@ -253,14 +146,103 @@ namespace BGGallery.UIS
             this.hintTextBoxBuyOther.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hintTextBoxBuyOther.DefaultText = "输入搜索";
             this.hintTextBoxBuyOther.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.hintTextBoxBuyOther.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.hintTextBoxBuyOther.ForeColor = System.Drawing.Color.White;
             this.hintTextBoxBuyOther.ForeColorDE = System.Drawing.Color.White;
             this.hintTextBoxBuyOther.Location = new System.Drawing.Point(92, 89);
             this.hintTextBoxBuyOther.Name = "hintTextBoxBuyOther";
             this.hintTextBoxBuyOther.Size = new System.Drawing.Size(81, 27);
             this.hintTextBoxBuyOther.TabIndex = 15;
-            this.hintTextBoxBuyOther.Text = "输入搜索";
-            this.hintTextBoxBuyOther.TrueText = "";
+            this.hintTextBoxBuyOther.Text = "点击输入";
+            this.hintTextBoxBuyOther.TrueText = "点击输入";
+            // 
+            // rjButtonOk
+            // 
+            this.rjButtonOk.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rjButtonOk.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rjButtonOk.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rjButtonOk.BorderRadius = 0;
+            this.rjButtonOk.BorderSize = 0;
+            this.rjButtonOk.FlatAppearance.BorderSize = 0;
+            this.rjButtonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButtonOk.ForeColor = System.Drawing.Color.White;
+            this.rjButtonOk.Location = new System.Drawing.Point(276, 451);
+            this.rjButtonOk.Name = "rjButtonOk";
+            this.rjButtonOk.Size = new System.Drawing.Size(92, 27);
+            this.rjButtonOk.TabIndex = 11;
+            this.rjButtonOk.Text = "保 存";
+            this.rjButtonOk.TextColor = System.Drawing.Color.White;
+            this.rjButtonOk.UseVisualStyleBackColor = false;
+            this.rjButtonOk.Click += new System.EventHandler(this.rjButtonOk_Click);
+            // 
+            // rjComboBoxColumn
+            // 
+            this.rjComboBoxColumn.BackColor = System.Drawing.Color.Black;
+            this.rjComboBoxColumn.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.rjComboBoxColumn.BorderSize = 1;
+            this.rjComboBoxColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rjComboBoxColumn.Font = new System.Drawing.Font("宋体", 10F);
+            this.rjComboBoxColumn.ForeColor = System.Drawing.Color.LightGray;
+            this.rjComboBoxColumn.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjComboBoxColumn.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.rjComboBoxColumn.ListTextColor = System.Drawing.Color.DimGray;
+            this.rjComboBoxColumn.Location = new System.Drawing.Point(360, 122);
+            this.rjComboBoxColumn.MinimumSize = new System.Drawing.Size(150, 30);
+            this.rjComboBoxColumn.Name = "rjComboBoxColumn";
+            this.rjComboBoxColumn.Padding = new System.Windows.Forms.Padding(1);
+            this.rjComboBoxColumn.Size = new System.Drawing.Size(150, 30);
+            this.rjComboBoxColumn.TabIndex = 10;
+            this.rjComboBoxColumn.Texts = "";
+            // 
+            // rjComboBoxCatalog
+            // 
+            this.rjComboBoxCatalog.BackColor = System.Drawing.Color.Black;
+            this.rjComboBoxCatalog.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.rjComboBoxCatalog.BorderSize = 1;
+            this.rjComboBoxCatalog.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.rjComboBoxCatalog.Font = new System.Drawing.Font("宋体", 10F);
+            this.rjComboBoxCatalog.ForeColor = System.Drawing.Color.LightGray;
+            this.rjComboBoxCatalog.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.rjComboBoxCatalog.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.rjComboBoxCatalog.ListTextColor = System.Drawing.Color.DimGray;
+            this.rjComboBoxCatalog.Location = new System.Drawing.Point(92, 122);
+            this.rjComboBoxCatalog.MinimumSize = new System.Drawing.Size(150, 30);
+            this.rjComboBoxCatalog.Name = "rjComboBoxCatalog";
+            this.rjComboBoxCatalog.Padding = new System.Windows.Forms.Padding(1);
+            this.rjComboBoxCatalog.Size = new System.Drawing.Size(150, 30);
+            this.rjComboBoxCatalog.TabIndex = 8;
+            this.rjComboBoxCatalog.Texts = "";
+            this.rjComboBoxCatalog.OnSelectedIndexChanged += new System.EventHandler(this.rjComboBoxCatalog_OnSelectedIndexChanged);
+            // 
+            // hintTextBoxPrice
+            // 
+            this.hintTextBoxPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.hintTextBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.hintTextBoxPrice.DefaultText = "输入搜索";
+            this.hintTextBoxPrice.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.hintTextBoxPrice.ForeColor = System.Drawing.Color.LightSalmon;
+            this.hintTextBoxPrice.ForeColorDE = System.Drawing.Color.LightSalmon;
+            this.hintTextBoxPrice.Location = new System.Drawing.Point(360, 56);
+            this.hintTextBoxPrice.Name = "hintTextBoxPrice";
+            this.hintTextBoxPrice.Size = new System.Drawing.Size(81, 27);
+            this.hintTextBoxPrice.TabIndex = 4;
+            this.hintTextBoxPrice.Text = "点击输入";
+            this.hintTextBoxPrice.TrueText = "点击输入";
+            // 
+            // textBoxBuyTime
+            // 
+            this.textBoxBuyTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.textBoxBuyTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxBuyTime.DefaultText = "输入搜索";
+            this.textBoxBuyTime.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxBuyTime.ForeColor = System.Drawing.Color.PaleGreen;
+            this.textBoxBuyTime.ForeColorDE = System.Drawing.Color.PaleGreen;
+            this.textBoxBuyTime.Location = new System.Drawing.Point(92, 56);
+            this.textBoxBuyTime.Name = "textBoxBuyTime";
+            this.textBoxBuyTime.Size = new System.Drawing.Size(81, 27);
+            this.textBoxBuyTime.TabIndex = 0;
+            this.textBoxBuyTime.Text = "点击输入";
+            this.textBoxBuyTime.TrueText = "点击输入";
+            this.textBoxBuyTime.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // UCBGPropertyModify
             // 
@@ -269,7 +251,6 @@ namespace BGGallery.UIS
             this.Controls.Add(this.hintTextBoxBuyOther);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.rjButtonCancel);
             this.Controls.Add(this.rjButtonOk);
             this.Controls.Add(this.rjComboBoxColumn);
             this.Controls.Add(this.label4);
@@ -302,7 +283,6 @@ namespace BGGallery.UIS
         private RJComboBox rjComboBoxColumn;
         private System.Windows.Forms.Label label4;
         private RJButton rjButtonOk;
-        private RJButton rjButtonCancel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label5;
         private HintTextBox hintTextBoxBuyOther;

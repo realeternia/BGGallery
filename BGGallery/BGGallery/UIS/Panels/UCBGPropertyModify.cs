@@ -1,4 +1,5 @@
 ﻿using BGGallery.Model;
+using BGGallery.UIS.Panels;
 using BGGallery.Utils;
 using RJControls;
 using System;
@@ -12,6 +13,7 @@ namespace BGGallery.UIS
     {
         private BGItemInfo bGItemInfo;
         private Dictionary<int, string> cfgDict = new Dictionary<int, string>();
+        private Label addLabel;
 
         public UCBGPropertyModify()
         {
@@ -68,12 +70,6 @@ namespace BGGallery.UIS
                 {
                     cfgDict[col.Id] = col.Title;
                 }
-                //if (cat.Id != bGItemInfo.CatalogId)
-                //    continue;
-                //foreach (var col in cat.Columns)
-                //{
-                //    rjComboBoxColumn.Items.Add(col.Title);
-                //}
             }
 
             if (bGItemInfo.CatalogId == 0)
@@ -96,6 +92,64 @@ namespace BGGallery.UIS
                     if (it.ToString() == cfgDict[bGItemInfo.ColumnId])
                         rjComboBoxColumn.SelectedItem = it;
             }
+
+            flowLayoutPanel1.Controls.Clear();
+            var myTags = new HashSet<string>();
+            if(bGItemInfo.TagInfo != null)
+            {
+                foreach(var tag in bGItemInfo.TagInfo.Split(','))
+                {
+                    var tagItem = new UCBGPropertyAttrItem();
+                    tagItem.Text = tag;
+                    tagItem.Checked = true;
+                    tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
+                    flowLayoutPanel1.Controls.Add(tagItem);
+
+                    myTags.Add(tag);
+                }
+            }
+            foreach (var tag in TagsInfoManager.Tags)
+            {
+                if (myTags.Contains(tag))
+                    continue;
+                var tagItem = new UCBGPropertyAttrItem();
+                tagItem.Text = tag;
+                tagItem.Checked = false;
+                tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
+                flowLayoutPanel1.Controls.Add(tagItem);
+            }
+            if (addLabel == null)
+            {
+                var btn = new Label();
+                btn.AutoSize = true;
+                btn.Font = new Font("微软雅黑", 11, FontStyle.Regular);
+                btn.BackColor = Color.FromArgb(32, 32, 32);
+                btn.Text = "+添加";
+                btn.Click += (e, o) => {
+                   // Point absoluteLocation = this.PointToScreen(new Point(0, 0));
+
+                    var inputBox = new InputTextBox();
+                    inputBox.OnCustomTextChanged = OnAddTag;
+
+                    PanelManager.Instance.ShowBlackPanel(inputBox, 0, 0, 1);
+                    inputBox.Focus();
+                };
+                addLabel = btn;
+            }
+
+            flowLayoutPanel1.Controls.Add(addLabel);
+        }
+
+        private void OnAddTag(string tag)
+        {
+            var tagItem = new UCBGPropertyAttrItem();
+            tagItem.Text = tag;
+            tagItem.Checked = true;
+            tagItem.Font = new Font("微软雅黑", 11, FontStyle.Regular);
+            flowLayoutPanel1.Controls.Add(tagItem);
+            flowLayoutPanel1.Controls.SetChildIndex(addLabel, flowLayoutPanel1.Controls.Count);
+
+            TagsInfoManager.Add(tag);
         }
 
         private void rjComboBoxCatalog_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -125,7 +179,40 @@ namespace BGGallery.UIS
         {
         }
 
+        private void rjButtonOk_Click(object sender, EventArgs e)
+        {
+            List<string> buyInfo = new List<string>();
+            if (!string.IsNullOrEmpty(textBoxBuyTime.Text)) buyInfo.Add(textBoxBuyTime.Text);
+            if (!string.IsNullOrEmpty(hintTextBoxPrice.Text)) buyInfo.Add(hintTextBoxPrice.Text);
+            var buyInfoStr = string.Join(",", buyInfo);
+            if(!string.IsNullOrEmpty(hintTextBoxBuyOther.Text))
+                buyInfoStr = buyInfoStr + "," + hintTextBoxBuyOther.Text;
+            bGItemInfo.BuyInfo = buyInfoStr;
+            bGItemInfo.CatalogId = 0;
+            bGItemInfo.ColumnId = 0;
+            foreach (var cfgData in cfgDict)
+            {
+                if (cfgData.Value == rjComboBoxCatalog.SelectedItem.ToString())
+                    bGItemInfo.CatalogId = cfgData.Key;
+                else if (cfgData.Value == rjComboBoxColumn.SelectedItem.ToString())
+                    bGItemInfo.ColumnId = cfgData.Key;
+            }
 
+            List<string> tags = new List<string>();
+            foreach (var ctr in flowLayoutPanel1.Controls)
+            {
+                var checkControl = ctr as UCBGPropertyAttrItem;
+                if (checkControl == null || !checkControl.Checked || string.IsNullOrEmpty(checkControl.Text))
+                    continue;
+
+                tags.Add(checkControl.Text.Trim());
+            }
+            bGItemInfo.TagInfo = string.Join(",", tags);
+
+            DelayedExecutor.Trigger("memoSave", 10, () => BGBook.Instance.Save());
+
+            PanelManager.Instance.HideBlackPanel();
+        }
     }
 }
 

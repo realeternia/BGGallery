@@ -1,4 +1,5 @@
 ﻿using BGGallery.Model;
+using BGGallery.Utils;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -25,6 +26,8 @@ namespace BGGallery
             var serializer = new SerializerBuilder().Build();
             var yaml = serializer.Serialize(this);
             File.WriteAllText(ENV.BaseDir + "/memo.yaml", yaml, Encoding.UTF8);
+
+            HLog.Debug("BGBook save finish");
         }
 
         public BGCatalogInfo AddCatalog()

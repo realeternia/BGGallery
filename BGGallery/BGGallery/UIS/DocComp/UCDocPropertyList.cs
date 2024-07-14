@@ -84,14 +84,9 @@ namespace BGGallery.UIS
           //  foundCtr2.Dock = DockStyle.Top;
         }
 
-        DateTime lastCheckTime;
         private void CheckChange()
         {
-            if ((DateTime.Now - lastCheckTime).TotalSeconds > 60)
-            {
-                BGBook.Instance.Save();
-                lastCheckTime = DateTime.Now;
-            }
+            DelayedExecutor.Trigger("memoSave", 10, () => BGBook.Instance.Save());
         }
 
         private IDocComp FindCtr(List<Control> cc, string k)
