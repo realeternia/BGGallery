@@ -816,6 +816,9 @@ namespace Text_Editor
 
             foreach (var key in BGBook.Instance.Cfg.KeyWords)
                 yield return new Tuple<string, Color>(key, BGBook.Instance.Cfg.KWWordColor.ToColor());
+
+            foreach (var colorCfg in BGBook.Instance.Cfg.TextColors)
+                yield return new Tuple<string, Color>(colorCfg.Text, colorCfg.Color.ToColor()); //todo 最好也好一个游戏范围的词库
         }
 
 
@@ -861,10 +864,10 @@ namespace Text_Editor
 
             List<string> searchNameList = new List<string>();
 
-            foreach (var name in BGBook.Instance.Cfg.KeyWords)
+            foreach (var textC in BGBook.Instance.Cfg.TextColors)
             {
-                if (nowLine.Contains(name))
-                    searchNameList.Add(name);
+                if (nowLine.Contains(textC.Text))
+                    searchNameList.Add(textC.Text);
             }
 
             if (searchNameList.Count > 0)

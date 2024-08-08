@@ -756,6 +756,7 @@ namespace BGGallery
         {
             viewStack1.Height = splitContainer2.Panel1.Height - 135;
             viewStack1.Width = splitContainer2.Panel1.Width;
+            ucListSelectBar1.Width = viewStack1.Width;
         }
 
         private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)

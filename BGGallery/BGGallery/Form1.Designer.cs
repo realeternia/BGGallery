@@ -201,8 +201,6 @@ namespace BGGallery
             // 
             // ucListSelectBar1
             // 
-            this.ucListSelectBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ucListSelectBar1.BackColor = System.Drawing.Color.Black;
             this.ucListSelectBar1.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ucListSelectBar1.ForeColor = System.Drawing.Color.White;

@@ -22,7 +22,7 @@ namespace BGGallery.Model
         public ColorCfg KWWordColor { get; set; } = new ColorCfg(Color.Lime);
         [SetupItemDes("配置", "桌游关键词", "会自动着色成指定的颜色")]
         public string[] KeyWords { get; set; } = new string[0];
-        [SetupItemDes("配置", "桌游关键词2", "会自动着色成指定的颜色2")]
+        [SetupItemDes("配置", "特殊词着色", "制定特定词，以及着色")]
         public TextColorCfg[] TextColors { get; set; } = new TextColorCfg[0];
     }
 }
