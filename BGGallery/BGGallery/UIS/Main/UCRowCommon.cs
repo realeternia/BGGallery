@@ -162,13 +162,38 @@ namespace BGGallery
                         // 定义源矩形，它表示图像中要绘制的部分  
                         Rectangle sourceRect = new Rectangle(0, (sourceHeight - sourceHeight2) / 2, sourceWidth, sourceHeight2);
 
-                        // 使用 DrawImage 方法绘制图像的一部分  
-                        e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
+                        if (itemInfo != null)
+                        {
+                            if(itemInfo.BuyInfo == null)
+                            {
+                                e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
+                            }
+                            else if (itemInfo.BuyInfo.Contains("已卖出"))
+                            {
+                                e.Graphics.DrawImage(cover, destRect, sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height, GraphicsUnit.Pixel, ColorTool.Gray);
+                                e.Graphics.DrawString("已卖出", Font, Brushes.Red, destRect.X + 10, destRect.Y + 10);
+                            }
+                            else if (itemInfo.BuyInfo.Contains("未到货"))
+                            {
+                                e.Graphics.DrawImage(cover, destRect, sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height, GraphicsUnit.Pixel, ColorTool.Blue);
+                                e.Graphics.DrawString("未到货", Font, Brushes.LightGray, destRect.X + 10, destRect.Y + 10);
+                            }
+                            else if (itemInfo.BuyInfo.Contains("出售中"))
+                            {
+                                e.Graphics.DrawImage(cover, destRect, sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height, GraphicsUnit.Pixel, ColorTool.Orange);
+                                e.Graphics.DrawString("出售中", Font, Brushes.Yellow, destRect.X + 10, destRect.Y + 10);
+                            }
+                            else
+                            {
+                                e.Graphics.DrawImage(cover, destRect, sourceRect, GraphicsUnit.Pixel);
 
-                        if (itemInfo.Star > 0)
-                            DrawStars(e.Graphics, itemInfo.Star, false, 3, Height - imageHeight + 3);
-                        if (itemInfo.StarNewbie > 0)
-                            DrawStars(e.Graphics, itemInfo.StarNewbie, true, 3, Height - imageHeight + 3+20);
+                                if (itemInfo.Star > 0)
+                                    DrawStars(e.Graphics, itemInfo.Star, false, 3, Height - imageHeight + 3);
+                                if (itemInfo.StarNewbie > 0)
+                                    DrawStars(e.Graphics, itemInfo.StarNewbie, true, 3, Height - imageHeight + 3 + 20);
+                            }
+                        }
+
                     }
 
                 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace BGGallery.Utils
 {
@@ -133,6 +134,87 @@ namespace BGGallery.Utils
         public static Color ColorPlus(Color c, float exp)
         {
             return Color.FromArgb((byte)(c.R * exp), (byte)(c.G * exp), (byte)(c.B * exp));
+        }
+
+        private static ImageAttributes gray;
+        public static ImageAttributes Gray
+        {
+            get
+            {
+                if (gray == null)
+                {
+                    ColorMatrix colorMatrix = new ColorMatrix(
+                    new float[][]
+                    {
+                    new float[] {.3f, .3f, .3f, 0, 0},
+                    new float[] {.59f, .59f, .59f, 0, 0},
+                    new float[] {.11f, .11f, .11f, 0, 0},
+                    new float[] {0, 0, 0, 1, 0},
+                    new float[] {0, 0, 0, 0, 1}
+                    });
+
+                    ImageAttributes attributes = new ImageAttributes();
+                    attributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                    gray = attributes;
+                }
+
+                return gray;
+            }
+        }
+
+        private static ImageAttributes blue;
+        public static ImageAttributes Blue
+        {
+            get
+            {
+                if (blue == null)
+                {
+                    ColorMatrix colorMatrix = new ColorMatrix(
+                    new float[][]
+                    {
+       new float[] {0.5f, 0, 0, 0, 0}, // 红色分量设置为0  
+       new float[] {0, 0.5f, 0, 0, 0}, // 绿色分量保持不变（或者可以根据需要调整）  
+       new float[] {0, 0, 1, 0, 0}, // 蓝色分量保持不变（或者可以根据需要调整）  
+       new float[] {0, 0, 0, 1, 0}, // Alpha分量保持不变  
+       new float[] {0, 0, 0, 0, 1}  // 偏移量（通常设置为0）
+                    });
+
+                    ImageAttributes attributes = new ImageAttributes();
+                    attributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                    blue = attributes;
+                }
+
+                return blue;
+            }
+        }
+
+        private static ImageAttributes orange;
+        public static ImageAttributes Orange
+        {
+            get
+            {
+                if (orange == null)
+                {
+                    ColorMatrix colorMatrix = new ColorMatrix(
+                    new float[][]
+                    {
+           new float[] {1, 0, 0, 0, 0}, // 红色分量稍微增强  
+       new float[] {0, 0.5f, 0, 0, 0}, // 绿色分量减少，但仍然贡献一些以形成黄色  
+       new float[] {0, 0, 0, 0, 0}, // 蓝色分量设置为0  
+       new float[] {0, 0, 0, 1, 0}, // Alpha分量保持不变  
+       new float[] {0, 0, 0, 0, 1}  // 偏移量（通常设置为0）  
+                    });
+
+                    ImageAttributes attributes = new ImageAttributes();
+                    attributes.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                    orange = attributes;
+                }
+
+                return orange;
+            }
         }
     }
 }
