@@ -95,6 +95,15 @@ namespace BGGallery.UIS
 
                     newCtr = colorItem;
                 }
+                else if (property.PropertyType == typeof(TextColorCfg[]))
+                {
+                    var stringItem = new UCTextColorArrayItem();
+                    var sValue = GetPropertyValue<TextColorCfg[]>(BGBook.Instance.Cfg, property.Name);
+                    stringItem.SetData(attribute.Name, attribute.Des, sValue);
+                    stringItem.OnModify = (va) => SetPropertyValue(BGBook.Instance.Cfg, property.Name, va);
+
+                    newCtr = stringItem;
+                }
                 else
                 {
                     var stringItem = new UCSetupStringItem();

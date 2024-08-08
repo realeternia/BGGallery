@@ -1,4 +1,5 @@
-﻿using BGGallery.UIS;
+﻿using BGGallery.Model.Types;
+using BGGallery.UIS;
 using BGGallery.UIS.ImageView;
 using BGGallery.UIS.Panels;
 using System;
@@ -21,6 +22,7 @@ namespace BGGallery
         private InputNumberBox numberBox;
         private InputArrayBox arrayBox;
         private InputColorBox colorBox;
+        private InputTextColorBox textColorBox;
         private UCGmRunSvTime timePicker;
         private UCAddBG addBG;
         private UCEditImage editImage;
@@ -181,6 +183,20 @@ namespace BGGallery
 
             ShowBlackPanel(colorBox, 0, 0);
             colorBox.OnInit(c);
+        }
+        public void ShowTextColorBox(TextColorCfg[] cfg, Action<TextColorCfg[]> callback)
+        {
+            if (textColorBox == null)
+            {
+                textColorBox = new InputTextColorBox();
+                textColorBox.Width = 500;
+            }
+
+            textColorBox.ColorArray = cfg;
+            textColorBox.OnCustomTextChanged = (s1) => callback(s1);
+
+            ShowBlackPanel(textColorBox, 0, 0);
+            textColorBox.OnInit();
         }
 
         public void ShowTimeForm(int x, int y, Action<string> act)

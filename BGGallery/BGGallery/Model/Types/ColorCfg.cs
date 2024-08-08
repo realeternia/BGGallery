@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace BGGallery.Model.Types
 {
-    class ColorCfg
+    public class ColorCfg
     {
         public int Value { get; set; }
 

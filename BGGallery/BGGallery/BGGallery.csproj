@@ -74,6 +74,7 @@
     <Compile Include="Model\SetupItemDesAttribute.cs" />
     <Compile Include="Model\IRowItem.cs" />
     <Compile Include="Model\BGBookCfg.cs" />
+    <Compile Include="Model\Types\TextColorCfg.cs" />
     <Compile Include="Model\Types\ColorCfg.cs" />
     <Compile Include="Model\Types\ShowPaperParm.cs" />
     <Compile Include="PanelManager.cs" />
@@ -115,6 +116,12 @@
     </Compile>
     <Compile Include="UIS\ImageView\PanelDoubleBuffered.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UIS\InputTextColorBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\InputTextColorBox.Designer.cs">
+      <DependentUpon>InputTextColorBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\InputNumberBox.cs">
       <SubType>UserControl</SubType>
@@ -297,6 +304,12 @@
     <Compile Include="UIS\SetupComp\UCSetupColorItem.Designer.cs">
       <DependentUpon>UCSetupColorItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\SetupComp\UCTextColorArrayItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\SetupComp\UCTextColorArrayItem.Designer.cs">
+      <DependentUpon>UCTextColorArrayItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\SetupComp\UCSetupSwitch.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -456,6 +469,9 @@
     <EmbeddedResource Include="UIS\ImageView\KP-ImageViewerV2.resx">
       <DependentUpon>KP-ImageViewerV2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UIS\InputTextColorBox.resx">
+      <DependentUpon>InputTextColorBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputNumberBox.resx">
       <DependentUpon>InputNumberBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -568,6 +584,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\SetupComp\UCSetupColorItem.resx">
       <DependentUpon>UCSetupColorItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\SetupComp\UCTextColorArrayItem.resx">
+      <DependentUpon>UCTextColorArrayItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\SetupComp\UCSetupSwitch.resx">
       <DependentUpon>UCSetupSwitch.cs</DependentUpon>
