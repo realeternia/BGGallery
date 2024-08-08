@@ -74,13 +74,16 @@ namespace BGGallery.UIS
 
                         var itemIdStr = fi.Name;
 
-                        if (itemInfo.Title.Contains(searchTxt))
+                        if (itemInfo.Title.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标题" });
-                        if (itemInfo.Tag.Contains(searchTxt))
+
+                        if (itemInfo.Tag.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
-                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
+
+                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "购买信息" });
-                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.Contains(searchTxt))
+
+                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.TagInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
 
                         string plainText = RtfModifier.ReadRtfPlainText(itemInfo.Id);
@@ -88,7 +91,7 @@ namespace BGGallery.UIS
                         int lineid = 0;
                         foreach (var line in plainText.Split('\n'))
                         {
-                            if (line.IndexOf(searchTxt) >= 0)
+                            if (line.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                                 searchResults.Add(new SearchData { Line = line, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "Ln:" + (lineid + 1) });
                             lineid++;
                         }
