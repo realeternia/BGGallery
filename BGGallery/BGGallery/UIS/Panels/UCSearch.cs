@@ -30,6 +30,8 @@ namespace BGGallery.UIS
             InitializeComponent();
 
             textBox1.OnLoad();
+
+            Panels.PanelBorders.InitBorder(this);
         }
 
         public void OnInit(string keyword)

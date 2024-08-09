@@ -47,7 +47,7 @@ namespace BGGallery.UIS
             this.rjComboBoxColumn = new RJControls.RJComboBox();
             this.rjComboBoxCatalog = new RJControls.RJComboBox();
             this.hintTextBoxPrice = new BGGallery.UIS.HintTextBox();
-            this.textBoxBuyTime = new BGGallery.UIS.HintTextBox();
+            this.hintTextBoxBuyTime = new BGGallery.UIS.HintTextBox();
             this.SuspendLayout();
             // 
             // imageList1
@@ -230,19 +230,19 @@ namespace BGGallery.UIS
             // 
             // textBoxBuyTime
             // 
-            this.textBoxBuyTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.textBoxBuyTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxBuyTime.DefaultText = "输入搜索";
-            this.textBoxBuyTime.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textBoxBuyTime.ForeColor = System.Drawing.Color.PaleGreen;
-            this.textBoxBuyTime.ForeColorDE = System.Drawing.Color.PaleGreen;
-            this.textBoxBuyTime.Location = new System.Drawing.Point(92, 57);
-            this.textBoxBuyTime.Name = "textBoxBuyTime";
-            this.textBoxBuyTime.Size = new System.Drawing.Size(81, 22);
-            this.textBoxBuyTime.TabIndex = 0;
-            this.textBoxBuyTime.Text = "点击输入";
-            this.textBoxBuyTime.TrueText = "点击输入";
-            this.textBoxBuyTime.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.hintTextBoxBuyTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.hintTextBoxBuyTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.hintTextBoxBuyTime.DefaultText = "输入搜索";
+            this.hintTextBoxBuyTime.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.hintTextBoxBuyTime.ForeColor = System.Drawing.Color.PaleGreen;
+            this.hintTextBoxBuyTime.ForeColorDE = System.Drawing.Color.PaleGreen;
+            this.hintTextBoxBuyTime.Location = new System.Drawing.Point(92, 57);
+            this.hintTextBoxBuyTime.Name = "textBoxBuyTime";
+            this.hintTextBoxBuyTime.Size = new System.Drawing.Size(81, 22);
+            this.hintTextBoxBuyTime.TabIndex = 0;
+            this.hintTextBoxBuyTime.Text = "点击输入";
+            this.hintTextBoxBuyTime.TrueText = "点击输入";
+            this.hintTextBoxBuyTime.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // UCBGPropertyModify
             // 
@@ -261,7 +261,7 @@ namespace BGGallery.UIS
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxBuyTime);
+            this.Controls.Add(this.hintTextBoxBuyTime);
             this.Name = "UCBGPropertyModify";
             this.Size = new System.Drawing.Size(644, 493);
             this.ResumeLayout(false);
@@ -271,7 +271,7 @@ namespace BGGallery.UIS
 
         #endregion
 
-        private HintTextBox textBoxBuyTime;
+        private HintTextBox hintTextBoxBuyTime;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelId;

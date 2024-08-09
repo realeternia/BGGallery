@@ -17,6 +17,8 @@ namespace BGGallery.UIS
         public UCSettingBar()
         {
             InitializeComponent();
+
+         //   Panels.PanelBorders.InitBorder(this);
         }
 
         public void Init()

@@ -18,6 +18,8 @@ namespace BGGallery.UIS
         public UCEditImage()
         {
             InitializeComponent();
+
+            Panels.PanelBorders.InitBorder(this);
         }
 
         public void OnInit(Image img)

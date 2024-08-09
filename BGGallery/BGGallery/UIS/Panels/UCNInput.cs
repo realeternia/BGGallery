@@ -26,6 +26,7 @@ namespace BGGallery.UIS.Panels
             textBoxText.Focus();
 
             UpdateHints();
+            Panels.PanelBorders.InitBorder(this);
         }
 
         private string GetHint(int index)

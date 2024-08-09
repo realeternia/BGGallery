@@ -72,6 +72,7 @@ namespace BGGallery.UIS.Panels
 
                 doubleBufferedPanel1.Height = rowCount * (iconSize + iconPadding) + wordHeight * 4;
             }
+            Panels.PanelBorders.InitBorder(this);
         }
 
         public void OnInit()

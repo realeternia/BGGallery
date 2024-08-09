@@ -159,6 +159,7 @@
     <Compile Include="UIS\Main\UCListSelectBar.Designer.cs">
       <DependentUpon>UCListSelectBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\PanelBorders.cs" />
     <Compile Include="UIS\Panels\UCBGPropertyAttrItem.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -19,9 +19,11 @@ namespace BGGallery.UIS
         {
             InitializeComponent();
 
-            textBoxBuyTime.OnLoad();
+            hintTextBoxBuyTime.OnLoad();
             hintTextBoxPrice.OnLoad();
             hintTextBoxBuyOther.OnLoad();
+
+            PanelBorders.InitBorder(this);
         }
 
         public void OnInit(int bgId)
@@ -30,7 +32,7 @@ namespace BGGallery.UIS
             labelId.Text = bgId.ToString();
             labelName.Text = bGItemInfo.Title;
 
-            textBoxBuyTime.TrueText = "";
+            hintTextBoxBuyTime.TrueText = "";
             hintTextBoxPrice.TrueText = "";
             hintTextBoxBuyOther.TrueText = "";
 
@@ -39,7 +41,7 @@ namespace BGGallery.UIS
             foreach(var buyInfo in buyInfos)
             {
                 if (buyInfo.StartsWith("2"))
-                    textBoxBuyTime.TrueText = buyInfo;
+                    hintTextBoxBuyTime.TrueText = buyInfo;
                 else if (buyInfo.StartsWith("￥"))
                     hintTextBoxPrice.TrueText = buyInfo;
                 else
@@ -51,7 +53,7 @@ namespace BGGallery.UIS
             if (otherInfos.Count > 0)
                 hintTextBoxBuyOther.TrueText = string.Join(",", otherInfos);
 
-            textBoxBuyTime.Focus();
+            hintTextBoxBuyTime.Focus();
 
             rjComboBoxCatalog.Items.Clear();
             rjComboBoxCatalog.Items.Add("未选择");
@@ -184,11 +186,13 @@ namespace BGGallery.UIS
         private void rjButtonOk_Click(object sender, EventArgs e)
         {
             List<string> buyInfo = new List<string>();
-            if (!string.IsNullOrEmpty(textBoxBuyTime.Text)) buyInfo.Add(textBoxBuyTime.Text);
-            if (!string.IsNullOrEmpty(hintTextBoxPrice.Text)) buyInfo.Add(hintTextBoxPrice.Text);
+            if (!string.IsNullOrEmpty(hintTextBoxBuyTime.TrueText)) 
+                buyInfo.Add(hintTextBoxBuyTime.TrueText);
+            if (!string.IsNullOrEmpty(hintTextBoxPrice.TrueText)) 
+                buyInfo.Add(hintTextBoxPrice.TrueText);
             var buyInfoStr = string.Join(",", buyInfo);
-            if(!string.IsNullOrEmpty(hintTextBoxBuyOther.Text))
-                buyInfoStr = buyInfoStr + "," + hintTextBoxBuyOther.Text;
+            if(!string.IsNullOrEmpty(hintTextBoxBuyOther.TrueText))
+                buyInfoStr = buyInfoStr + "," + hintTextBoxBuyOther.TrueText;
             bGItemInfo.BuyInfo = buyInfoStr;
             bGItemInfo.CatalogId = 0;
             bGItemInfo.ColumnId = 0;
