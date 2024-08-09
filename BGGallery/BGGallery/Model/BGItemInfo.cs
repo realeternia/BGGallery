@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BGGallery.Model.Types;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace BGGallery.Model
         public int StarNewbie { get; set; }
 
         public List<string> Expansions { get; set; }
+        public TextColorCfg[] TextColorBGs { get; set; }  //桌游专属的关键词染色
 
         private bool isDirty;
 

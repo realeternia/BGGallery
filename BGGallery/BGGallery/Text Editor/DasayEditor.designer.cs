@@ -37,6 +37,7 @@
             this.imgStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonScreen = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEmo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTextColor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButtonTemplate = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripTextBoxKeyText = new System.Windows.Forms.ToolStripTextBox();
@@ -82,6 +83,7 @@
             this.imgStripButton,
             this.toolStripButtonScreen,
             this.toolStripButtonEmo,
+            this.toolStripButtonTextColor,
             this.toolStripSeparator2,
             this.toolStripDropDownButtonTemplate,
             this.toolStripTextBoxKeyText,
@@ -146,6 +148,17 @@
             this.toolStripButtonEmo.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonEmo.Text = "添加表情";
             this.toolStripButtonEmo.Click += new System.EventHandler(this.toolStripButtonEmo_Click);
+            // 
+            // toolStripButtonTextColor
+            // 
+            this.toolStripButtonTextColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonTextColor.ForeColor = System.Drawing.Color.Black;
+            this.toolStripButtonTextColor.Image = global::BGGallery.Properties.Resources.smile;
+            this.toolStripButtonTextColor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTextColor.Name = "toolStripButtonTextColor";
+            this.toolStripButtonTextColor.Size = new System.Drawing.Size(72, 28);
+            this.toolStripButtonTextColor.Text = "关键词染色";
+            this.toolStripButtonTextColor.Click += new System.EventHandler(this.toolStripButtonTextColor_Click);
             // 
             // toolStripSeparator2
             // 
@@ -501,5 +514,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKeys;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPage;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTime;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTextColor;
     }
 }

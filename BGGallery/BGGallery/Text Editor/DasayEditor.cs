@@ -810,15 +810,19 @@ namespace Text_Editor
             richTextBox1.ResumePainting();
         }
 
-        private static IEnumerable<Tuple<string, Color>> GetKeywordColor()
+        private IEnumerable<Tuple<string, Color>> GetKeywordColor()
         {
-            yield return new Tuple<string, Color>("url", BGBook.Instance.Cfg.KWUrlColor.ToColor());
+          //  yield return new Tuple<string, Color>("url", BGBook.Instance.Cfg.KWUrlColor.ToColor());
 
             foreach (var key in BGBook.Instance.Cfg.KeyWords)
                 yield return new Tuple<string, Color>(key, BGBook.Instance.Cfg.KWWordColor.ToColor());
 
             foreach (var colorCfg in BGBook.Instance.Cfg.TextColors)
-                yield return new Tuple<string, Color>(colorCfg.Text, colorCfg.Color.ToColor()); //todo 最好也好一个游戏范围的词库
+                yield return new Tuple<string, Color>(colorCfg.Text, colorCfg.Color.ToColor()); // 全局词库
+
+            if (memoItemInfo.TextColorBGs != null)
+                foreach (var colorCfg in memoItemInfo.TextColorBGs)
+                    yield return new Tuple<string, Color>(colorCfg.Text, colorCfg.Color.ToColor()); // 特定词库 
         }
 
 
@@ -972,6 +976,14 @@ namespace Text_Editor
         {
             toolStripTextBoxKeyText.Text = txt;
             DoSearch();
+        }
+
+        private void toolStripButtonTextColor_Click(object sender, EventArgs e)
+        {
+            PanelManager.Instance.ShowTextColorBox(memoItemInfo.TextColorBGs ?? new BGGallery.Model.Types.TextColorCfg[0], (array) =>
+            {
+                memoItemInfo.TextColorBGs = array;
+            });
         }
     }
 }
