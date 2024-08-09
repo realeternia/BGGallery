@@ -78,13 +78,10 @@ namespace BGGallery.UIS
 
                         if (itemInfo.Title.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标题" });
-
                         if (itemInfo.Tag.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
-
                         if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "购买信息" });
-
                         if (itemInfo.TagInfo != null && itemInfo.TagInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.TagInfo, ItemId = itemInfo.Id, Title = itemIdStr, CreateTime = fi.LastWriteTime, LineInfo = "标签" });
 
@@ -100,13 +97,13 @@ namespace BGGallery.UIS
                     }
                     else
                     {
-                        if (itemInfo.Title.Contains(searchTxt))
+                        if (itemInfo.Title.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Title, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标题" });
-                        if (itemInfo.Tag != null && itemInfo.Tag.Contains(searchTxt))
+                        if (itemInfo.Tag.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.Tag, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标签" });
-                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains(searchTxt))
+                        if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.BuyInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "购买信息" });
-                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.Contains(searchTxt))
+                        if (itemInfo.TagInfo != null && itemInfo.TagInfo.IndexOf(searchTxt, StringComparison.OrdinalIgnoreCase) >= 0)
                             searchResults.Add(new SearchData { Line = itemInfo.TagInfo, ItemId = itemInfo.Id, Title = itemInfo.Id.ToString(), CreateTime = DateTime.MinValue, LineInfo = "标签" });
                     }
                 }
@@ -184,7 +181,25 @@ namespace BGGallery.UIS
 
             using (var ft = new Font("微软雅黑", 9.5f))
                 DrawLine(e, e.SubItem.Text, textBox1.Text, ft);
-        }
+
+            var cover = ImageBook.Instance.Load(ENV.ImgDir + lineInfo.ItemId + "/cover.jpg");
+            if (cover != null)
+            {
+                // 计算源矩形和目标矩形  
+                int sourceWidth = cover.Width; // 源图像的宽度  
+                int sourceHeight = cover.Height; // 源图像的高度  
+
+                Rectangle destRect = new Rectangle(e.Bounds.Width - e.Bounds.Height * 3 - 10, e.Bounds.Y + 6, e.Bounds.Height * 3, e.Bounds.Height - 12);
+                var sourceHeight2 = destRect.Height * sourceWidth / destRect.Width;
+                // 定义源矩形，它表示图像中要绘制的部分  
+                Rectangle sourceRect = new Rectangle(0, (sourceHeight - sourceHeight2) / 2, sourceWidth, sourceHeight2);
+
+                if (selectLine != null && e.ItemIndex == selectLine.Index)
+                    e.Graphics.DrawImage(cover, destRect, sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height, GraphicsUnit.Pixel);
+                else
+                    e.Graphics.DrawImage(cover, destRect, sourceRect.X, sourceRect.Y, sourceRect.Width, sourceRect.Height, GraphicsUnit.Pixel, ColorTool.Gray);
+            }
+         }
 
         private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
