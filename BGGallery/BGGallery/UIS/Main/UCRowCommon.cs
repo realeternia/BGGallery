@@ -146,6 +146,7 @@ namespace BGGallery
 
         protected virtual void UCRowCommon_Paint(object sender, PaintEventArgs e)
         {
+
             if (ShowCover)
             {
                 try
@@ -206,14 +207,17 @@ namespace BGGallery
             if (icon != null)
                 e.Graphics.DrawImage(icon, 1, 5, 32, 32);
 
-            if (itemInfo.Star < 90)
-            {
-                e.Graphics.DrawString(title, Font, Brushes.WhiteSmoke, 35, 8);
+
+            var textBrush = Brushes.WhiteSmoke;
+            if (itemInfo.Star >= 90)
+                textBrush = Brushes.Goldenrod;
+            if (itemInfo != null && itemInfo.BuyInfo != null)
+            { 
+                if(itemInfo.BuyInfo.Contains("已卖出") || itemInfo.BuyInfo.Contains("未到货"))
+                    textBrush = Brushes.DimGray;
             }
-            else
-            {
-                e.Graphics.DrawString(title, Font, Brushes.Goldenrod, 35, 8);
-            }
+
+            e.Graphics.DrawString(title, Font, textBrush, 35, 8);
             var size = itemInfo.GetParm("wcount");
             if (!string.IsNullOrEmpty(size))
                 e.Graphics.DrawString(string.Format("{0}字", size), Font, Brushes.LightGray, e.Graphics.MeasureString(title, Font).Width + 35 + 30, 8);

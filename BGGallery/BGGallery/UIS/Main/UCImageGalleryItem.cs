@@ -179,5 +179,12 @@ namespace BGGallery.UIS.Main
             path = newPath;
 
         }
+
+        private void toolStripMenuItemNavi_Click(object sender, EventArgs e)
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            var directInfo = currentDirectory + "/" + ENV.ImgDir + itemId;
+            System.Diagnostics.Process.Start(directInfo);
+        }
     }
 }

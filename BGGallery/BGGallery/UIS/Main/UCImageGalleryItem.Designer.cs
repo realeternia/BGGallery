@@ -34,6 +34,7 @@ namespace BGGallery.UIS.Main
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemNavi = new System.Windows.Forms.ToolStripMenuItem();
             this.rjDropdownMenuRow.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,19 +47,20 @@ namespace BGGallery.UIS.Main
             this.rjDropdownMenuRow.IsMainMenu = false;
             this.rjDropdownMenuRow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
+            this.toolStripMenuItemNavi,
             this.toolStripMenuItemRename,
             this.toolStripMenuItemRemove});
             this.rjDropdownMenuRow.MenuItemHeight = 25;
             this.rjDropdownMenuRow.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenuRow.Name = "rjDropdownMenu1";
             this.rjDropdownMenuRow.PrimaryColor = System.Drawing.Color.Empty;
-            this.rjDropdownMenuRow.Size = new System.Drawing.Size(135, 76);
+            this.rjDropdownMenuRow.Size = new System.Drawing.Size(181, 122);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.copyToolStripMenuItem.Text = "拷贝路径";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -66,7 +68,7 @@ namespace BGGallery.UIS.Main
             // 
             this.toolStripMenuItemRename.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.toolStripMenuItemRename.Name = "toolStripMenuItemRename";
-            this.toolStripMenuItemRename.Size = new System.Drawing.Size(134, 24);
+            this.toolStripMenuItemRename.Size = new System.Drawing.Size(180, 24);
             this.toolStripMenuItemRename.Text = "重命名";
             this.toolStripMenuItemRename.Click += new System.EventHandler(this.toolStripMenuItemRename_Click);
             // 
@@ -75,9 +77,17 @@ namespace BGGallery.UIS.Main
             this.toolStripMenuItemRemove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.toolStripMenuItemRemove.ForeColor = System.Drawing.Color.IndianRed;
             this.toolStripMenuItemRemove.Name = "toolStripMenuItemRemove";
-            this.toolStripMenuItemRemove.Size = new System.Drawing.Size(134, 24);
+            this.toolStripMenuItemRemove.Size = new System.Drawing.Size(180, 24);
             this.toolStripMenuItemRemove.Text = "删除";
             this.toolStripMenuItemRemove.Click += new System.EventHandler(this.toolStripMenuItemRemove_Click);
+            // 
+            // toolStripMenuItemNavi
+            // 
+            this.toolStripMenuItemNavi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.toolStripMenuItemNavi.Name = "toolStripMenuItemNavi";
+            this.toolStripMenuItemNavi.Size = new System.Drawing.Size(180, 24);
+            this.toolStripMenuItemNavi.Text = "打开路径";
+            this.toolStripMenuItemNavi.Click += new System.EventHandler(this.toolStripMenuItemNavi_Click);
             // 
             // UCImageGalleryItem
             // 
@@ -103,5 +113,6 @@ namespace BGGallery.UIS.Main
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRename;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRemove;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNavi;
     }
 }

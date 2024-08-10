@@ -615,15 +615,31 @@ namespace BGGallery
                     xoff += 24;
                 }
 
-                e.Graphics.DrawString(e.SubItem.Text, listView1.Font, Brushes.White, e.Bounds.X + 4 + xoff, e.Bounds.Y + 5);
+                var textColor = Brushes.White;
+                if (itemInfo.ColumnId == 0 || itemInfo.CatalogId == 0)
+                {
+                    tags.Add("未分类");
+                    textColor = Brushes.DimGray;
+                }
+                if (itemInfo.BuyInfo != null)
+                {
+                    if (itemInfo.BuyInfo.Contains("未到货"))
+                    {
+                        textColor = Brushes.DimGray;
+                        tags.Add("未到货");
+                    }
+                    else if (itemInfo.BuyInfo.Contains("已卖出"))
+                    {
+                        textColor = Brushes.DimGray;
+                        tags.Add("已卖出");
+                    }
+                }
+
+                e.Graphics.DrawString(e.SubItem.Text, listView1.Font, textColor, e.Bounds.X + 4 + xoff, e.Bounds.Y + 5);
                 // 获取文本的大小
                 SizeF textSize1 = e.Graphics.MeasureString(e.SubItem.Text, listView1.Font);
                 xoff += (int)textSize1.Width;
 
-                if (itemInfo.ColumnId == 0)
-                    tags.Add("未分类");
-                if (itemInfo.BuyInfo != null && itemInfo.BuyInfo.Contains("未到货"))
-                    tags.Add("未到货");
                 foreach (string word in tags)
                 {
                     // 获取文本框的大小

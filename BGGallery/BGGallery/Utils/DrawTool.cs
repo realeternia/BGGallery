@@ -75,13 +75,14 @@ namespace BGGallery.Utils
             switch(word)
             {
                 case "存档": return Brushes.DarkRed;
-                case "未分类": return Brushes.DimGray;
-                case "未到货": return Brushes.Red;
+                case "未分类": return Brushes.Orange;
+                case "未到货": return Brushes.Cyan;
+                case "已卖出": return Brushes.Red;
                 case "汇总": return Brushes.MediumPurple;
                 case "加密": return Brushes.OrangeRed;
 
                 case "美式": return Brushes.Brown;
-                case "德式": return Brushes.DimGray;
+                case "德式": return Brushes.LightGoldenrodYellow;
                 case "聚会": return Brushes.CadetBlue;
                 case "卡牌": return Brushes.DarkOrange;
             }
