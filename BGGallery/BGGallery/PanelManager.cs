@@ -17,7 +17,8 @@ namespace BGGallery
         private UCIconPicker iconPicker;
         private UCNInput inputPanel;
         private UCBigBox bigBox;
-        private UCSettingBar setupBar;
+        private UCSettingPanel setupPanel;
+        private UCStatPanel statPanel;
         private InputTextBox inputBox;
         private InputNumberBox numberBox;
         private InputArrayBox arrayBox;
@@ -115,13 +116,24 @@ namespace BGGallery
 
         public void ShowSetup()
         {
-            if (setupBar == null)
+            if (setupPanel == null)
             {
-                setupBar = new UCSettingBar();
-                setupBar.Init();
+                setupPanel = new UCSettingPanel();
+                setupPanel.Init();
             }
 
-            ShowBlackPanel(setupBar, 0, 0);
+            ShowBlackPanel(setupPanel, 0, 0);
+        }
+
+        public void ShowStat()
+        {
+            if (statPanel == null)
+            {
+                statPanel = new UCStatPanel();
+                statPanel.Init();
+            }
+
+            ShowBlackPanel(statPanel, 0, 0);
         }
 
         public void ShowInputBox(string str, Action<string> callback)

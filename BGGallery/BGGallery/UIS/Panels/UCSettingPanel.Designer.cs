@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace BGGallery.UIS
 {
-    partial class UCSettingBar
+    partial class UCSettingPanel
     {
         /// <summary> 
         /// 必需的设计器变量。

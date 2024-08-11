@@ -216,11 +216,17 @@
     <Compile Include="UIS\Panels\UCNInput.Designer.cs">
       <DependentUpon>UCNInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIS\Panels\UCSettingBar.cs">
+    <Compile Include="UIS\Panels\UCStatPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIS\Panels\UCSettingBar.Designer.cs">
-      <DependentUpon>UCSettingBar.cs</DependentUpon>
+    <Compile Include="UIS\Panels\UCStatPanel.Designer.cs">
+      <DependentUpon>UCStatPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCSettingPanel.Designer.cs">
+      <DependentUpon>UCSettingPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\RJControls\Forms\FormButton.cs">
       <SubType>Form</SubType>
@@ -538,8 +544,11 @@
     <EmbeddedResource Include="UIS\Panels\UCNInput.resx">
       <DependentUpon>UCNInput.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIS\Panels\UCSettingBar.resx">
-      <DependentUpon>UCSettingBar.cs</DependentUpon>
+    <EmbeddedResource Include="UIS\Panels\UCStatPanel.resx">
+      <DependentUpon>UCStatPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCSettingPanel.resx">
+      <DependentUpon>UCSettingPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCSearch.resx">
       <DependentUpon>UCSearch.cs</DependentUpon>
@@ -639,6 +648,7 @@
     <None Include="Resources\null.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\stat.png" />
     <None Include="Resources\time.png" />
     <None Include="Resources\starn.png" />
     <None Include="Resources\starn1.png" />

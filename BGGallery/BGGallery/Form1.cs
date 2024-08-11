@@ -836,5 +836,9 @@ namespace BGGallery
             ucListSelectBar2.Invalidate();
         }
 
+        private void ucCatalogFixStat_Click(object sender, EventArgs e)
+        {
+            PanelManager.Instance.ShowStat();
+        }
     }
 }

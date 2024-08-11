@@ -35,6 +35,7 @@ namespace BGGallery
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ucCatalogFixStat = new BGGallery.UCCatalogFix();
             this.ucCatalogNew = new BGGallery.UCCatalogFix();
             this.ucCatalogSearch = new BGGallery.UCCatalogFix();
             this.ucCatalogSetup = new BGGallery.UCCatalogFix();
@@ -109,6 +110,7 @@ namespace BGGallery
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.ucCatalogFixStat);
             this.splitContainer1.Panel1.Controls.Add(this.ucCatalogNew);
             this.splitContainer1.Panel1.Controls.Add(this.ucCatalogSearch);
             this.splitContainer1.Panel1.Controls.Add(this.ucCatalogSetup);
@@ -121,12 +123,26 @@ namespace BGGallery
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 3;
             // 
+            // ucCatalogFixStat
+            // 
+            this.ucCatalogFixStat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.ucCatalogFixStat.Font = new System.Drawing.Font("微软雅黑", 10.5F);
+            this.ucCatalogFixStat.ForeColor = System.Drawing.Color.DarkGray;
+            this.ucCatalogFixStat.Location = new System.Drawing.Point(0, 80);
+            this.ucCatalogFixStat.Margin = new System.Windows.Forms.Padding(0);
+            this.ucCatalogFixStat.Name = "ucCatalogFixStat";
+            this.ucCatalogFixStat.PicImg = global::BGGallery.Properties.Resources.stat;
+            this.ucCatalogFixStat.Size = new System.Drawing.Size(240, 38);
+            this.ucCatalogFixStat.TabIndex = 4;
+            this.ucCatalogFixStat.Title = "统计";
+            this.ucCatalogFixStat.Click += new System.EventHandler(this.ucCatalogFixStat_Click);
+            // 
             // ucCatalogNew
             // 
             this.ucCatalogNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
             this.ucCatalogNew.Font = new System.Drawing.Font("微软雅黑", 10.5F);
             this.ucCatalogNew.ForeColor = System.Drawing.Color.DarkGray;
-            this.ucCatalogNew.Location = new System.Drawing.Point(0, 80);
+            this.ucCatalogNew.Location = new System.Drawing.Point(0, 119);
             this.ucCatalogNew.Margin = new System.Windows.Forms.Padding(0);
             this.ucCatalogNew.Name = "ucCatalogNew";
             this.ucCatalogNew.PicImg = global::BGGallery.Properties.Resources.noteadd;
@@ -168,10 +184,10 @@ namespace BGGallery
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 120);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 161);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 960);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 919);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // splitContainer2
@@ -690,6 +706,7 @@ namespace BGGallery
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
+        private UCCatalogFix ucCatalogFixStat;
     }
 }
 

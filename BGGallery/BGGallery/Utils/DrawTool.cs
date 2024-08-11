@@ -82,7 +82,7 @@ namespace BGGallery.Utils
                 case "加密": return Brushes.OrangeRed;
 
                 case "美式": return Brushes.Brown;
-                case "德式": return Brushes.LightGoldenrodYellow;
+                case "德式": return Brushes.DarkGreen;
                 case "聚会": return Brushes.CadetBlue;
                 case "卡牌": return Brushes.DarkOrange;
             }

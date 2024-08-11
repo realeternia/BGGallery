@@ -8,13 +8,13 @@ using System.Windows.Forms;
 
 namespace BGGallery.UIS
 {
-    public partial class UCSettingBar : UserControl
+    public partial class UCSettingPanel : UserControl
     {
         private List<Control> cachedControls = new List<Control>();
         private HashSet<string> catalogs = new HashSet<string>();
         private UCSettingItem nowSettingCtr;
 
-        public UCSettingBar()
+        public UCSettingPanel()
         {
             InitializeComponent();
 
