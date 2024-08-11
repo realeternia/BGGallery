@@ -25,8 +25,8 @@ namespace BGGallery.UIS.Panels
             var nowYear = DateTime.Now.Year;
             AddLine("", "今年数量", BGBook.Instance.Items.FindAll(a => a.BuyInfo != null && a.BuyInfo.Contains(nowYear.ToString())).Count.ToString());
             AddLine("", "去年数量", BGBook.Instance.Items.FindAll(a => a.BuyInfo != null && a.BuyInfo.Contains((nowYear - 1).ToString())).Count.ToString());
-            AddLine("", "今年花费", "￥" + SumMoney(nowYear).ToString());
-            AddLine("", "去年花费", "￥" + SumMoney(nowYear - 1).ToString());
+            AddLine("", "今年花费", "￥" + SumMoney(nowYear.ToString()).ToString());
+            AddLine("", "去年花费", "￥" + SumMoney((nowYear - 1).ToString()).ToString());
             AddLine("评分", "", "");
             AddLine("", "90+", BGBook.Instance.Items.FindAll(a => a.Star >= 90).Count.ToString());
             AddLine("", "80+", BGBook.Instance.Items.FindAll(a => a.Star >= 80 && a.Star < 90).Count.ToString());
@@ -35,18 +35,18 @@ namespace BGGallery.UIS.Panels
             AddLine("", "未打分", BGBook.Instance.Items.FindAll(a => a.Star == 0).Count.ToString());
         }
 
-        private static decimal SumMoney(int nowYear)
+        public static float SumMoney(string buyInfo)
         {
-            decimal totalMoney = BGBook.Instance.Items
-                .Where(item => item.BuyInfo != null && item.BuyInfo.Contains(nowYear.ToString())) // 确保BuyInfo不为null  
+            float totalMoney = BGBook.Instance.Items
+                .Where(item => item.BuyInfo != null && item.BuyInfo.Contains(buyInfo)) // 确保BuyInfo不为null  
                 .Select(item =>
                 {
                     // 假设BuyInfo是一个以逗号分隔的字符串，我们尝试找到以￥开头的价格  
                     var priceParts = item.BuyInfo.Split(',');
-                    decimal price = 0m;
+                    float price = 0f;
                     foreach (var part in priceParts)
                     {
-                        if (part.StartsWith("￥") && decimal.TryParse(part.Substring(1), out decimal tempPrice))
+                        if (part.StartsWith("￥") && float.TryParse(part.Substring(1), out float tempPrice))
                         {
                             // 检查这个价格是否属于当前年份（这里需要额外的逻辑来确认，但基于你的原始问题，我们假设所有找到的价格都符合条件）  
                             // 由于题目没有提供具体的年份与价格的关联方式，这里我们假设所有找到的价格都有效  

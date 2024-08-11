@@ -335,6 +335,12 @@
     <Compile Include="UIS\SetupComp\UCSetupStringItem.Designer.cs">
       <DependentUpon>UCSetupStringItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\UCMemChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\UCMemChart.Designer.cs">
+      <DependentUpon>UCMemChart.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\ViewStack.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -624,6 +630,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\DocComp\UCDocStringItem.resx">
       <DependentUpon>UCDocStringItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\UCMemChart.resx">
+      <DependentUpon>UCMemChart.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />

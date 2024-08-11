@@ -24,7 +24,7 @@ namespace BGGallery.UIS
 
         public void Init()
         {
-            catalogs = new List<string>() { "概况", "其他" };
+            catalogs = new List<string>() { "概况", "购买信息" };
 
             int index = 0;
             UCSettingItem firstItem = null;
@@ -74,14 +74,47 @@ namespace BGGallery.UIS
             {
                 uc = new UCStatTotal();
                 (uc as UCStatTotal).Init();
-            }
-            if(uc != null)
-            {
-             //   uc.Dock = DockStyle.Fill;
-                panel1.Controls.Add(uc);
-                uc.Location = new Point(0, 90);
                 uc.Width = panel1.Width;
                 uc.Height = panel1.Height - 90;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(0, 90);
+            }
+            else if (cat == "购买信息")
+            {
+                List<string> xData = new List<string>();
+                List<float> yData = new List<float>();
+                for (int i = 2019; i <= 2024; i++)
+                {
+                    xData.Add(i.ToString());
+                    yData.Add(UCStatTotal.SumMoney(i.ToString()));
+                }
+                uc = new UCMemChart();
+                uc.BackColor = Color.FromArgb(16,24,16);
+                (uc as UCMemChart).InitBars("年购买支付（元）", xData.ToArray(), yData.ToArray());
+                uc.Width = panel1.Width - 160;
+                uc.Height = 220;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(60, 90);
+
+                xData.Clear();
+                yData.Clear();
+                for (int year = 2019; year <= 2024; year++)
+                {
+                    for (int month = 1; month <= 12; month++)
+                    {
+                        string monthStr = month.ToString("D2"); // 确保月份是两位数（如 "01" 而不是 "1"）
+                        monthStr = $"{year}-{monthStr}";
+                        xData.Add(month == 1 ? year.ToString() : month.ToString());
+                        yData.Add(UCStatTotal.SumMoney(monthStr));
+                    }
+                }
+                uc = new UCMemChart();
+                uc.BackColor = Color.FromArgb(16, 24, 16);
+                (uc as UCMemChart).InitBars("月购买支付（元）", xData.ToArray(), yData.ToArray());
+                uc.Width = panel1.Width - 160;
+                uc.Height = 220;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(60, 90 + 220 + 20);
             }
 
             panel1.ResumeLayout();
