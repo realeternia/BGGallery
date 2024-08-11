@@ -228,6 +228,12 @@
     <Compile Include="UIS\Panels\UCSettingPanel.Designer.cs">
       <DependentUpon>UCSettingPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\UCStatTotal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCStatTotal.Designer.cs">
+      <DependentUpon>UCStatTotal.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\RJControls\Forms\FormButton.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -564,6 +570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputTextBox.resx">
       <DependentUpon>InputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCStatTotal.resx">
+      <DependentUpon>UCStatTotal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\RJControls\Forms\FormButton.resx">
       <DependentUpon>FormButton.cs</DependentUpon>

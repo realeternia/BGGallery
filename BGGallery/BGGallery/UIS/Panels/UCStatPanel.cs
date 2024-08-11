@@ -1,5 +1,6 @@
 ﻿using BGGallery.Model;
 using BGGallery.Model.Types;
+using BGGallery.UIS.Panels;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -31,7 +32,7 @@ namespace BGGallery.UIS
             {
                 var settingItem = new UCSettingItem();
                 settingItem.Title = cat;
-                settingItem.Width = 247;
+                settingItem.Width = Width - panel1.Width;
                 settingItem.Location = new Point(1, index * 40 + 50);
                 settingItem.Click += CatalogItem_Click;
                 Controls.Add(settingItem);
@@ -68,15 +69,21 @@ namespace BGGallery.UIS
             panel1.SuspendLayout();
             panel1.Controls.Clear();
 
-            foreach(var ctr in cachedControls)
+            UserControl uc = null;
+            if(cat == "概况")
             {
-                if(ctr.Tag.ToString() == cat)
-                {
-                    ctr.Location = new Point(0, 90 + panel1.Controls.Count * 70);
-                    panel1.Controls.Add(ctr);
-                }
+                uc = new UCStatTotal();
+                (uc as UCStatTotal).Init();
             }
-            panel1.Height = panel1.Controls.Count * 70 + 90;
+            if(uc != null)
+            {
+             //   uc.Dock = DockStyle.Fill;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(0, 90);
+                uc.Width = panel1.Width;
+                uc.Height = panel1.Height - 90;
+            }
+
             panel1.ResumeLayout();
 
             panel1.Invalidate(new Rectangle(0, 0, 870, 100));
