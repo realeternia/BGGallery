@@ -14,7 +14,8 @@ namespace BGGallery.UIS.Panels
 
         public void Init()
         {
-            AddLine("桌游总计", "总计", BGBook.Instance.Items.Count.ToString());
+            AddLine("桌游总计", "数量", BGBook.Instance.Items.Count.ToString());
+            AddLine("", "花费", "￥" + SumMoney("").ToString());
             AddLine("", "未到货", BGBook.Instance.Items.FindAll(a => a.BuyInfo != null && a.BuyInfo.Contains("未到货")).Count.ToString());
             AddLine("", "已卖出", "-" + BGBook.Instance.Items.FindAll(a => a.BuyInfo != null && a.BuyInfo.Contains("已卖出")).Count.ToString());
             AddLine("", "已攻略", BGBook.Instance.Items.FindAll(a => a.Parm != null && a.Parm.Contains("wcount")).Count.ToString());

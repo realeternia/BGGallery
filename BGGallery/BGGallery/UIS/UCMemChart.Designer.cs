@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.doubleBufferedPanel1 = new BGGallery.UIS.DoubleBufferedPanel();
             this.SuspendLayout();
+            // 
+            // doubleBufferedPanel1
+            // 
+            this.doubleBufferedPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.doubleBufferedPanel1.Location = new System.Drawing.Point(0, 0);
+            this.doubleBufferedPanel1.Name = "doubleBufferedPanel1";
+            this.doubleBufferedPanel1.Size = new System.Drawing.Size(200, 593);
+            this.doubleBufferedPanel1.TabIndex = 0;
+            this.doubleBufferedPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.UCMemChart_Paint);
             // 
             // UCMemChart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.Controls.Add(this.doubleBufferedPanel1);
             this.Name = "UCMemChart";
             this.Size = new System.Drawing.Size(846, 593);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.UCMemChart_Paint);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private DoubleBufferedPanel doubleBufferedPanel1;
     }
 }

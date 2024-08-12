@@ -10,6 +10,8 @@ namespace BGGallery.UIS
         public string[] XData;
         public float[] YData;
 
+        private int barWidth;
+
         public UCMemChart()
         {
             InitializeComponent();
@@ -20,6 +22,15 @@ namespace BGGallery.UIS
             chartName = name;
             XData = xData;
             YData = yData;
+
+            barWidth = this.Width / (XData.Length * 5 / 4);  // 减去一些间距  
+            if (barWidth > 30)
+                barWidth = 30;
+            if (barWidth < 12)
+                barWidth = 12;
+            int barSpacing = barWidth / 4;
+
+            doubleBufferedPanel1.Width = (barWidth + barSpacing) * xData.Length + 30;
         }
 
         private void UCMemChart_Paint(object sender, PaintEventArgs e)
@@ -32,16 +43,10 @@ namespace BGGallery.UIS
 
             g.DrawString(chartName, this.Font, Brushes.White, new PointF(5, 5));
 
-            // 计算柱状的宽度、高度和间距  
-            int barWidth = this.Width / (XData.Length * 5/4 );  // 减去一些间距  
-            if(barWidth > 30)
-                barWidth = 30;
-            if (barWidth < 12)
-                barWidth = 12;
             int barSpacing = barWidth / 4;
             int xStart = 20 + barSpacing;
             int maxY = (int)YData.Max();
-            var heightTotal = Height - 20 - 20;
+            var heightTotal = Height - 20 - 20 - 20;
 
             for (int i = 0; i < XData.Length; i++)
             {
@@ -53,7 +58,7 @@ namespace BGGallery.UIS
                 // 绘制X轴标签（可选）  
                 string label = XData[i];
                 SizeF labelSize = g.MeasureString(label, this.Font);
-                g.DrawString(label, this.Font, Brushes.White, new PointF(barRect.Left + (barRect.Width - labelSize.Width) / 2, heightTotal + 20 - barSpacing / 2));
+                g.DrawString(label, this.Font, Brushes.White, new PointF(barRect.Left + (barRect.Width - labelSize.Width) / 2, heightTotal + 20 - barSpacing / 2 + 3));
 
                 label = YData[i].ToString();
                 labelSize = g.MeasureString(label, this.Font);

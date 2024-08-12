@@ -104,7 +104,12 @@ namespace BGGallery.UIS
                     {
                         string monthStr = month.ToString("D2"); // 确保月份是两位数（如 "01" 而不是 "1"）
                         monthStr = $"{year}-{monthStr}";
-                        xData.Add(month == 1 ? year.ToString() : month.ToString());
+                        if (month == 1)
+                            xData.Add(year.ToString());
+                        else if (month == 5 || month == 9)
+                            xData.Add(month.ToString());
+                        else
+                            xData.Add("");
                         yData.Add(UCStatTotal.SumMoney(monthStr));
                     }
                 }
