@@ -182,11 +182,11 @@
     <Compile Include="UIS\Panels\UCEditImage.Designer.cs">
       <DependentUpon>UCEditImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIS\Panels\UCGmRunSvTime.cs">
+    <Compile Include="UIS\Panels\UCEditTime.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UIS\Panels\UCGmRunSvTime.designer.cs">
-      <DependentUpon>UCGmRunSvTime.cs</DependentUpon>
+    <Compile Include="UIS\Panels\UCEditTime.designer.cs">
+      <DependentUpon>UCEditTime.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\Panels\UCBigBox.cs">
       <SubType>UserControl</SubType>
@@ -531,14 +531,14 @@
     <EmbeddedResource Include="UIS\Panels\UCEditImage.resx">
       <DependentUpon>UCEditImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UIS\Panels\UCGmRunSvTime.resx">
-      <DependentUpon>UCGmRunSvTime.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCBigBox.resx">
       <DependentUpon>UCBigBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCAddBG.resx">
       <DependentUpon>UCAddBG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCEditTime.resx">
+      <DependentUpon>UCEditTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCSettingItem.resx">
       <DependentUpon>UCSettingItem.cs</DependentUpon>

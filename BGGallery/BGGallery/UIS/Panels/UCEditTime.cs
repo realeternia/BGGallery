@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace BGGallery.UIS.Panels
 {
-    public partial class UCGmRunSvTime : UserControl
+    public partial class UCEditTime : UserControl
     {
-        public Action<string> AfterSelect;
+        public Action<uint> AfterSelect;
 
-        public UCGmRunSvTime()
+        public UCEditTime()
         {
             InitializeComponent();
             DoubleBuffered = true;
@@ -20,6 +20,7 @@ namespace BGGallery.UIS.Panels
                 if (control is TextBox)
                     control.KeyUp += TextBox_KeyDown;
             }
+            Panels.PanelBorders.InitBorder(this);
         }
 
 
@@ -101,7 +102,7 @@ namespace BGGallery.UIS.Panels
              , int.Parse(textBoxHour.Text), 0, 0);
 
             if (AfterSelect != null)
-                AfterSelect((rjToggleButtonIsddl.Checked ? "ddl " : "time ") + TimeTool.FormatTime(nowDate));
+                AfterSelect(TimeTool.DateTimeToUnixTime(nowDate));
 
             PanelManager.Instance.HideBlackPanel();
         }
@@ -112,7 +113,7 @@ namespace BGGallery.UIS.Panels
             {
                 case Keys.Escape:
                     if (AfterSelect != null)
-                        AfterSelect("");
+                        AfterSelect(0);
                     PanelManager.Instance.HideBlackPanel();
                     break;
             }
@@ -124,7 +125,7 @@ namespace BGGallery.UIS.Panels
             {
                 case Keys.Escape:
                     if (AfterSelect != null)
-                        AfterSelect("");
+                        AfterSelect(0);
                     PanelManager.Instance.HideBlackPanel();
                     break;
             }

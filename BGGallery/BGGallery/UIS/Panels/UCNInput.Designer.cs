@@ -40,9 +40,9 @@ namespace BGGallery.UIS.Panels
             this.textBoxText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxText.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.textBoxText.ForeColor = System.Drawing.Color.White;
-            this.textBoxText.Location = new System.Drawing.Point(5, 285);
+            this.textBoxText.Location = new System.Drawing.Point(5, 290);
             this.textBoxText.Name = "textBoxText";
-            this.textBoxText.Size = new System.Drawing.Size(151, 34);
+            this.textBoxText.Size = new System.Drawing.Size(151, 29);
             this.textBoxText.TabIndex = 3;
             this.textBoxText.TextChanged += new System.EventHandler(this.textBoxText_TextChanged);
             this.textBoxText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -55,7 +55,7 @@ namespace BGGallery.UIS.Panels
             this.listBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
             this.listBox1.ForeColor = System.Drawing.Color.White;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 27;
+            this.listBox1.ItemHeight = 21;
             this.listBox1.Items.AddRange(new object[] {
             "啊",
             "a2",
@@ -69,7 +69,7 @@ namespace BGGallery.UIS.Panels
             "a2"});
             this.listBox1.Location = new System.Drawing.Point(5, 5);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(200, 272);
+            this.listBox1.Size = new System.Drawing.Size(200, 275);
             this.listBox1.TabIndex = 4;
             this.listBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseClick);
             // 
@@ -79,7 +79,7 @@ namespace BGGallery.UIS.Panels
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOk.Font = new System.Drawing.Font("宋体", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonOk.ForeColor = System.Drawing.Color.Gainsboro;
-            this.buttonOk.Location = new System.Drawing.Point(162, 283);
+            this.buttonOk.Location = new System.Drawing.Point(162, 284);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(42, 39);
             this.buttonOk.TabIndex = 5;
@@ -89,7 +89,6 @@ namespace BGGallery.UIS.Panels
             // 
             // UCNInput
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

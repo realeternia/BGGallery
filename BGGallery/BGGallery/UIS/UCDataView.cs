@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BGGallery.Utils;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -250,7 +251,6 @@ namespace BGGallery.UIs
 
             dataGridView1.CellValueChanged += DataGridView1_CellValueChanged;
             dataGridView1.CurrentCellDirtyStateChanged += DataGridView1_CurrentCellDirtyStateChanged;
-            dataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
         }
 
         private void DataGridView1_CurrentCellDirtyStateChanged(object sender, System.EventArgs e)
@@ -440,10 +440,10 @@ namespace BGGallery.UIs
                     cell.Tag = cell.Value;
                 }
 
-                if (tube.BgColor != Color.White)
-                {
-                    lastRow.DefaultCellStyle.BackColor = tube.BgColor;
-                }
+                //if (tube.BgColor != Color.White)
+                //{
+                //    lastRow.DefaultCellStyle.BackColor = tube.BgColor;
+                //}
                 lastRow.DefaultCellStyle.ForeColor = Color.Black;
             }
 
@@ -461,17 +461,6 @@ namespace BGGallery.UIs
             return columnNameList.IndexOf(columnName);
         }
 
-        public bool HasKey(string idStr)
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Cells[0].Value.ToString() == idStr)
-                    return true;
-            }
-
-            return false;
-        }
-
         public void Sort()
         {
             dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
@@ -486,54 +475,8 @@ namespace BGGallery.UIs
             var tipName = GetTag(columnName);
             var colType = GetColType(columnName);
 
-            if (col.ReadOnly)
-            {
-                if (col.ReadOnly && colType != OptiControlTypes.Button)
-                    return;
-            }
-
-            if (columnName == "commit")
-            {
-                HashSet<string> sidSet = new HashSet<string>();
-                foreach (var row in dataGridView1.Rows)
-                {
-                    var idV = (string)((DataGridViewRow)row).Cells[0].Value.ToString();
-                    if (sidSet.Contains(idV))
-                    {
-                      //  Log.Error("编辑", "修改失败，已存在相同sid" + idV);
-                        return;
-                    }
-
-                    sidSet.Add(idV);
-                }
-
-                OptiDataTube tube = new OptiDataTube();
-                foreach (var cell1 in dataGridView1.Rows[e.RowIndex].Cells)
-                {
-                    DataGridViewCell cell2 = cell1 as DataGridViewCell;
-                    cell2.Tag = cell2.Value;
-                    cell2.Style.BackColor = Color.Empty;
-                }
-
-                var newId = tube.GetId();
-                if (!string.IsNullOrEmpty(newId))
-                {
-                    var target = dataTubeList.Find(a => a.GetId() == newId);
-                    target.Set(tube);
-                }
-            }
-            if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
-            {
-                if (OnButtonClick != null)
-                    OnButtonClick(new OptiRowDataAgent(dataGridView1.Rows[e.RowIndex], columnNameList), e.RowIndex, e.ColumnIndex, columnName);
-            }
-
-            if (noModify)
-                return;
-
-            if (e.RowIndex >= dataGridView1.Rows.Count)
-                return;
-            DataGridViewCell cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            if (OnButtonClick != null)
+                OnButtonClick(new OptiRowDataAgent(dataGridView1.Rows[e.RowIndex], columnNameList), e.RowIndex, e.ColumnIndex, columnName);
         }
 
 
@@ -586,7 +529,7 @@ namespace BGGallery.UIs
             var selectCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
             var cellBgColor = e.CellStyle.BackColor;
             if (colorBarInterval > 0 && (e.RowIndex % colorBarInterval) == 0)
-                cellBgColor = Color.LightGoldenrodYellow;
+                cellBgColor = Color.LightBlue;
             if (selectCell.Selected)
                 cellBgColor = e.CellStyle.SelectionBackColor;
           
@@ -597,15 +540,22 @@ namespace BGGallery.UIs
             Font font = dataGridView1.Font;
             if (tipName == OptiTagTypes.Time)
             {
-                var time = (uint)(long.Parse(e.Value.ToString()) / 1000);
+                var time = uint.Parse(e.Value.ToString());
                 if (time <= 0)
                 {
                     e.Graphics.DrawString("-", font, Brushes.Black, e.CellBounds.X + 5, e.CellBounds.Y + 5);
                 }
                 else
                 {
-                    //var dt = TimeTool.UnixTimeToDateTime(time);
-                    //e.Graphics.DrawString(dt.ToString(), font, Brushes.Black, e.CellBounds.X + 5, e.CellBounds.Y + 5);
+                    if (time < 86400 * 365)
+                    {
+                        e.Graphics.DrawString((time / 60).ToString() + "分", font, Brushes.Black, e.CellBounds.X + 5, e.CellBounds.Y + 5);
+                    }
+                    else
+                    {
+                        var dt = TimeTool.UnixTimeToDateTime(time);
+                        e.Graphics.DrawString(dt.ToString(), font, Brushes.Black, e.CellBounds.X + 5, e.CellBounds.Y + 5);
+                    }
                 }
             }
             else if(OnCellDraw != null && OnCellDraw(e, columnName, e.Value == null ? "" : e.Value.ToString()))
@@ -614,16 +564,7 @@ namespace BGGallery.UIs
             }
             else
             {
-                if (e.Value == null || string.IsNullOrEmpty(e.Value.ToString()))
-                {
-                    using (var b = new SolidBrush(Color.FromArgb(188, Color.DarkGray)))
-                        e.Graphics.FillRectangle(b, e.CellBounds);
-                }
-                else
-                {
-                    e.PaintContent(e.CellBounds);//画内容
-                }
-                
+                e.PaintContent(e.CellBounds);//画内容
             }
             e.Handled = true;
         }
@@ -636,22 +577,10 @@ namespace BGGallery.UIs
 
         private void DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var editCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            editCell.Style.BackColor = Color.Pink;
+          //  var editCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+          //  editCell.Style.BackColor = Color.Pink;
             var column = dataGridView1.Columns[e.ColumnIndex];
             OnCellValueChange?.Invoke(new OptiRowDataAgent(dataGridView1.Rows[e.RowIndex], columnNameList), e.RowIndex, e.ColumnIndex, column.Name);
-        }
-
-        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // 只有只读时可以支持双击打开
-            if (!NoModify)
-                return;
-            using (var sw = new StreamWriter("tmp.txt"))
-            {
-                sw.WriteLine(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
-            }
-            System.Diagnostics.Process.Start("notepad.exe", "tmp.txt");
         }
 
         public void RefreshView()

@@ -24,7 +24,7 @@ namespace BGGallery
         private InputArrayBox arrayBox;
         private InputColorBox colorBox;
         private InputTextColorBox textColorBox;
-        private UCGmRunSvTime timePicker;
+        private UCEditTime timePicker;
         private UCAddBG addBG;
         private UCEditImage editImage;
         private KpImageViewer imageViewer;
@@ -211,17 +211,16 @@ namespace BGGallery
             textColorBox.OnInit();
         }
 
-        public void ShowTimeForm(int x, int y, Action<string> act)
+        public void ShowTimeForm(Action<uint> act)
         {
             if (timePicker == null)
             {
-                timePicker = new UCGmRunSvTime();
+                timePicker = new UCEditTime();
             }
 
             timePicker.AfterSelect = act;
 
-            ReLocate(ref x, ref y, timePicker.Size);
-            ShowBlackPanel(timePicker, x, y, 1);
+            ShowBlackPanel(timePicker, 0, 0);
             timePicker.OnInit();
         }
         public void ShowAddBG(string str, Action<GameInfo> callback)

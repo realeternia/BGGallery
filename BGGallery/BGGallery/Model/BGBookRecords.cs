@@ -9,7 +9,7 @@ namespace BGGallery.Model
             public int Id { get; set; }
             public int GameId { get; set; }
             public uint BeginTime { get; set; }
-            public uint LastSec { get; set; }
+            public string LastTime { get; set; }
             public string Details { get; set; }
         }
 

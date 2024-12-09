@@ -112,7 +112,6 @@ namespace Text_Editor
 
         private void ToolStripMenuItemTime_Click(object sender, EventArgs e)
         {
-            AddTime();
         }
 
         private void ToolStripMenuItemEmotion_Click(object sender, EventArgs e)
@@ -729,41 +728,6 @@ namespace Text_Editor
 
                     richTextBox1.Focus();
                     //DelayedActionExecutor.Trigger("choosetarget", 0.1f, () => richTextBox1.Focus()); //防止enter事件击穿
-                }
-            );
-        }
-
-
-        private void AddTime()
-        {
-            var pos = richTextBox1.SelectionStart;
-            Point cursorPosition = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart);
-
-            // 如果需要，将坐标转换为屏幕坐标
-            cursorPosition = richTextBox1.PointToScreen(cursorPosition);
-
-            PanelManager.Instance.ShowTimeForm(cursorPosition.X - ParentC.Location.X,
-                cursorPosition.Y - ParentC.Location.Y,
-                (timeStr) =>
-                {
-                    if (string.IsNullOrEmpty(timeStr))
-                    {
-                        richTextBox1.Focus();
-                        return;
-                    }
-
-                    RtfModifier.InsertString(richTextBox1, timeStr);
-
-                    RichtextSelect(pos, timeStr.Length);
-                    if (timeStr.Contains("ddl"))
-                        richTextBox1.SelectionColor = BGBook.Instance.Cfg.TimeDDLColor.ToColor(); //给名字变色
-                    else
-                        richTextBox1.SelectionColor = BGBook.Instance.Cfg.TimeCommonColor.ToColor(); //给名字变色
-
-                    RichtextSelect(pos + timeStr.Length, 0);
-                    richTextBox1.SelectionColor = richTextBox1.ForeColor;
-
-                    richTextBox1.Focus();
                 }
             );
         }
