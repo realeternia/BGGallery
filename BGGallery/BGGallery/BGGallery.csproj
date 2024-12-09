@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ENV.cs" />
+    <Compile Include="Model\BGBookRecords.cs" />
     <Compile Include="Model\BGColumnInfo.cs" />
     <Compile Include="Model\BGItemInfo.cs" />
     <Compile Include="Model\SetupItemDesAttribute.cs" />
