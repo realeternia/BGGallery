@@ -20,6 +20,7 @@ namespace BGGallery
         public int ColumnIndex = 100001;
         public int ItemIndex = 200001;
         public BGBookCfg Cfg = new BGBookCfg();
+        public BGBookRecords Records = new BGBookRecords();
 
         public void Save()
         {
