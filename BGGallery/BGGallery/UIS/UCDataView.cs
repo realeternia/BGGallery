@@ -138,7 +138,7 @@ namespace BGGallery.UIs
             public string GetValue(string name)
             {
                 var idx = columnNameList.IndexOf(name);
-                return (string)rowData.Cells[idx].Value;
+                return rowData.Cells[idx].Value.ToString();
             }
 
             public object GetTag(string name)
@@ -159,6 +159,7 @@ namespace BGGallery.UIs
             }
         }
 
+        public delegate void BGGNewEvt();
         public delegate bool BGGRowEvt(OptiRowDataAgent rowData, int rowIndex);
         public delegate bool BGGRowEvtDetail(OptiRowDataAgent rowData, int rowIndex, int columnIndex, string colName);
         public delegate bool BGGCellDraw(DataGridViewCellPaintingEventArgs g, string col, string value);
@@ -185,7 +186,9 @@ namespace BGGallery.UIs
         public BGGRowEvtDetail OnCellValueChange;
         public BGGCellDraw OnCellDraw;
         public BGGCellText OnCellText;
-      
+        public BGGNewEvt OnClickNew;
+        public BGGNewEvt OnSave;
+
         private Dictionary<string, OptiTagTypes> tags = new Dictionary<string, OptiTagTypes>(); //每个字段可以存一个tag
         private Dictionary<string, OptiControlTypes> types = new Dictionary<string, OptiControlTypes>(); //每个字段可以存一个type
 
@@ -367,6 +370,22 @@ namespace BGGallery.UIs
 
         public List<OptiDataTube> ExportData()
         {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                OptiDataTube tube = new OptiDataTube();
+                var dataAgent = new OptiRowDataAgent(dataGridView1.Rows[row.Index], columnNameList);
+                foreach (var colName in columnNameList)
+                {
+                    if (colName == "commit" || colName == "delete")
+                        continue;
+
+                    var val = dataAgent.GetValue(colName);
+                    tube.Add(colName, val);
+                }
+                var target = dataTubeList.Find(a => a.GetId() == tube.GetId());
+                target.Set(tube);
+            }
+
             return dataTubeList;
         }
 
@@ -376,14 +395,15 @@ namespace BGGallery.UIs
             UpdateView();
         }
 
+        public void ClearData()
+        {
+            dataTubeList.Clear();
+            UpdateView();
+        }
+
         private void Decorate(OptiDataTube datas)
         {
             datas.SetOrder(columnNameList);
-            if (!noModify && columnNameList.Contains("commit"))
-            {
-                datas.Add("commit", "修改");
-            }
-
             for (int i = datas.Count; i < columnNameList.Count; i++)
             {
                 datas.Add(columnNameList[i], name2HeaderDict[columnNameList[i]]);
@@ -424,6 +444,7 @@ namespace BGGallery.UIs
                 {
                     lastRow.DefaultCellStyle.BackColor = tube.BgColor;
                 }
+                lastRow.DefaultCellStyle.ForeColor = Color.Black;
             }
 
             if (dataGridView1.Rows.Count > 1)
@@ -476,7 +497,7 @@ namespace BGGallery.UIs
                 HashSet<string> sidSet = new HashSet<string>();
                 foreach (var row in dataGridView1.Rows)
                 {
-                    var idV = (string)((DataGridViewRow)row).Cells[0].Value;
+                    var idV = (string)((DataGridViewRow)row).Cells[0].Value.ToString();
                     if (sidSet.Contains(idV))
                     {
                       //  Log.Error("编辑", "修改失败，已存在相同sid" + idV);
@@ -651,6 +672,18 @@ namespace BGGallery.UIs
         public void SetTarget(int idx)
         {
             dataGridView1.FirstDisplayedScrollingRowIndex = idx;
+        }
+
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+            if (OnClickNew != null)
+                OnClickNew();
+        }
+
+        private void buttonSaveAll_Click(object sender, EventArgs e)
+        {
+            if (OnSave != null)
+                OnSave();
         }
     }
 }
