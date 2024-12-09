@@ -317,7 +317,7 @@ namespace BGGallery
             uckvList1.Init(itemInfo, 0);
            // dasayEditor1.Location = new Point(uckvList1.Location.X, uckvList1.Location.Y + uckvList1.Height);
             viewStack2.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height-45;
-            ucListSelectBar2.TabNames = string.Format("描述 {0:0.0}k|图片 {1} 张", (float)itemInfo.GetFileLength()/1024, itemInfo.GetImageCount());
+            ucListSelectBar2.TabNames = string.Format("描述 {0:0.0}k|图片 {1} 张|记录", (float)itemInfo.GetFileLength()/1024, itemInfo.GetImageCount());
             if (itemInfo.Expansions != null)
                 ucListSelectBar2.TempTabs = string.Join("|", itemInfo.Expansions);
             else
@@ -758,11 +758,17 @@ namespace BGGallery
                 viewStack2.SelectedIndex = idx;
                 imageGallery1.Init(nowRowItem);
             }
+            else if (idx == 2)
+            {
+                //todo
+                viewStack2.SelectedIndex = idx;
+                recordBox1.Init(nowRowItem);
+            }
             else
             {
                 viewStack2.SelectedIndex = 0;
-                dasayEditor1.LoadFile(nowRowItem, idx - 1);
-                uckvList1.SetExpIndex(idx - 1);
+                dasayEditor1.LoadFile(nowRowItem, idx - 2);
+                uckvList1.SetExpIndex(idx - 2);
             }
 
         }

@@ -65,6 +65,7 @@ namespace BGGallery
             this.dasayEditor1 = new Text_Editor.DasayEditor();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.imageGallery1 = new BGGallery.UIS.Main.ImageGallery();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panelBlack = new BGGallery.UIS.TransparentPanel();
             this.rjDropdownMenuCol = new RJControls.RJDropdownMenu(this.components);
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,6 +79,7 @@ namespace BGGallery
             this.toolStripMenuItemCata = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCryto = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordBox1 = new BGGallery.UIS.Main.RecordBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -95,6 +97,7 @@ namespace BGGallery
             this.viewStack2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.rjDropdownMenuCol.SuspendLayout();
             this.rjDropdownMenuCatlog.SuspendLayout();
             this.rjDropdownMenuRow.SuspendLayout();
@@ -429,9 +432,9 @@ namespace BGGallery
             this.ucListSelectBar2.Margin = new System.Windows.Forms.Padding(0);
             this.ucListSelectBar2.Name = "ucListSelectBar2";
             this.ucListSelectBar2.SelectedIndex = 0;
-            this.ucListSelectBar2.Size = new System.Drawing.Size(200, 35);
+            this.ucListSelectBar2.Size = new System.Drawing.Size(295, 35);
             this.ucListSelectBar2.TabIndex = 8;
-            this.ucListSelectBar2.TabNames = "说明|图片";
+            this.ucListSelectBar2.TabNames = "说明|图片|记录";
             this.ucListSelectBar2.TempTabs = null;
             // 
             // viewStack2
@@ -439,6 +442,7 @@ namespace BGGallery
             this.viewStack2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.viewStack2.Controls.Add(this.tabPage3);
             this.viewStack2.Controls.Add(this.tabPage4);
+            this.viewStack2.Controls.Add(this.tabPage5);
             this.viewStack2.Location = new System.Drawing.Point(3, 291);
             this.viewStack2.Name = "viewStack2";
             this.viewStack2.SelectedIndex = 0;
@@ -455,7 +459,7 @@ namespace BGGallery
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(483, 774);
             this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "tabPageMain";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dasayEditor1
@@ -477,7 +481,7 @@ namespace BGGallery
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(483, 774);
             this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "tabPagePic";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // imageGallery1
@@ -487,6 +491,17 @@ namespace BGGallery
             this.imageGallery1.Name = "imageGallery1";
             this.imageGallery1.Size = new System.Drawing.Size(477, 768);
             this.imageGallery1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.tabPage5.Controls.Add(this.recordBox1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(483, 774);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "tabPageRecord";
             // 
             // panelBlack
             // 
@@ -622,6 +637,16 @@ namespace BGGallery
             this.toolStripMenuItem2.Text = "删除";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.deleteToolStripMenuItemRow_Click);
             // 
+            // recordBox1
+            // 
+            this.recordBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+            this.recordBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recordBox1.Location = new System.Drawing.Point(3, 3);
+            this.recordBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.recordBox1.Name = "recordBox1";
+            this.recordBox1.Size = new System.Drawing.Size(477, 768);
+            this.recordBox1.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -655,6 +680,7 @@ namespace BGGallery
             this.viewStack2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.rjDropdownMenuCol.ResumeLayout(false);
             this.rjDropdownMenuCatlog.ResumeLayout(false);
             this.rjDropdownMenuRow.ResumeLayout(false);
@@ -707,6 +733,8 @@ namespace BGGallery
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
         private UCCatalogFix ucCatalogFixStat;
+        private System.Windows.Forms.TabPage tabPage5;
+        private UIS.Main.RecordBox recordBox1;
     }
 }
 

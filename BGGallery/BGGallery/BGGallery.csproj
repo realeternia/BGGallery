@@ -147,6 +147,12 @@
     <Compile Include="UIS\Main\ImageGallery.Designer.cs">
       <DependentUpon>ImageGallery.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Main\RecordBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Main\RecordBox.Designer.cs">
+      <DependentUpon>RecordBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\Main\UCImageGalleryItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -502,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Main\ImageGallery.resx">
       <DependentUpon>ImageGallery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Main\RecordBox.resx">
+      <DependentUpon>RecordBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Main\UCImageGalleryItem.resx">
       <DependentUpon>UCImageGalleryItem.cs</DependentUpon>
