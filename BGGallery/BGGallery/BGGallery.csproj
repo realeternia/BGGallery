@@ -350,6 +350,12 @@
     <Compile Include="UIS\ViewStack.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UIS\UCDataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\UCDataView.designer.cs">
+      <DependentUpon>UCDataView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\BGInfoSyncer.cs" />
     <Compile Include="Utils\CsvDb.cs" />
     <Compile Include="Utils\FileEncryption.cs" />
@@ -642,6 +648,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\UCMemChart.resx">
       <DependentUpon>UCMemChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\UCDataView.resx">
+      <DependentUpon>UCDataView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
