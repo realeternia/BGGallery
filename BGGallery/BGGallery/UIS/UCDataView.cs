@@ -142,11 +142,6 @@ namespace BGGallery.UIs
                 return rowData.Cells[idx].Value.ToString();
             }
 
-            public object GetTag(string name)
-            {
-                var idx = columnNameList.IndexOf(name);
-                return rowData.Cells[idx].Tag;
-            }
             public void SetValue(string name, string val)
             {
                 var idx = columnNameList.IndexOf(name);
@@ -434,12 +429,6 @@ namespace BGGallery.UIs
                 rowIndex2ListIndex[dataGridView1.Rows.Count] = i;
                 dataGridView1.Rows.Add(realDatas.ToArray());
                 var lastRow = dataGridView1.Rows[dataGridView1.Rows.Count - 1];
-                foreach (var lastRowCell in lastRow.Cells)
-                {
-                    var cell = (lastRowCell as DataGridViewCell);
-                    cell.Tag = cell.Value;
-                }
-
                 //if (tube.BgColor != Color.White)
                 //{
                 //    lastRow.DefaultCellStyle.BackColor = tube.BgColor;
@@ -472,8 +461,14 @@ namespace BGGallery.UIs
                 return;
             var col = dataGridView1.Columns[e.ColumnIndex];
             var columnName = col.Name;
-            var tipName = GetTag(columnName);
             var colType = GetColType(columnName);
+
+            if(columnName == "delete")
+            {
+                dataTubeList.RemoveAll(a => a.GetId() == dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                UpdateView();
+                return;
+            }
 
             if (OnButtonClick != null)
                 OnButtonClick(new OptiRowDataAgent(dataGridView1.Rows[e.RowIndex], columnNameList), e.RowIndex, e.ColumnIndex, columnName);

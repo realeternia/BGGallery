@@ -317,7 +317,14 @@ namespace BGGallery
             uckvList1.Init(itemInfo, 0);
            // dasayEditor1.Location = new Point(uckvList1.Location.X, uckvList1.Location.Y + uckvList1.Height);
             viewStack2.Height = splitContainer2.Panel2.Height - uckvList1.Location.Y - uckvList1.Height-45;
-            ucListSelectBar2.TabNames = string.Format("描述 {0:0.0}k|图片 {1} 张|记录", (float)itemInfo.GetFileLength()/1024, itemInfo.GetImageCount());
+
+            string description = (float)itemInfo.GetFileLength() / 1024 > 0 ? string.Format("描述 {0:0.0}k", (float)itemInfo.GetFileLength() / 1024) : "描述";
+            string images = itemInfo.GetImageCount() > 0 ? string.Format("图片 {0} 张", itemInfo.GetImageCount()) : "图片";
+            int recordCount = BGBook.Instance.Records.Records.FindAll(a => a.GameId == nowRowItem.Id).Count;
+            string records = recordCount > 0 ? string.Format("记录 {0} 条", recordCount) : "记录";
+
+            ucListSelectBar2.TabNames = string.Format("{0}|{1}|{2}", description, images, records);
+
             if (itemInfo.Expansions != null)
                 ucListSelectBar2.TempTabs = string.Join("|", itemInfo.Expansions);
             else
