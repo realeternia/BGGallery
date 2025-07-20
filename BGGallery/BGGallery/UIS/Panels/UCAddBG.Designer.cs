@@ -95,8 +95,10 @@ namespace BGGallery.UIS
             this.textBox1.ForeColor = System.Drawing.SystemColors.GrayText;
             this.textBox1.ForeColorDE = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(53, 18);
+            this.textBox1.MaxLength = 3276700;
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(578, 27);
+            this.textBox1.Size = new System.Drawing.Size(578, 43);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "输入搜索";
             this.textBox1.TrueText = "";

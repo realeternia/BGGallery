@@ -44,28 +44,25 @@ namespace BGGallery.UIS
 
         private void SearchAct()
         {
-            DelayedExecutor.Trigger("bgsearch", 0.3f, async () =>
+            listView1.Visible = false; //防止中途绘制出现奇怪问题
+            searchResults.Clear();
+            var searchTxt = textBox1.Text;
+            if (string.IsNullOrWhiteSpace(searchTxt))
             {
-                listView1.Visible = false; //防止中途绘制出现奇怪问题
-                searchResults.Clear();
-                var searchTxt = textBox1.Text;
-                if (string.IsNullOrWhiteSpace(searchTxt))
-                {
-                    listView1.VirtualListSize = 0;
-                    return;
-                }
+                listView1.VirtualListSize = 0;
+                return;
+            }
 
-                var results = await BGInfoSyncer.ExtractGameInfoAsync(searchTxt);
+            var results = BGInfoSyncer.ExtractGameInfoAsync(searchTxt);
 
-                foreach (var itemInfo in results)
-                {
-                    searchResults.Add(new SearchData { GameId = itemInfo.Id, Title = itemInfo.Title.ToString(), Info = itemInfo });
-                }
+            foreach (var itemInfo in results)
+            {
+                searchResults.Add(new SearchData { GameId = itemInfo.Id, Title = itemInfo.Title.ToString(), Info = itemInfo });
+            }
 
-                selectLine = null;
-                listView1.VirtualListSize = searchResults.Count;
-                listView1.Visible = true;
-            });
+            selectLine = null;
+            listView1.VirtualListSize = searchResults.Count;
+            listView1.Visible = true;
         }
 
         private void listView1_RetrieveVirtualItem(object sender, RetrieveVirtualItemEventArgs e)

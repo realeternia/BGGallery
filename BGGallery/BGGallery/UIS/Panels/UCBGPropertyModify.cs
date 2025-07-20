@@ -36,22 +36,26 @@ namespace BGGallery.UIS
             hintTextBoxPrice.TrueText = "";
             hintTextBoxBuyOther.TrueText = "";
 
-            var buyInfos = bGItemInfo.BuyInfo.Split(',');
-            List<string> otherInfos = new List<string>();
-            foreach(var buyInfo in buyInfos)
+            if (!string.IsNullOrEmpty(bGItemInfo.BuyInfo))
             {
-                if (buyInfo.StartsWith("2"))
-                    hintTextBoxBuyTime.TrueText = buyInfo;
-                else if (buyInfo.StartsWith("￥"))
-                    hintTextBoxPrice.TrueText = buyInfo;
-                else
+                var buyInfos = bGItemInfo.BuyInfo.Split(',');
+                List<string> otherInfos = new List<string>();
+                foreach (var buyInfo in buyInfos)
                 {
-                    if (!string.IsNullOrEmpty(buyInfo))
-                        otherInfos.Add(buyInfo);
+                    if (buyInfo.StartsWith("2"))
+                        hintTextBoxBuyTime.TrueText = buyInfo;
+                    else if (buyInfo.StartsWith("￥"))
+                        hintTextBoxPrice.TrueText = buyInfo;
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(buyInfo))
+                            otherInfos.Add(buyInfo);
+                    }
                 }
-            }
+
             if (otherInfos.Count > 0)
                 hintTextBoxBuyOther.TrueText = string.Join(",", otherInfos);
+            }
 
             hintTextBoxBuyTime.Focus();
 

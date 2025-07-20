@@ -24,7 +24,7 @@ namespace BGGallery.UIS
 
         public void Init()
         {
-            catalogs = new List<string>() { "概况", "购买信息" };
+            catalogs = new List<string>() { "概况", "购买信息", "游玩记录", "购买记录" };
 
             int index = 0;
             UCSettingItem firstItem = null;
@@ -83,7 +83,7 @@ namespace BGGallery.UIS
             {
                 List<string> xData = new List<string>();
                 List<float> yData = new List<float>();
-                for (int i = 2019; i <= 2024; i++)
+                for (int i = 2019; i <= 2025; i++)
                 {
                     xData.Add(i.ToString());
                     yData.Add(UCStatTotal.SumMoney(i.ToString()));
@@ -121,9 +121,26 @@ namespace BGGallery.UIS
                 panel1.Controls.Add(uc);
                 uc.Location = new Point(60, 90 + 220 + 20);
             }
+            else if (cat == "游玩记录")
+            {
+                uc = new UCStatPlayList();
+                (uc as UCStatPlayList).Init();
+                uc.Width = panel1.Width;
+                uc.Height = panel1.Height - 90;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(0, 90);
+            }
+            else if (cat == "购买记录")
+            {
+                uc = new UCStatBuyList();
+                (uc as UCStatBuyList).Init();
+                uc.Width = panel1.Width;
+                uc.Height = panel1.Height - 90;
+                panel1.Controls.Add(uc);
+                uc.Location = new Point(0, 90);
+            }
 
             panel1.ResumeLayout();
-
             panel1.Invalidate(new Rectangle(0, 0, 870, 100));
         }
 

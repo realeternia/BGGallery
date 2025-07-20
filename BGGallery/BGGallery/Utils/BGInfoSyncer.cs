@@ -9,13 +9,9 @@ namespace BGGallery.Utils
 {
     class BGInfoSyncer
     {
-        public static async Task<List<GameInfo>> ExtractGameInfoAsync(string name)
+        public static List<GameInfo> ExtractGameInfoAsync(string htmlContent)
         {
-            string url = "https://www.gstonegames.com/game/?keyword=" + name;
             List<GameInfo> games = new List<GameInfo>();
-
-            // 使用 HttpClient 获取 HTML 内容
-            string htmlContent = await GetHtmlContentAsync(url);
 
             // 使用 HtmlAgilityPack 解析 HTML
             HtmlDocument doc = new HtmlDocument();

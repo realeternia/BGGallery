@@ -235,11 +235,23 @@
     <Compile Include="UIS\Panels\UCSettingPanel.Designer.cs">
       <DependentUpon>UCSettingPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIS\Panels\UCStatBuyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCStatBuyList.Designer.cs">
+      <DependentUpon>UCStatBuyList.cs</DependentUpon>
+    </Compile>
     <Compile Include="UIS\Panels\UCStatTotal.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UIS\Panels\UCStatTotal.Designer.cs">
       <DependentUpon>UCStatTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIS\Panels\UCStatPlayList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIS\Panels\UCStatPlayList.Designer.cs">
+      <DependentUpon>UCStatPlayList.cs</DependentUpon>
     </Compile>
     <Compile Include="UIS\RJControls\Forms\FormButton.cs">
       <SubType>Form</SubType>
@@ -592,6 +604,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\InputTextBox.resx">
       <DependentUpon>InputTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCStatBuyList.resx">
+      <DependentUpon>UCStatBuyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIS\Panels\UCStatPlayList.resx">
+      <DependentUpon>UCStatPlayList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UIS\Panels\UCStatTotal.resx">
       <DependentUpon>UCStatTotal.cs</DependentUpon>
