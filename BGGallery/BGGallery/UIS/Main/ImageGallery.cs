@@ -29,6 +29,9 @@ namespace BGGallery.UIS.Main
         private void RefreshAll()
         {
             doubleBufferedFlowLayoutPanel1.Controls.Clear();
+            var dPath = ENV.ImgDir + itemInfo.Id;
+            if (!Directory.Exists(dPath))
+                Directory.CreateDirectory(dPath);
 
             foreach (var path in Directory.GetFiles(ENV.ImgDir + itemInfo.Id))
             {

@@ -372,39 +372,7 @@ namespace BGGallery
         //新增加一个页面
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            PanelManager.Instance.ShowAddBG("", async (gameInfo) =>
-            {
-                var itmInfo = new BGItemInfo();
-                itmInfo.Id = int.Parse(gameInfo.Id);
-                itmInfo.Title = gameInfo.Title;
-                itmInfo.Tag = gameInfo.Details.Replace("/", ",") + "," + gameInfo.PlayerInfo.Replace("人", "人,");
-                itmInfo.CatalogId = catalogId;
-                itmInfo.ColumnId = columnId;
-
-                if(BGBook.Instance.GetItem(itmInfo.Id) != null)
-                {
-                    HLog.Warn("bg add failed repeat id={0}", itmInfo.Id);
-                    return;
-                }
-
-                BGBook.Instance.Items.Add(itmInfo);
-
-                Directory.CreateDirectory(string.Format("{0}/{1}", ENV.ImgDir, gameInfo.Id));
-
-                await BGInfoSyncer.DownloadImageAsync(gameInfo.ImageUrl, string.Format("{0}/{1}/cover.jpg", ENV.ImgDir, gameInfo.Id));
-
-                RefreshLabels();
-
-                if (OnClickItem != null)
-                {
-                    var ctrs = flowLayoutPanel1.Controls.Find("dragctr" + itmInfo.Id, false);
-                    if (ctrs.Length > 0)
-                        OnClickItem(ctrs[0], new EventItemClickArgs { ItemId = itmInfo.Id, ColumnId = columnId });
-                }
-            });
-            return;
-
-            var newItem = BGBook.Instance.AddItem("", catalogId, ColumnInfo.Id);
+            var newItem = BGBook.Instance.AddItem("", catalogId, columnId);
 
             RefreshLabels();
 
